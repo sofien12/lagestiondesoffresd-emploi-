@@ -1,0 +1,25 @@
+#MyEclipse Hibernate Properties
+#Sun Apr 29 16:00:41 WAT 2018
+sessionFactoryName=tn.com.pfe.domain.HibernateSessionFactory
+genBasicCompId=true
+profile=
+daoSFId=
+version=3.3
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=true
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=
+addLibs2Project=false
+genVersionTag=false
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=/PFE/hibernate.reveng.xml
+configFile=/PFE/WebContent/WEB-INF/applicationContext.xml
+createConfigFile=false
+addLibs2Classpath=false
+baseDaoClass=BaseHibernateDAO

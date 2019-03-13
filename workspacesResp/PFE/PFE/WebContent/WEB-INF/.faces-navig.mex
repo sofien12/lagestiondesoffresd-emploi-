@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JSFFlowViewLayout version="1.0">
+  <Drawing gridVisible="true" snapOn="true" />
+  <JSFFlowResource path="*" location="30,30" dimension="49,36" />
+  <JSFFlowResource path="/modules/members/secure/home.xhtml" location="180,30" dimension="258,36" />
+  <JSFFlowResource path="/modules/members/secure/Acceuil.xhtml" location="30,330" dimension="266,36" />
+  <JSFFlowResource path="/modules/members/LoginCandidature.xhtml" location="480,530" dimension="283,36" />
+  <JSFFlowResource path="/modules/members/secure/gestion.xhtml" location="480,430" dimension="318,36" />
+  <JSFFlowResource path="/modules/members/secure/evaluerEntretien.xhtml" location="30,430" dimension="376,36" />
+  <JSFFlowResource path="/modules/members/secure/entretien.xhtml" location="480,330" dimension="328,36" />
+  <JSFFlowResource path="/modules/members/secure/validation.xhtml" location="30,230" dimension="335,36" />
+  <JSFFlowResource path="/modules/members/accessDenied.xhtml" location="330,130" dimension="259,36" />
+  <JSFFlowResource path="/modules/members/secure/processus.xhtml" location="480,230" dimension="279,36" />
+  <JSFFlowResource path="/modules/members/secure/miseajour.xhtml" location="30,530" dimension="334,36" />
+  <JSFFlowNavigationCase id="*,/modules/members/secure/home.xhtml,home,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="79,48" />
+      <AbsolutePoint location="180,48" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/secure/Acceuil.xhtml,Acceuil,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="30,48" />
+      <AbsolutePoint location="-7,48" />
+      <AbsolutePoint location="-7,348" />
+      <AbsolutePoint location="30,348" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/LoginCandidature.xhtml,logout,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="30,63" />
+      <AbsolutePoint location="-74,63" />
+      <AbsolutePoint location="-74,503" />
+      <AbsolutePoint location="621,503" />
+      <AbsolutePoint location="621,530" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/secure/gestion.xhtml,gestion,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="54,66" />
+      <AbsolutePoint location="54,203" />
+      <AbsolutePoint location="443,203" />
+      <AbsolutePoint location="443,448" />
+      <AbsolutePoint location="480,448" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/secure/evaluerEntretien.xhtml,evaluerentretien,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="30,33" />
+      <AbsolutePoint location="-37,33" />
+      <AbsolutePoint location="-37,448" />
+      <AbsolutePoint location="30,448" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/secure/entretien.xhtml,entretien,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="69,66" />
+      <AbsolutePoint location="69,93" />
+      <AbsolutePoint location="766,93" />
+      <AbsolutePoint location="766,330" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/secure/validation.xhtml,validation,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="39,66" />
+      <AbsolutePoint location="39,230" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/accessDenied.xhtml,accessDenied,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="69,30" />
+      <AbsolutePoint location="69,-7" />
+      <AbsolutePoint location="459,-7" />
+      <AbsolutePoint location="459,130" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/secure/processus.xhtml,processus,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="54,30" />
+      <AbsolutePoint location="54,-37" />
+      <AbsolutePoint location="619,-37" />
+      <AbsolutePoint location="619,230" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="*,/modules/members/secure/miseajour.xhtml,MAJ,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="39,30" />
+      <AbsolutePoint location="39,-7" />
+      <AbsolutePoint location="-111,-7" />
+      <AbsolutePoint location="-111,548" />
+      <AbsolutePoint location="30,548" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+</JSFFlowViewLayout>
+

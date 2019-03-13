@@ -1,0 +1,53 @@
+package tn.com.pfe.view;
+
+import java.util.HashMap;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.*;
+
+import tn.com.pfe.domain.Offremploi;
+import utils.JSFUtils;
+
+import javax.annotation.PostConstruct;
+
+
+@Controller
+public class offreBean 
+{
+	@PostConstruct
+	public void initiate() {
+		try{
+			
+			offremploi=new Offremploi();
+		 userBean=(UserBean) JSFUtils.getExpressionValue("#{userBean}");
+			Createur=userBean.getCreateur();
+			
+
+			Role = new HashMap<String, String>();
+			Role.put("directeur general", "directeur general");
+			Role.put("comptabilité","comptabilité");
+			Role.put("développeur","développeur");
+			Role.put("l'intelligence d'entreprise", "l'intelligence d'entreprise");
+			Role.put("avocat","avocat");
+			
+			experience = new HashMap<String, String>();
+			experience.put("3 ans ", "3 ans");
+			experience.put("4 ans ","4 ans");
+			experience.put("2 ans "," 2 ans ");
+			experience.put("1 ans ", "1 ans ");
+			niveau = new HashMap<String, String>();
+			
+			niveau.put("Licence en Informatique ", "Licence en Informatique");
+			niveau.put("Licence en gestion ","Licence en gestion ");
+			niveau.put("Licence en droite"," Licence en droite");
+			niveau.put("Ingenieur en Informatique ", "Ingenieur en Informatique");
+			
+			
+		}catch(Exception e)
+		 {
+	        	e.printStackTrace();
+	        }
+		}
+		
+}

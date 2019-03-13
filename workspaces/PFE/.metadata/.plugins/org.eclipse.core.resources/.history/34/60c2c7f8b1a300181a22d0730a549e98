@@ -1,0 +1,453 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui">
+	<f:view contentType="text/html">
+	<h:head>
+		<title>#{userBean.postulant.nom} #{userBean.postulant.prenom}</title>
+		<link href="#{request.contextPath}/PFE_files/logo_attijari.gif"
+				rel="shortcut icon" />
+				
+			     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/PFE_files/style.css" />
+			    <style>
+			    		#gauche1{
+	border: 2px ;
+	
+    left:46%;
+     height: 740px;
+   	 width: 1100px;
+   	 background: rgba(0,0,0,0.3) ;
+				position:relative;
+				
+				transform:translate(-50%,-50%);
+				box-sizing: border-box;
+				top:430px;
+    	border-radius: 8px ;
+    	margin-left:50px;
+    	
+    	
+        	
+	}
+		.menu1
+	{
+	border: 5px ;
+	 	 background: rgba(0,0,0,0) ;
+	 	position:absolute;
+	 	right:10px;
+	 	left:700px;
+	 	top:-170px;
+
+	}
+	    .menu
+	{
+	border: 5px ;
+	 background:linear-gradient(to left,#ffa31a,#fff5e6);
+	 	
+	 	position:relative;
+	 	right:40px;
+	 	left:-150px;
+
+	}
+	.coodr
+	{
+	 		position:absolute;
+	 		left:300px;
+	 		top:10px;
+	  	
+	 	
+		}
+	.per
+	{
+		position:relative;
+		top:50px;
+			}
+	.exper
+	{
+	position:relative;
+		top:90px;
+		
+	}
+	.format
+	{
+		position:relative;
+		top:120px;
+	}
+	.conteneur
+	{
+	width:1030px;
+	border-radius: 8px ;
+	height: 480px;
+	background: rgba(0,0,0,0.2) ;
+	position:absolute;
+	top:250px;
+	left:245px;
+	
+	}
+	.fond
+	{
+		
+   		position:relative;
+		left:10px;
+		top:-60px;
+		 
+		 border-radius: 8px ;
+		
+	}
+	.image1
+	{
+		 height: 150px;
+   		 width: 150px;
+   		 position: absolute;
+    	bottom: 650px;
+    	left:50px;
+	}
+	.menubottom
+	{
+	position:absolute;
+	top:678px;
+	left:250px;
+	background:linear-gradient(to left,#ffa31a,#fff5e6);
+		border: 5px ;
+	}
+	
+			    </style>
+	<script type="text/javascript">
+			    PrimeFaces.locales ['fr'] = {
+			    closeText: 'Fermer',
+			    prevText: 'Précédent',
+			    nextText: 'Suivant',
+			    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+			    monthNamesShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc' ],
+			    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+			    dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+			    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+			    weekHeader: 'Semaine',
+			    firstDay: 1,
+			    isRTL: false,
+			    showMonthAfterYear: false,
+			    yearSuffix:'',
+			    timeOnlyTitle: 'Choisir l\'heure',
+			    timeText: 'Heure',
+			    hourText: 'Heures',
+			    minuteText: 'Minutes',
+			    secondText: 'Secondes',
+			    currentText: 'Maintenant',
+			    ampm: false,
+			    month: 'Mois',
+			    week: 'Semaine',
+			    day: 'Jour',
+			    allDayText: 'Toute la journée'
+			};
+			
+			 PrimeFaces.widget.Dialog.prototype.applyFocus = function() {
+				  var firstInput = this.jq.find(':not(:submit):not(:button):input:visible:enabled:first');
+				  if(!firstInput.hasClass('hasDatepicker')) {
+				      firstInput.focus();
+				  }
+			}
+
+      </script>
+	</h:head>
+	<h:body style="background-image: url('#{request.contextPath}/PFE_files/images.jpg'); " >
+			
+	
+	<div id="gauche1">
+		<h:graphicImage styleClass="image1" value="/PFE_files/logo.png" />	
+		<div >
+		
+				<h:form id="menubo">
+				<p:menubar styleClass="menubottom" style="width:590px;">
+					<p:menuitem value ="Location"  icon="ui-icon-lightbulb" action="location" style=" position:relative; left:3px; font-family:'Trebuchet MS';font-size:20px; " />
+					<p:menuitem value ="Contact" icon=" ui-icon-contact" style="position:relative; left:3px;font-family:'Trebuchet MS';font-size:20px;" />
+					<p:menuitem value ="A propos" icon="ui-icon-info" style="position:relative; left:3px;font-family:'Trebuchet MS'; font-size:20px;" />
+					<p:menuitem icon ="ui-icon-document" value ="suivre des candidatures" action="Scandidature" style="position:relative; left:3px;font-size:20px; font-family:'Trebuchet MS'; " />
+				</p:menubar>	
+				
+				</h:form>
+		</div>
+			
+	</div>	
+	<div class="conteneur">
+	
+		<div >
+			<h:form id="portailMenubarForm1" >
+			
+									  <p:menubar styleClass="menu1"   style="width:300px; ">
+					<p:menuitem title="Cv"  style=" width:130px ; height: 30px; " oncomplete="PF('CvDial').show(); " update=":formMain1:dataTable1,:formMain1:CvGrid1,:formMain1:dataTable2,:formMain1:dataTable3"   >
+					<p:graphicImage value ="#{CvBean.image}" style=" width:30px ; height: 30px; border-radius: 20px ;"/>
+					<p:outputLabel value="#{userBean.postulant.nom} " style="position:relative ;color: #ffffff; left:12px; bottom:10px; font-family:'Trebuchet MS';font-size:23px; " />
+					</p:menuitem >
+	
+							<p:menuitem value="Les Offres" icon="ui-icon ui-icon-home" action="Acceuil" style="padding-top:10px; position:relative ; left:15px ;color:#ffffff;font-family:'Trebuchet MS';font-size:20px; " />
+							<p:submenu  icon="ui-icon-gear" style="color:#ffffff; padding-top:3px; left:40px; margin-bottom:-10px ;font-family:'Trebuchet MS';font-size:20px; ">
+									<p:menuitem value="Changer mot de passe" oncomplete="PF('statusDialog').show();" icon="ui-icon ui-icon-key" style="width: 242px;font-family:'Trebuchet MS';font-size:20px; "/>
+									<p:menuitem value="Déconnexion"   icon="ui-icon ui-icon-power" url="/modules/members/secure/logout" style="font-family:'Trebuchet MS';font-size:20px;" ajax="false" />
+							</p:submenu>
+				</p:menubar>
+				
+				
+				</h:form>
+			</div>
+		<div class="fond">
+					<h:form id="portailMenubarForm">
+					  <p:menubar styleClass="menu"  style="width:1300px;">
+			<p:menuitem icon="ui-icon-document-b" value="Education" action="education" style="position: relative ; left:50px;font-family:'Trebuchet MS';font-size:25px; top:3px;"/>	           	
+        	<p:menuitem icon="ui-icon-document-b" value=" Formation" action="formation" style="position: relative ;left:200px;font-family:'Trebuchet MS';font-size:25px;  top:3px;"/>
+        	<p:menuitem  icon="ui-icon-document-b" value ="Expérience Professionnelle " action="experience" style=" position: relative ;font-family:'Trebuchet MS';font-size:25px; top:3px; left:335px; "/>				
+           	<p:menuitem icon="ui-icon-document-b" oncomplete="PF('editCoordonneeDial').show()"  value="Coordonnées" style="position: relative ; left:450px;font-family:'Trebuchet MS';font-size:25px; top:3px;" update=":formEditCoordonnee:formEditCoordonneeMsg,:formEditCoordonnee:editCoordonneeDial"/>
+           	
+        
+					
+        </p:menubar>
+						
+		           </h:form>
+		           <p:spacer height="0"/>
+			 <ui:insert name="content" />
+		     </div>
+		      
+		    </div>
+	
+	
+		          
+		
+		
+				
+	<p:ajaxStatus onstart="PF('statusDialog').show();"
+								onsuccess="PF('statusDialog').hide();" />
+								
+								
+							<p:dialog modal="true" widgetVar="statusDialog" draggable="false"
+								closable="false" resizable="false" showHeader="false">
+								<h:panelGrid columns="3">
+								   <p:graphicImage value="/resources/design/attTimer.gif" />
+								   <p:spacer width="10" height="0"/>
+								    <h:panelGrid style="text-align:center;" columns="1">
+								        <h:outputText value="Chargement de la page"/>
+								        <p:spacer width="0" height="4"/>
+								        <h:outputText value="Veuillez patienter : traitement en cours ..."/>
+								    </h:panelGrid>
+								</h:panelGrid>
+								
+							</p:dialog>
+				
+	<div class="diag">
+	<h:form id="formEditCoordonnee">
+	        <p:dialog id="editCoordonneeDial" styleClass="diag1"  widgetVar="editCoordonneeDial" header="Modification Coordonnees" resizable="false"  width="800"  showEffect="explode" hideEffect="explode"    modal="true"> 
+		   		<p:messages  id="formEditCoordonneeMsg" for="formEditCoordonnee" showDetail="true" closable="true"/>
+	            
+	            <h:panelGrid id="editCoordonneeGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	            <h:outputText value="Pays :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText3" style="width:200px;" value="#{userBean.postulant.pays}" required="true" requiredMessage="La saisie de Pays est obligatoire !" >
+	   	            	<f:selectItem  itemLabel="Choisir son Pays" itemValue="" />
+	   	            	<f:selectItem  itemLabel="Tunisie" itemValue="Tunisie" /> 
+	   	            	 
+	   	             </p:selectOneMenu>
+	   	             <p:message for ="inputText3" style="font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+					
+					 
+					 <h:outputText value="Nationalité :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+				<p:selectOneMenu id="inputText4" style="width:200px;" value="#{userBean.postulant.nationalité}" required="true" requiredMessage="La saisie de nationalité est obligatoire !" validatorMessage="la saisie de nationalité  n'est pas nombre svp " >
+	   	            <f:selectItem  itemLabel="Choisir son Nationalité" itemValue="" />
+	   	             <f:selectItem  itemLabel="Tunisien" itemValue="Tunisien" /> 
+	   	            </p:selectOneMenu>
+	   	             <p:message for ="inputText4" style="position:relative; right:20px; font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+	                
+	                <h:outputText value="Ville :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText" style="width:200px;" value="#{userBean.postulant.ville}" required="true" requiredMessage="La saisie de Pays est obligatoire !" >
+	   	            	<f:selectItem  itemLabel="Choisir son ville" itemValue="" />
+	   	            	<f:selectItem  itemLabel="Sousse" itemValue="Sousse" /> 
+	   	            	<f:selectItem  itemLabel="Tunis" itemValue="Tunis" />
+	   	            	<f:selectItem  itemLabel="Sfax" itemValue="Sfax" /> 
+	   	            	<f:selectItem  itemLabel="Bizerte" itemValue="Bizerte" />
+	   	            	<f:selectItem  itemLabel="Monastir" itemValue="Monastir" />
+	   	             </p:selectOneMenu>
+	   	             <p:message for ="inputText" style="font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+					 
+	                 <h:outputText value="Adresse :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					 <p:inputText id="inputText1" style="width:200px;" value="#{userBean.postulant.adresse}" required="true" requiredMessage="La saisie de adresse est obligatoire !" validatorMessage="Adresse sous form N° Rue [0..9] ou[a..z] " >
+	   	             	<f:validateRegex pattern="^[z0-9-\s]+([A-Za-z0-9-\s]+)$" />
+	   	             </p:inputText>
+	   	             <p:message for="inputText1" style="font-size:15px;"/>
+	   	             <p:spacer height="0" width="7"/>
+	   	        
+	   	         
+	   	             <h:outputText value="Code Postal :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					 <p:inputText id="inputText2" style="width:200px;" value="#{userBean.postulant.codePostal}" required="true" requiredMessage="La saisie de Code Postal est obligatoire!" validatorMessage="Code Postal est chiffre et longeur : 4  svp ">
+						
+						<f:validateLength minimum="4"   maximum="4" />
+					</p:inputText>
+					<p:message for ="inputText2" style="font-size:14px;" />
+					 <p:spacer height="0" width="7"/>
+					  
+					 <h:outputText value="Téléphone :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:inputText id="number" style="width:200px;" value="#{userBean.postulant.tel}" required="true" requiredMessage="La saisie de telephone est obligatoire !" validatorMessage="la saisir de Tel entre 1..9 et longeur = 8">
+	   	           <f:validateLength minimum="8"   maximum="8" />
+	   	             </p:inputText>
+	   	             <p:message for ="number" style="font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+					 
+					 
+					
+				   	    
+				   	     
+					 
+					
+	   	             
+			     </h:panelGrid>
+			    
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('editCoordonneeDial').hide()"/>
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="Valider" action="#{userBean.editCoordonne}"
+				                  update=":formEditCoordonnee:editCoordonneeGrid1,formEditCoordonnee:formEditCoordonneeMsg"/>
+				                  
+			 	 <script type="text/javascript">
+					  
+				  </script>        
+			</p:dialog>
+        
+        </h:form>
+        </div>
+       <p:dialog id="CvDial"  style="position:absolute ; top:750px; border: 5px ;"  widgetVar="CvDial" header="curriculum vitae"  resizable="false"  width="805" height="570" showEffect="explode" hideEffect="explode"    modal="true"> 
+    		<p:graphicImage value ="#{CvBean.image}" style=" width:150px ; height: 150px; position:relative; left:120px;top:10px; border-radius: 20px ;"/>
+          	
+          	<h:form id = "formMain1" >
+          	<div class="coodr">
+          		<h:panelGrid id="CvGrid1" columns="2" columnClasses="label,label">
+	                
+	                <h:outputText value="#{userBean.postulant.nom} #{userBean.postulant.prenom}"  style="  font-family:'Times New Roman'; color: #000000; font-size:30px; "/>
+	               <p:spacer height="0" width="7"/>
+	           
+	                 <h:outputText value="Adresse :" style=" position: relative ; left:20px; color: #000000; font-size:20px; "/>
+	                 
+	                  <h:outputText   style="position:relative; right:55px; color: #999999; " value="#{userBean.postulant.adresse} , #{userBean.postulant.codePostal} , #{userBean.postulant.ville},#{userBean.postulant.pays}" />
+	   	         	
+	   	         	
+	   	         	<h:outputText value="Email :" style="position: relative ; left:20px;  color: #000000; font-size:20px; "/>
+	                  <h:outputText   style="position:relative; right:55px; color: #999999; " value="#{userBean.postulant.email}" />
+	   	        	 
+	   	        	 <h:outputText value="CIN :"  style=" position: relative ; left:20px;  font-family:'Times New Roman'; color: #000000; font-size:20px; "/>
+	   	        	<h:outputText   style="position:relative; right:55px; color: #999999; " value="#{userBean.postulant.cin}" />
+	   	        	
+	   	        	
+	   	                 
+	   	         	<h:outputText value=" Tel :" style=" position: relative ; left:20px; color: #000000; font-size:20px; "/>
+	                  <h:outputText   style="position:relative;right:55px; color: #999999; " value="#{userBean.postulant.tel}" />
+			     
+			   <h:outputText value=" Date de Naissance :" style=" position: relative ; left:20px; color: #000000; font-size:20px; "/>
+	                  <h:outputText   style="position:relative;left:19px; color: #999999; " value="#{userBean.postulant.dateNaissance}" >
+	                  <f:convertDateTime pattern="dd/MM/yyyy" />
+	                  </h:outputText>
+			     
+			     </h:panelGrid>
+			      <hr/> 
+          	  
+          	</div>
+          <div class="per">
+          	                
+          				
+          					 <p:graphicImage style="height:40px; width:40px;" value="/PFE_files/education.png"  />
+          	            <h:outputText   value ="Education " style="position:relative; bottom :10px; left:20px; font-family:'Times New Roman'; color: #000000; font-size:35px; "/>
+          	          	<hr style="position:relative ; left:10px;"/> 
+			     		<p:dataList emptyMessage="Pas d'enregistrements disponibles !" id="dataTable1"  value="#{CvBean.listeducation}" filteredValue="#{CvBean.filteredListEducation}" var="item" type="definition" >
+        					<h:outputText value="Domaine :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+		    				<h:outputText value="#{item.domaineEducation}" style=" position: relative ; color: #999999; left:60px;" />
+							<Br/>
+							<h:outputText value="Spécialité :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        					<h:outputText value="#{item.spécialité}" style=" position: relative ; color: #999999; left:55px;" />
+    						<Br/>
+    						<h:outputText value="Cycle :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        					<h:outputText value="#{item.cycle}" style=" position: relative ; color: #999999; left:88px;" />
+    						<Br/>
+    						<h:outputText value="Etablissement :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        					<h:outputText value="#{item.etablissementEducation}" style=" position: relative ; color: #999999; left:20px;" />
+    						<br/>
+    						<h:outputText value="Regime Linguistique :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        					<h:outputText value="#{item.regimeLinguistique}" style=" position: relative ; color: #999999; left:55px;" />
+    						<Br/>
+    						<h:outputText value="diplome :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>	
+    						<p:commandButton actionListener="#{CvBean.dowloand(item.photoDiplomee)}"   onclick="PrimeFaces.monitorDownload(start, stop)" style="width:20px; height:20px;  position:relative; left:20px;top:5px; background-image:url('#{request.contextPath}/PFE_files/pdf-icone-16.png')" ajax="false" update=":formAddClient:addClientGrid1,:formEditClient:editClientGrid1"  icon=" fa-file-pdf-o">
+   								<p:fileDownload  value="#{CvBean.file}"  />
+   								<f:setPropertyActionListener value="#{item}" target ="#{CvBean.selectedCv}" />
+    						</p:commandButton>
+    						<br/>
+    						<br/>
+    					</p:dataList>
+    					
+          			</div>
+          			<div class="exper">
+          	                
+          				
+          					 <p:graphicImage style="height:40px; width:40px;" value="/PFE_files/experience.png"  />
+          	            <h:outputText   value ="Experience Professionnelles " style="position:relative; bottom :10px; left:20px; font-family:'Times New Roman'; color: #000000; font-size:35px; "/>
+          	          	<hr style="position:relative ; left:10px;"/> 
+			     		<p:dataList emptyMessage="Pas d'enregistrements disponibles !" id="dataTable2"  value="#{CvBean.listExperience}" filteredValue="#{CvBean.filteredListExperience}" var="item" type="definition" >
+        					<h:outputText value="Type formation  :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+		    				<h:outputText value="#{item.typeFormation}" style=" position: relative ; color: #999999; left:20px;" />
+							<Br/>
+							<h:outputText value="Etablissment  :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        					<h:outputText value="#{item.etablissementExper}" style=" position: relative ; color: #999999; left:40px;" />
+    						<Br/>
+    						<h:outputText value="Mission :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        					<h:outputText value="#{item.mission}" style=" position: relative ; color: #999999; left:80px;" />
+    							 <br/>
+    							 <h:outputText value="diplome :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>	
+    						<p:commandButton actionListener="#{CvBean.dowloand(item.photoDiplomeExper)}"   onclick="PrimeFaces.monitorDownload(start, stop)" style="width:20px; height:20px;  position:relative; left:20px;top:5px; background-image:url('#{request.contextPath}/PFE_files/pdf-icone-16.png')" ajax="false" update=":formAddClient:addClientGrid1,:formEditClient:editClientGrid1"  icon=" fa-file-pdf-o">
+   								<p:fileDownload  value="#{CvBean.file}"  />
+   								<f:setPropertyActionListener value="#{item}" target ="#{CvBean.selectedCv}" />
+    						</p:commandButton>
+    						<br/>
+    						<br/>
+    					</p:dataList>
+    					
+          			</div>
+          			
+          			<div class="format">
+          	                
+          				
+          					 <p:graphicImage style="height:40px; width:40px;" value="/PFE_files/formation.png"  />
+          	            <h:outputText   value ="Formation " style="position:relative; bottom :10px; left:20px; font-family:'Times New Roman'; color: #000000; font-size:35px; "/>
+          	          	<hr style="position:relative ; left:10px;"/> 
+			     		<p:dataList emptyMessage="Pas d'enregistrements disponibles !" id="dataTable3"  value="#{CvBean.listFormation}" filteredValue="#{CvBean.filteredListFormation}" var="item" type="definition" >
+        					<h:outputText value="Titre formation  :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+		    				<h:outputText value="#{item.titreFormation}" style=" position: relative ; color: #999999; left:20px;" />
+							<Br/>
+							<h:outputText value="Etablissment  :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        					<h:outputText value="#{item.etablissementFormation}" style=" position: relative ; color: #999999; left:40px;" />
+    							 <br/>
+    							 <h:outputText value="diplome :" style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>	
+    						<p:commandButton actionListener="#{CvBean.dowloand(item.photoDiplomeFormation)}"   onclick="PrimeFaces.monitorDownload(start, stop)" style="width:20px; height:20px;  position:relative; left:20px;top:5px; background-image:url('#{request.contextPath}/PFE_files/pdf-icone-16.png')" ajax="false" update=":formAddClient:addClientGrid1,:formEditClient:editClientGrid1"  icon=" fa-file-pdf-o">
+   								<p:fileDownload  value="#{CvBean.file}"  />
+   								<f:setPropertyActionListener value="#{item}" target ="#{CvBean.selectedCv}" />
+    						</p:commandButton>
+    						<br/>
+    						<br/>
+    					</p:dataList>
+    					
+          			</div>
+          			</h:form>
+          		
+          </p:dialog>
+       
+	</h:body>
+	</f:view>
+</html>

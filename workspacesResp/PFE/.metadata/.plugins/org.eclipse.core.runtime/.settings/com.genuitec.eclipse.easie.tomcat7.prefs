@@ -1,0 +1,10 @@
+#Sat May 05 20:44:08 WAT 2018
+TOMCAT_HOME=C\:\\apache-tomcat-7.0.47
+TOMCAT_TEMP=C\:\\apache-tomcat-7.0.47\\temp
+LIBRARY_PATH="C\:\\Users\\sofien\\MyEclipse for Spring\\Common\\binary\\com.sun.java.jdk.win32.x86_1.6.0.013\\bin;C\:\\apache-tomcat-7.0.47\\bin"
+TOMCAT_BASE=C\:\\apache-tomcat-7.0.47
+ENDORSED_DIRS="C\:\\apache-tomcat-7.0.47/common/endorsed"
+eclipse.preferences.version=1
+JDK_HOME=C\:\\Users\\sofien\\MyEclipse for Spring\\Common\\binary\\com.sun.java.jdk.win32.x86_1.6.0.013
+OPT_VM_ARGS=-Dorg.apache.el.parser.COERCE_TO_ZERO\=false\r\n-XX\:MaxPermSize\=200m\r\n-Duser.language\=fr\r\n-Duser.timezone\="+01\:00"
+SERVER_ENABLEMENT=true

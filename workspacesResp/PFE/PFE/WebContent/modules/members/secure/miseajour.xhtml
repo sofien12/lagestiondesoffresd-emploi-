@@ -1,0 +1,201 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../../templates/pageMere.xhtml">
+
+<h:head>
+	</h:head>
+
+	<ui:define name="content">
+		<h:form id="recherche" rendered ="#{userBean.test eq 'CR'}">
+				
+		<p:outputLabel  style="width:50px;font-family:'Trebuchet MS';font-size:30px; color:#aaa; position:relative ; left:150px " value="Selectionner Candidats :"/>
+				<p:selectOneMenu  value="#{MajBean.idpost}"  style="width:300px; font-family:'Trebuchet MS';position:relative; left:190px ; top:5px; ">
+           			 <f:selectItem itemLabel="choisir votre candidat" itemValue="" />
+            		<f:selectItems value="#{MajBean.postulant}" />
+        		</p:selectOneMenu>
+        	
+        		<p:commandButton icon="ui-icon-search" title="Recherche "
+					style="height:32px;width:30px; position:relative ;left:200px; bottom:3px;"
+					action="#{MajBean.rechercheP()}" update=":formf:fieldset"/>
+			<p:separator style="position:relative;top:30px;width:550px;" />
+			</h:form>
+			
+			
+		<h:form id="formf" rendered ="#{userBean.test eq 'CR' }" >
+			
+		<p:fieldset id="fieldset" widgetVar="fieldset"
+				legend="Consulter les donnees  candidats "
+				style="margin-bottom:20px;position:relative; left:35px;width:900px;height:400px; top:50px ">
+				<p:growl id="gMAJ" for="formf"
+					showDetail="true" closable="true" />	
+				<h:panelGrid id="addOffreGrid1" columns="5"
+					columnClasses="">
+				
+				<p:outputLabel value="Nom :" style="position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:25px; "/>
+				<p:outputLabel value="#{MajBean.postulat.nom}" style="color:#808080 ;position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:23px; "/>
+				<p:outputLabel value="Prenom : " style="position:relative ;left:350px;font-family:'Trebuchet MS'; font-size:25px; " />
+					<p:outputLabel value="#{MajBean.postulat.prenom} " style=" color:#808080;position:relative ;left:350px;font-family:'Trebuchet MS'; font-size:23px; " />
+				
+				<p:spacer height="50" width="0" />
+					<p:outputLabel value=" Adresse :" style="position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:25px;" />
+					<p:outputLabel value="#{MajBean.postulat.adresse} " style=" color:#808080;position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:23px; " />
+					<p:outputLabel value="Code Postale :" style="position:relative ;left:350px;font-family:'Trebuchet MS'; font-size:25px;"  />	
+					<p:outputLabel value="#{MajBean.postulat.codePostal}" style=" color:#808080;  position:relative ;left:350px;font-family:'Trebuchet MS'; font-size:23px;"  />	
+				<p:spacer height="50" width="0" />
+					<p:outputLabel value=" Pays :" style="position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:25px;" />
+				    <p:outputLabel value="#{MajBean.postulat.pays} " style=" color:#808080;position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:23px; " />	
+					<p:outputLabel value=" Localité :" style="position:relative ;left:350px;font-family:'Trebuchet MS'; font-size:25px;" />
+					<p:outputLabel value="#{MajBean.postulat.ville}" style=" color:#808080;  position:relative ;left:350px;font-family:'Trebuchet MS'; font-size:23px;" />
+				<p:spacer height="50" width="0" />
+					<p:outputLabel value=" Nationalité  :" style="position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:25px;" />						
+					<p:outputLabel value="#{MajBean.postulat.nationalité} " style=" color:#808080;position:relative ;left:200px;font-family:'Trebuchet MS'; font-size:23px; " />
+					<p:outputLabel value=" Tel :" style="position:relative ;left:350px;font-family:'Trebuchet MS'; font-size:25px;" />
+					<p:outputLabel value="#{MajBean.postulat.tel} " style=" color:#808080;position:relative ;left:310px;font-family:'Trebuchet MS'; font-size:23px; " />
+			</h:panelGrid>
+			<p:separator style="position:relative;top:50px;width:450px;" />
+			<p:spacer height="100" width="0" />
+			<p:commandButton  value="Etape suivante" icon=" ui-icon-arrow-1-e"  style="position:relative ; left :320px;" action="#{MajBean.inialMAJ()}"
+				  oncomplete="addClientRequest(xhr, status, args)" update=":formf:gMAJ,:addMAJ:addMAJD,:addMAJ:addMAJGrid1" />
+					<script type="text/javascript">
+	function addClientRequest(xhr, status, args) {
+		if (args.validationFailed || !args.loggedIn) {
+
+		} else {
+			PF('addMAJD').show()
+
+		}
+	}
+</script>
+			</p:fieldset>
+		</h:form>
+	<h:form id="addMAJ">
+	 <p:dialog id="addMAJD" widgetVar="addMAJD" header="MAJ des donnees administrative" resizable="false" width="860" showEffect="explode" hideEffect="explode" modal="true"> 
+				<p:growl id="gMAJ" for="addMAJ"
+					showDetail="true" closable="true" />
+					<p:messages id="formMAJMsg" for="addMAJ" showDetail="true" closable="true" />
+					<p:spacer height="50" width="0" />
+					<p:outputLabel value="Nom et Prenom :" style="position:relative ;left:100px;font-family:'Trebuchet MS'; font-size:25px; "/>
+					<p:outputLabel value="#{MajBean.postulat.nom} #{MajBean.postulat.prenom}" style=" color:#808080;position:relative ;left:110px;font-family:'Trebuchet MS'; font-size:23px; "/>
+					<p:outputLabel value=" CIN :" style="position:relative ;left:150px;font-family:'Trebuchet MS'; font-size:25px; "/>
+					<p:outputLabel value="#{MajBean.postulat.cin}"  style=" color:#808080;position:relative ;left:150px;font-family:'Trebuchet MS'; font-size:23px; "/>
+					<p:separator style="position:relative;top:30px;width:450px;" />
+					<p:spacer height="30" width="0" />
+			<h:panelGrid id="addMAJGrid1" columns="6" columnClasses="">
+					
+					<p:outputLabel value="Position :" style="position:relative ;left:50px;font-family:'Trebuchet MS'; font-size:25px; "/>
+					<p:spacer height="0" width="50" />
+					<h:outputText style="color:red;" value="*" />
+					<p:selectOneMenu id="inputText1" value="#{MajBean.maj.position}" required="true"
+						requiredMessage="La saisie de position  est obligatoire !" >
+						<f:selectItem itemLabel="Choisir votre position  " itemValue="" />
+						<f:selectItem itemLabel="Analyste financier " itemValue="Analyste financier" />
+						<f:selectItem itemLabel="Guichetier bancaire " itemValue="Guichetier bancaire" />
+						<f:selectItem itemLabel="Agent de crédit" itemValue="Agent de crédit" />
+					</p:selectOneMenu>
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="inputText1" />
+						
+					<p:spacer height="10" width="0" />
+					
+					<p:outputLabel value="Grade    :" style="position:relative ;left:50px;font-family:'Trebuchet MS'; font-size:25px; "/>
+					<p:spacer height="0" width="10" />
+					<h:outputText style="color:red;" value="*" />
+					<p:selectOneMenu id="inputText2" value="#{MajBean.maj.grade}" required="true"
+						requiredMessage="La saisie de grade  est obligatoire !" >
+						<f:selectItem itemLabel="Choisir votre Grade  " itemValue="" />
+						<f:selectItem itemLabel="rédacteur " itemValue="rédacteur" />
+						<f:selectItem itemLabel="Assistant de direction " itemValue="Assistant de direction" />
+						<f:selectItem itemLabel="Directeur adjoint" itemValue="Directeur adjoint" />
+					</p:selectOneMenu>
+					<p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="inputText2" />
+						
+					<p:spacer height="10" width="0" />	
+					
+					<p:outputLabel value="Echelle   :" style="position:relative ;left:50px;font-family:'Trebuchet MS'; font-size:25px; "/>
+					<p:spacer height="0" width="10" />
+					<h:outputText style="color:red;" value="*" />
+					<p:selectOneMenu id="inputText3" value="#{MajBean.maj.echelle}" required="true"
+						requiredMessage="La saisie de Echelle   est obligatoire !"> 
+						<f:selectItem itemLabel="Choisir votre echelle  " itemValue="" />
+						<f:selectItem itemLabel="9 barid  " itemValue="9 barid" />
+						<f:selectItem itemLabel="16 barid  " itemValue="16 barid " />
+					</p:selectOneMenu>
+				<p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText3" />
+				
+				<p:spacer height="10" width="0" />	
+				
+				<h:outputText value="Date pécuniaire  :"  style="position:relative ;left:50px;font-family:'Trebuchet MS'; font-size:20px; " />
+					<p:spacer height="0" width="35" />
+					<h:outputText style="color:red;" value="*" />
+					<p:calendar id="inputText5"
+						style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "
+						value="#{MajBean.maj.dateP}" required="true"
+						requiredMessage="La saisie de Date  est obligatoire !" />
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText5" />
+					
+					<p:spacer height="10" width="0" />
+					<h:outputText value="Provisoire  :"  style="position:relative ;left:50px;font-family:'Trebuchet MS'; font-size:20px; " />
+					<p:spacer height="0" width="35" />
+					<h:outputText style="color:red;" value="*" />
+					<h:selectOneRadio id="Genre" value="#{MajBean.maj.provisoire}" style="  font-family:'Trebuchet MS';font-size:20px; "  required="true" requiredMessage="la saisie de provisoire est obligatoire !" >
+						<f:selectItem  itemLabel="Oui" itemValue="Oui" /> 
+	   	            	<f:selectItem  itemLabel="Non" itemValue="Non" />
+					</h:selectOneRadio>
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="Genre" />
+						
+						<p:spacer height="10" width="0" />	
+				
+				<h:outputText value="Date debut  :"  style="position:relative ;left:50px;font-family:'Trebuchet MS'; font-size:20px; " />
+					<p:spacer height="0" width="35" />
+					<h:outputText style="color:red;" value="*" />
+					<p:calendar id="inputText9"
+						style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "
+						value="#{MajBean.maj.datedebut}" required="true"
+						requiredMessage="La saisie de Date  est obligatoire !" />
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText9" />
+						
+					<p:spacer height="10" width="0" />	
+				
+				<h:outputText value="Date fin  :"  style="position:relative ;left:50px;font-family:'Trebuchet MS'; font-size:20px; " />
+					<p:spacer height="0" width="35" />
+					<h:outputText style="color:red;" value="*" />
+					<p:calendar id="inputText8"
+						style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "
+						value="#{MajBean.maj.dateFinal}" required="true"
+						requiredMessage="La saisie de Date  est obligatoire !" />
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText8" />
+					
+			
+			</h:panelGrid>
+				
+			<p:separator style="position:relative;top:30px;width:450px;" />
+			<p:spacer height="60" width="0" />	
+			
+	<p:commandButton value="Enregistre" action="#{MajBean.updateMaj()}" style="position:relative; left:300px;"
+	update=":addMAJ:formMAJMsg,:addMAJ:addMAJGrid1,:addMAJ:gMAJ" oncomplete="addClientRequet(xhr, status, args)" />
+	
+				<script type="text/javascript">
+	function addClientRequet(xhr, status, args) {
+		if (args.validationFailed || !args.loggedIn) {
+
+		} else {
+			PF('addMAJD').hide()
+		}
+	}
+</script>
+	</p:dialog>
+	
+	</h:form>	
+	
+</ui:define>
+</ui:composition>

@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ 
+	<h:head>
+	    <f:facet name="first">
+	      <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	      <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	    </f:facet>
+	     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/PFE_files/style.css" />
+        <link href="#{request.contextPath}/PFE_files/logo_attijari.gif" rel="shortcut icon"/>
+		<title>attijari bank </title>
+		<link rel="stylesheet" type="text/css"
+			href="#{request.contextPath}/PFE_files/main.css" />
+		<link rel="stylesheet" type="text/css"
+			href="#{request.contextPath}/PFE_files/css.css" />
+		<script type="text/javascript"
+			src="#{request.contextPath}/PFE_files/common.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/externValidator.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/hideStatusBar.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/domLib.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/domTT.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/mouseover.js"></script>
+		<script type="text/javascript"
+			src="#{request.contextPath}/PFE_files/rounded_corners.js"></script>
+		<script type="text/javascript"
+			src="#{request.contextPath}/PFE_files/cookie.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[ 
+
+            
+//]]>
+</script>
+			<style type="text/css">
+			
+		
+		
+	.button1{
+ 
+ background:#ffa31a;
+border: 3px ;
+ 	position:relative;
+    transition: .5s ease;
+    border-radius: 7px  ;	
+    left:20%;
+    top: 10px;
+    width: 150px;
+  height: 50px;
+  font: 20px/25px "Muli";
+
+   	
+ }
+
+ 
+ .lien
+		{
+		position:absolute;
+			left:15%;
+			color :yellow;
+			bottom:30%;
+			font-size:15px;
+			font: 20px/25px "Muli";
+		}
+		.button{
+ 
+ background:#ffa31a;
+border: 3px ;
+ 	position:relative;
+    transition: .5s ease;
+    border-radius: 7px  ;	
+    left:65%;
+    top: 80px;
+    width: 150px;
+  height: 50px;
+  font: 20px/25px "Muli";
+   	
+ }
+ .button:hover
+  {
+  	-webkit-transform: scale(1.05);/*Grows in size like Angry Birds button*/
+   -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+        background: linear-gradient(to right,#330033,   #ff1a75,#ffa31a);
+    
+    color: #FFF;
+	text-shadow: none;
+  }
+    .button1{
+ 
+ background:#ffa31a;
+border: 3px ;
+ 	position:relative;
+    transition: .5s ease;
+    border-radius: 7px  ;	
+    left:20%;
+    top: -10px;
+    width: 150px;
+  height: 50px;
+  font: 20px/25px "Muli";
+
+   	
+ }
+ .button1:hover
+  {
+  	-webkit-transform: scale(1.05);/*Grows in size like Angry Birds button*/
+   -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+     color: #FFF;
+	text-shadow: none;
+	background: linear-gradient(to right,#330033,   #ff1a75,#ffa31a);
+  }
+  .image
+	{
+		 height: 150px;
+   		 width: 150px;
+   		 padding-top:50%;
+   		 position: relative;
+    	bottom: 310px;
+    	right :-9%;
+	}
+	.lien
+		{
+		position:absolute;
+			left:15%;
+			color :yellow;
+			bottom:20%;
+			font-size:15px;
+			font: 20px/25px "Muli";
+		}
+		#gauche{
+	border: 2px ;
+	
+    left:46%;
+    height: 450px;
+   	 width: 500px;
+   	 background:rgba(0,0,0,0.1) ;
+				position:absolute;
+				transform:translate(-50%,-50%);
+				box-sizing: border-box;
+				top:50%;
+    	border-radius: 8px ;
+    	margin-left:50px;
+    	
+        	
+	}
+			.col-3{
+	float: left; 
+	width: 70%;
+	 margin: 30px 5%; 
+	position: relative;
+	bottom:-40px;
+	left:10%;
+	}  
+			.col-2{
+	float: left; 
+	width: 70%;
+	 margin: 30px 5%; 
+	position: relative;
+	bottom:-15px;
+	left:10%;
+
+	} 
+		#gauche{
+	border: 2px ;
+	
+    left:46%;
+    height: 450px;
+   	 width: 500px;
+   	background:rgba(0,0,0,0.3)  ;
+				position:absolute;
+				transform:translate(-50%,-50%);
+				box-sizing: border-box;
+				top:50%;
+    	border-radius: 8px ;
+    	margin-left:50px;
+    	
+        	
+	} 
+			</style>
+			
+
+		</h:head>
+
+		<h:body  style="background-image: url('#{request.contextPath}/PFE_files/imageBAck.png');">
+			 		 
+			 <div id="gauche">
+			  
+	
+			<h:graphicImage styleClass="image" value="/PFE_files/logo.png" />
+		
+			<div class="login">
+			
+					<h:form prependId="false" id="loginForm" >
+	 						   <p:growl id="growl"  showDetail="true" sticky="false"
+								autoUpdate="false" />
+						
+						<!-- ===================================================================================================== -->
+					
+        						 <div class="col-3 input-effect">
+        						<input class="effect-23" type="text" name="j_username" >
+            				<label> Email / CIN</label>
+    							</input>        	
+	           			 <span class="focus-bg"></span>
+        				</div>
+						<div class="col-2 input-effect" >
+        				<input class="effect-24" type="password" name="j_password"  />
+            			<label>mot de passe </label>
+            				<span class="focus-bg"></span>
+										
+								<h:commandButton value="Connexion" action="#{loginBean.doLogin}" 
+									  type="submit"  
+									 styleClass="button" onclick="PF('statusDialog').show();">
+									  
+							    </h:commandButton>
+							    
+						</div>	
+					    	 
+						
+					</h:form>
+      	
+      	 
+     	</div>	
+		</div>
+			
+			<!-- ====================================================================================================== -->
+		  
+				<p:ajaxStatus onstart="PF('statusDialog').show();"
+								onsuccess="PF('statusDialog').hide();" />
+                            
+							<p:dialog modal="true" widgetVar="statusDialog" draggable="false"
+								closable="false" resizable="false" showHeader="false">
+								<h:panelGrid columns="3">
+								   <p:graphicImage value="/resources/design/attTimer.gif" />
+								   <p:spacer width="10" height="0"/>
+								    <h:panelGrid style="text-align:center;" columns="1">
+								        <h:outputText value="Chargement de la page"/>
+								        <p:spacer width="0" height="4"/>
+								        <h:outputText value="Veuillez patienter : traitement en cours ..."/>
+								    </h:panelGrid>
+								</h:panelGrid>
+								
+							</p:dialog>
+	
+			
+				
+				
+		</h:body>
+</html>

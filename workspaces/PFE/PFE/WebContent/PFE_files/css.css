@@ -1,0 +1,1421 @@
+@charset "UTF-8";
+
+/* ---------------------------------------------------------------------------------------- main */
+
+body, div, fieldset, form, table, td, th, span, a, hr, pre, input, select, textarea, p {
+	margin:0px;
+	padding:0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000;
+}
+
+body {
+	background-attachment:fixed;
+}
+
+select {
+	border: 1px solid #d3d5c8;
+}
+
+fieldset {
+	padding: 5px;
+	-moz-border-top-colors: #e3e3d8;
+	-moz-border-right-colors: #e3e3d8;
+	-moz-border-bottom-colors: #e3e3d8;
+	-moz-border-left-colors: #e3e3d8;
+	border: 1px solid #e3e3d8;
+}
+
+fieldset.fieldsetRed {
+	padding: 5px;
+	-moz-border-top-colors: #f00;
+	-moz-border-right-colors: #f00;
+	-moz-border-bottom-colors: #f00;
+	-moz-border-left-colors: #f00;
+	border: 1px solid #f00;
+}
+
+span.labelBoldRed, span.labelRed {
+	color: #f00;
+}
+
+.rubrique {
+	font-weight:bold;
+	text-indent:1em;
+	padding:3px 0px 0px 0px;
+	height:20px;
+	border-top:none;
+	border-right:none;
+	border-left:none;
+	border-bottom:1px solid #a52800;	
+	background-color:#fff4d4;
+	color:#000;
+	font-variant:small-caps;
+	font-size:12px;
+	font-family:arial;
+}
+
+/* bandeau de titre */
+p.pageTitle {
+	font-family:Arial, Verdana, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:16px;
+	text-indent:6px;
+	border-bottom:1px solid #f64427;
+	border-left:1px solid #f64427;
+	color:#f64427;
+	margin-bottom:12px;
+	padding-bottom:3px;
+	text-align:left;
+}
+
+/***** Couleurs *****/
+
+.fondArrierePlan {
+	background-color: #959595;
+
+}
+
+/*************** Liens ******************/
+
+a:link {
+	color: #a52800;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #a52800;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color:#f9b701;
+}
+
+a:active {
+	color: #a52800;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#deconnexion {}
+
+/************* Tables ****************/
+
+/*****************************
+ Style du taglib delta:tabeau
+******************************/
+table.delta {
+	border: 1px solid #d3d5c8;
+	border-collapse: separate;
+}
+
+table.delta th a:link {
+	color:#f9b701;
+}
+
+table.delta th a:visited {
+	color:#f9b701;
+}
+
+table.delta th a:active {
+	color:#fff4b4;
+}
+
+table.delta th a:hover {
+	color:#fff4b4;
+}
+
+table.delta th {
+	padding: 1px 4px 1px 4px;
+	color: #fff4d4;
+	background-color: #f64427;
+  	vertical-align: middle;
+  	text-align: center;
+}
+
+table.delta thead tr {
+	background-color: #a52800;
+}
+
+table.delta tr.even {
+	background-color: #e1ddce;
+}
+
+table.delta tr.odd {
+	background-color: #edebe2;
+}
+
+table.delta tr.mouseover {
+	background-color: #fff4d4;
+}
+
+tr.total td {
+	text-align: right;
+	background-color: #fff4d4;
+	font-weight: bold;
+	color: #f64427;
+}
+
+/***********************************
+ Fin de style du taglib delta:tabeau
+************************************/
+
+/**** Style d'une ligne de totaux suite à une table *****/
+table.deltaTotal {
+	border-collapse:separate;
+	border: 1px solid #fff4d4;
+	margin: 7px 0px 7px 0px;
+}
+
+table.deltaTotal thead tr {
+	background-color: #fff4d4;
+}
+
+table.deltaTotal tr.even {
+	background-color: #fff4d4;
+}
+
+table.deltaTotal tr.odd {
+	background-color: #ffffff;
+}
+
+tr.even, td.even {
+	background-color: #e1ddce;
+}
+
+tr.odd, td.odd {
+	background-color: #edebe2;
+}
+
+/* Largeur fixe pour les liens de la liste des comptes */
+
+.largeurFixe {
+	line-height: 9px;
+	font-family: Lucida Console;
+	font-size: 10px;
+	color: #a52800;
+}
+
+#headerAideSecuriteEbk {
+    height: 25px;
+    width: 1150px;
+	background: #f9f9f9;
+}
+
+a.lienLangue, a.lienAideSecurite, a.lienLangue:visited, a.lienAideSecurite:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #a52800;
+	font-weight: normal;
+}
+
+a.lienLangue:hover, a.lienAideSecurite:hover {
+	color: #f9b701;
+}
+
+span.lienLangueOff {
+	color: #a52800;
+	font-weight: bold;
+}
+
+input.text {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #676767;
+	background-color: #fff;
+	border: 1px solid #d3d5c8;	
+	height: 17px;
+	width: 122px;
+	padding-left: 8px;
+	padding-top: 3px;
+}
+
+a.lienValider {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #f00;
+	font-weight: bold;
+}
+
+a.lienMentionsLegales {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #a52800;
+	font-weight: normal;
+}
+
+a.lienMentionsLegales:visited {
+	color: #a52800;
+	font-weight: normal;
+}
+
+a.lienMentionsLegales:hover {
+	color: #f9b701;
+}
+
+#mentionsLegalesEBK {
+	clear: both;
+	margin:0 auto;
+	height: 25px;
+	background-color: #ebe8de;
+	border: 1px solid #ebe8de;
+}
+
+.divMentionsLegales {
+	float: right; margin-top: 6px; margin-right: 10px;
+}
+.divLoading {
+	float: left; margin-top: 6px; margin-left: 10px;
+}
+
+span.txtCopyrightEBK {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #a52800;
+}
+
+.boutonsFormulaire {
+	background-color: #a52800; 
+	border: 1px solid #fff4d4;
+	font-weight:bold;
+	font-size:11px;
+	color: #fff;
+	height: 19px;
+	width: 128px;
+	padding-bottom: 2px;
+	cursor: pointer;
+}
+
+
+.boutonsFormulaireSous {
+	background-color: #F6F6F6; 
+	font-size:11px;
+	color: #000000;
+	height: 22px;
+	width: 128px;
+	font-weight: bold;
+	padding-bottom: 2px;
+	cursor: pointer;
+	
+	
+    border: 1px solid #CCCCCC;
+}
+
+.boutonsFormulaireSous:hover {
+
+	background-color: #FFF0A5;
+	border: 1px solid #F9C32C;	
+ }
+
+
+.miseEnGarde {
+	color:#f00;
+}
+
+td.inutilise {
+	background-color: #8ba2a7;
+}
+
+/* Couleur de fond du montant total d'une remise de chèques */
+#montantTotal {
+	color: #f64427;
+	text-align: right;
+	border: 0;
+	font-weight: bold;
+	background-color: #fff4d4;
+}
+
+/* ----------------------------------------------------------------------------------- structure */
+
+/* div de + haut niveau : conteneur */
+#conteneur {
+    width: 1150px;
+	margin: 0px auto 0px auto;    
+    background-color: #fff;
+}
+
+/* bannière de droite */   
+#rightBanner {
+  	float: right;
+}
+
+/* div contenant les infos sur l'abonné et le lien de déconnexion */
+#contentTop {
+	vertical-align: middle;
+	background: #ebe8de;
+}
+
+/* div contenant le menu */
+#contentLeft {
+	width: 186px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	float: left;
+	background-color:#f7f7f4;
+}
+
+#mastermenu {
+	padding:3px;
+}
+
+/* corps principal entouré des eventuelles bannieres gauches et droites */
+#mainBody {
+	float:left;
+	background-color: #fff; min-height: 463px;
+	width: 1150px;
+}
+
+/* Div contenant le content de droite (espace de travail principal) */
+#contentRight {
+	width: 100%;
+	float: left;	
+	background-color:#fff;
+	padding: 3px;
+}
+
+/* Div contenant le footer (copyright) */
+div#contentBottom {
+	clear:both;
+	text-align: center;
+	background-color: #eef4f8;
+}
+
+div#contentBottom table {
+	width: 100%;
+}
+
+div#contentBottom table td {
+	height: 20px;
+	background-color: #0064b2;
+	color: #fff;
+}
+
+#dateAbonne {
+	color: #888;
+}
+
+/* div d'id erreurSrv contenant un message d'erreur SERVEUR */
+#erreurServeur {
+	padding: 2px;
+	margin-left: 2px;
+    margin-right: 110px;
+	height: 459px;
+	background: #fff;
+}
+
+/* --------------------------------------------------------------------------------------- login */
+
+img.numEtape { }
+
+/* Donne la couleur de fond et permet de positionner les mentions légales */
+#fondLogin {
+	float: left;
+	height: 510px;
+}
+
+
+/* Dessine le cadre contenant l'ensemble des éléments du login */
+#cadreLoginSecure {
+	top: 40px;
+	margin-left: auto; margin-right: auto;
+	width: 540px;
+	background-color: #efe2b7;
+	border: 1px solid #efe2b7;
+	
+	-moz-border-radius:15px 15px 15px 15px;
+    -webkit-border-radius:15px 15px 15px 15px;
+    -o-border-radius:15px 15px 15px 15px;
+     border-radius:15px 15px 15px 15px;
+}
+#cadreLoginSecure2 {
+	top: 60px;
+	margin-left: auto; margin-right: auto;
+	width: 540px;
+	height: 430px;
+	background-color: #efe2b7;
+	border: 1px solid #efe2b7;
+}
+
+/* Positionne l'image de titre du login */
+#imgTitreLoginSecure {
+	position: absolute;
+	top: 5px;
+	left: 45px;
+}
+
+/* Positionne le message de bienvenue et lui donne son style */
+#bienvenueSecure {
+	position: absolute;
+	top: 20px;
+	text-align: center;
+	width: 100%;
+	font-variant: small-caps;
+	font-size: 16px;
+	font-weight: bold;
+	color: #a52800;
+}
+
+/* Positionne la date et lui donne son style */
+#dateBienvenueSecure {
+	position: absolute;
+	top: 40px;
+	text-align: center;
+	width: 100%;
+	font-size: 12px;
+	color: #888;
+}
+
+/* Positionne le formulaire de saisie du login */
+#saisieLoginSecure {
+	position: absolute;
+	top: 110px;
+	right: 26px;
+	width: 470px;
+}
+
+/* positionne l'image du cadenas */
+#imgTypeAuthentificationSecure {
+	margin-right: 6px;
+}
+
+/* Positionne le titre du formulaire de saisie du login */
+
+.separateBlalock{
+
+width: 450px;
+	height:2px;
+}
+
+#titreSaisieLoginSecure {
+	margin-top: 10px;
+	margin-bottom:2px;
+	width: 420px;
+	height:30px;
+	
+	
+	display:table-cell;
+    vertical-align:middle;
+	
+	text-align: center;
+	
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #f9b701;
+	font-weight: bold;
+	background-color: #a52800;
+	border: 1px solid #a52800;
+	
+	-moz-border-radius:10px 0px 10px 0px;
+    -webkit-border-radius:10px 0px 10px 0px;
+    -o-border-radius:10px 0px 10px 0px;
+     border-radius:10px 0px 10px 0px;
+	
+}
+
+/* Positionne la ligne de message d'errer */
+#userSaisieLoginError {
+	width: 450px;
+	height: 40px;
+	
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+	
+	display:table-cell;
+    vertical-align:middle;
+	
+	margin-top: 2px;
+	-moz-border-radius:10px 0px 10px 0px;
+    -webkit-border-radius:10px 0px 10px 0px;
+    -o-border-radius:10px 0px 10px 0px;
+     border-radius:10px 0px 10px 0px;
+	
+}
+/* Positionne le texte de de message d'errer */
+#txtUserSaisieLoginError {
+	float: left;
+	margin: 5px;
+	
+}
+
+/* Positionne la ligne de saisie du code abonné */
+#userSaisieLoginSecure {
+	width: 420px;
+	height: 40px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+	
+	display:table-cell;
+    vertical-align:middle;
+	margin-top: 2px;
+	-moz-border-radius:10px 0px 10px 0px;
+    -webkit-border-radius:10px 0px 10px 0px;
+    -o-border-radius:10px 0px 10px 0px;
+     border-radius:10px 0px 10px 0px;
+	
+}
+
+/* Positionne le texte de la ligne de saisie du code abonné */
+#txtUserSaisieLoginSecure {
+	float: left;
+	margin: 5px;
+}
+
+/* Positionne le champ INPUT de la ligne de saisie du code abonné */
+#j_username {
+	float: left;
+	width: 140px;
+	height: 17px;
+	margin-left: 3px;
+	font-size: 9px;
+	padding-top: 3px;
+	padding-left: 4px;
+	background-color: #fff;
+	border: 1px solid #a52800;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#pwdSaisieLoginSecure {
+	
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+	text-align: center;
+	border-collapse: separate;
+	
+	width: 420;
+	height: 40px;
+	
+	-moz-border-radius:10px 0px 10px 0px;
+    -webkit-border-radius:10px 0px 10px 0px;
+    -o-border-radius:10px 0px 10px 0px;
+     border-radius:10px 0px 10px 0px;
+	
+}
+
+/* Positionne la ligne de saisie du mot de passe, spécifique à l'écran changementMotDePasse.jsp */
+#pwdSaisieLoginSecure #pwdSaisieLoginSecureChangement {
+	width: 200px;
+	height: 125px;
+}
+
+/* Positionne les chiffres du clavier virtuel */
+.chiffre {
+	margin: 2px;
+	float: left;
+	width: 30px;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 700;
+	background-color: #fff4d4;
+	border: 1px solid #a52800;
+}
+
+/* Positionne les chiffres du clavier virtuel lorsqu'ils sont survolés */
+.chiffreHighLight {
+	margin: 2px;
+	float: left;
+	width: 30px;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 700;
+	color: #fdfdfd;
+	background-color: #a52800;
+	border: 1px solid #a52800;
+	cursor: pointer;
+}
+
+/* Positionne le champ mot de passe en cours de saisie */
+.mdpPwdSaisieLoginSecure {
+	float: left;
+	width: 120px;
+	height: 17px;
+	margin: 5px;
+	margin-top: 10px;
+	padding-left: 4px;
+	
+	font-weight: bold;
+	background-color: #fff;
+	border: 1px solid #a52800;
+}
+
+/* Positionne le bouton de RAZ du mot de passe */
+.btnPwdSaisieLoginSecure {
+	float: left;
+	width: 100px;
+	height: 19px;
+	color: #f9b701;
+	background-color: #006a83;
+	border: 1px solid #cfdced;
+	font-weight: bold;
+	font-size: 11px;
+	padding: 1px 0px 3px 0px;
+	cursor:pointer;
+}
+
+/* Positionne le bouton de RAZ du mot de passe */
+#btnPwdSaisieLoginSecure, #btnPwdSaisieLoginOTP {
+	float: left;
+	margin-top: 10px;
+	margin-left: 5px;
+	color: #f9b701;
+}
+
+/* Positionne l'image d'aide de la ligne de saisie du mot de passe */
+#infoPwdSaisieLoginSecure {
+	float: left;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#validSaisieLoginSecure {
+	width: 420px;
+	height: 36px;
+	margin-top: 2px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+	
+	-moz-border-radius:10px 0px 10px 0px;
+    -webkit-border-radius:10px 0px 10px 0px;
+    -o-border-radius:10px 0px 10px 0px;
+     border-radius:10px 0px 10px 0px;
+     
+     display:table-cell;
+        vertical-align:middle;
+}
+#validSaisieLoginSecure2 {
+	width: 450px;
+	height: 150px;
+	margin-top: 18px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#btnValidSaisieLoginSecure, #btnValidSaisieLoginOTP {
+	float: left;
+	width: 140px;
+	margin-top: 4px;
+	margin-left: 140px;
+	color: #f9b701;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+/* Positionne le message d'erreur de connexion */
+#errorSaisieLoginSecure {
+	width: 400px;
+	margin-top: 10px;
+	color: red;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+/* Dessine le cadre contenant l'ensemble des éléments du login */
+#cadreLogin {
+	top: 135px;
+	margin-left: auto; margin-right: auto;
+	width: 565px;
+	height: 195px;
+	background-color: #ebe8de;
+	border: 1px solid #a52800;
+}
+
+/* Positionne l'image de titre du login */
+#imgTitreLogin {
+	position: absolute;
+	top: 10px;
+	left: 25px;
+}
+
+/* Positionne le message de bienvenue et lui donne son style */
+#bienvenue {
+	position: absolute; top: 110px; left: 25px; width: 280px; font-variant: small-caps; font-size: 16px; font-weight: bold; color: #a52800;
+}
+
+/* Positionne la date et lui donne son style */
+#dateBienvenue {
+	position: absolute; top: 95px; left: 25px; width: 200px; font-size: 11px; color: #888;
+}
+
+/* Positionne le type d'identification et lui donne son style */
+#typeAuthentification {
+	float: right;
+	color: #888;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+/* Positionne le formulaire de saisie du login */
+#saisieLogin {
+	position: absolute;
+	top: 90px;
+	right: 30px;
+	width: 250px;
+	text-align: left;
+}
+
+/* Positionne la ligne de saisie du code utilisateur */
+#userSaisieLogin {
+	float: right;
+}
+
+/* Positionne le champ INPUT de la ligne de saisie du code abonné */
+#inputUserSaisieLogin {
+	width: 120px;
+	height: 17px;
+	font-size: 9px;
+	padding-top: 3px;
+	padding-left: 4px;
+	margin-top: 4px;
+	background-color: #fff;
+	border: 1px solid #a52800;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#pwdSaisieLogin {
+	float: right;
+}
+
+/* Positionne le champ INPUT de la ligne de saisie du mot de passe */
+#mdpAffiche {
+	width: 120px;
+	height: 17px;
+	font-size: 12px;
+	padding-top: 3px;
+	padding-left: 4px;
+	margin-top: 4px;
+	background-color: #fff;
+	border: 1px solid #a52800;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#validSaisieLogin {
+	float: right;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#btnValidSaisieLogin {
+	width: 126px; margin-top: 10px;
+}
+
+/* Positionne le message d'erreur de connexion */
+#errorSaisieLogin {
+	position: absolute;
+	top: 165px;
+	left: 25px;
+	width: 350px;
+	color: red;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+/* Dessine le cadre contenant l'ensemble des éléments du login */
+#cadreLoginAdmin {
+	top: 135px;
+	margin-left: auto; margin-right: auto;
+	width: 565px;
+	height: 200px;
+	background-color: #ebe8de;
+	border: 1px solid #a52800;
+}
+
+/* Positionne l'image de titre du login */
+#imgTitreLoginAdmin {
+	position: absolute;
+	top: 10px;
+	left: 28px;
+}
+
+/* Positionne le message de bienvenue et lui donne son style */
+#bienvenueAdmin {
+	position: absolute;
+	top: 110px;
+	left: 25px;
+	width: 280px;
+	font-variant: small-caps;
+	font-size: 16px;
+	font-weight: bold;
+	color: #a52800;
+}
+
+/* Positionne la date et lui donne son style */
+#dateBienvenueAdmin {
+	position: absolute;
+	top: 95px;
+	left: 25px;
+	width: 200px;
+	font-size: 11px;
+	color: #888;
+}
+
+/* Positionne la ligne de saisie du code utilisateur */
+#userSaisieLoginAdmin {
+	float: right;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#pwdSaisieLoginAdmin {
+	float: right;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#selectLangueLogin {
+	float: right;
+	margin-top: 4px;
+}
+
+/* Positionne le SELECT de la langue */
+#selectLangueAdmin {
+	width: 126px;
+	height: 18px;
+	font-size: 9px;
+	vertical-align: middle;
+	background-color: #fff;
+	border: 1px solid #a52800;
+}
+
+/* Positionne l'image correspondant à la langue */
+#imageLangue {
+	width: 16px;
+	height: 11px;
+	vertical-align: text-bottom;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#validSaisieLoginAdmin {
+	float: right;
+}
+
+/* Dessine le cadre contenant l'ensemble des éléments du login */
+#cadreLoginAdminSecure {
+	top: 45px;
+	margin-left: auto; margin-right: auto;
+	width: 565px;
+	height: 380px;
+	background-color: #ebe8de;
+	border: 1px solid #a52800;
+}
+
+/* Positionne le formulaire de saisie du login */
+#saisieLoginAdminSecure {
+	position: absolute;
+	top: 85px;
+	right: 40px;
+	width: 470px;
+}
+
+/* Positionne la ligne de saisie du code abonné */
+#userSaisieLoginAdminSecure {
+	width: 450px;
+	height: 23px;
+	margin-top: 18px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Positionne le texte de la ligne de saisie du code abonné */
+#txtUserSaisieLoginAdminSecure {
+	text-align: center;
+}
+
+/* Positionne le champ INPUT de la ligne de saisie du code abonné */
+#inputUserSaisieLoginAdminSecure {
+	width: 120px;
+	height: 17px;
+	margin-left: 3px;
+	font-size: 9px;
+	padding-top: 3px;
+	padding-left: 4px;
+	background-color: #fff;
+	border: 1px solid #a52800;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#selectLangueLoginAdminSecure {
+	width: 450px;
+	height: 20px;
+	margin-top: 18px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Selected language */
+#divLangueLoginAdminSecure {
+	text-align: center;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#validSaisieLoginAdminSecure {
+	width: 450px;
+	height: 23px;
+	margin-top: 18px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#btnValidSaisieLoginAdminSecure {
+	float: left;
+	margin-top: 4px;
+	margin-left: 125px;
+	color: #f9b701;
+}
+
+/* Dessine le cadre contenant l'ensemble des éléments du login */
+#cadreLoginOTP {
+	top: 30px;
+	margin-left: auto; margin-right: auto;
+	width: 565px;
+	height: 420px;
+	background-color: #ebe8de;
+	border: 1px solid #a52800;
+}
+
+/* Positionne le message de bienvenue et lui donne son style */
+#bienvenueOTP {
+	position: absolute;
+	top: 5px;
+	left: 150px;
+	width: 450px;
+	font-variant: small-caps;
+	font-size: 16px;
+	font-weight: bold;
+	color: #a52800;
+}
+
+/* Date */
+#dateBienvenueOTP {
+	position: absolute;
+	top: 25px;
+	left: 150px;
+	width: 200px;
+	font-size: 11px;
+	color: #888;
+}
+
+/* Positionne le formulaire de saisie du login */
+#saisieLoginOTP {
+	position: absolute;
+	top: 45px;
+	right: 25px;
+	width: 490px;
+}
+
+/* Positionne le titre du formulaire de saisie du login */
+#titreSaisieLoginOTP {
+	width: 490px;
+	margin-top: 10px;
+	text-align: center;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #f9b701;
+	font-weight: bold;
+	background-color: #a52800;
+	border: 1px solid #a52800;
+}
+
+/* Positionne la ligne de saisie du code abonné */
+#userSaisieLoginOTP {
+	width: 490px;
+	height: 22px;
+	margin-top: 18px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Positionne le texte de la ligne de saisie du code abonné */
+#txtUserSaisieLoginOTP {
+	float: left;
+	margin: 5px;
+}
+
+/* Positionne le champ INPUT de la ligne de saisie du code abonné */
+#inputUserSaisieLoginOTP {
+	float: left;
+	width: 100px;
+	height: 17px;
+	margin-left: 3px;
+	font-size: 9px;
+	padding-top: 3px;
+	padding-left: 4px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Password frame */
+#pwdSaisieLoginOTP {
+	width: 490px;
+	height: 100px;
+	margin-top: 18px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Password frame text */
+#txtPwdSaisieLoginOTP {
+	float: left;
+	margin: 5px;
+}
+
+/* Virtual keyboard */
+#clavierSaisieLoginOTP {
+	margin-left: 65px;
+	width: 365px;
+}
+
+/* Password text */
+#txt2PwdSaisieLoginOTP {
+	float: left;
+	margin-left: 65px;
+	margin-top: 13px;
+}
+
+/* Positionne le champ INPUT de la ligne de saisie du mot de passe */
+.mdpPwdSaisieLoginOTP {
+	float: left;
+	width: 120px;
+	height: 17px;
+	margin: 5px;
+	margin-top: 10px;
+	padding-left: 4px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Password frame pour la saisie du mot de passe Delta-Bank avec clavier virtuel en mode OTP */
+#pwdSaisieLoginSecureOTP  {
+	width: 490px;
+	margin-top: 2px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+	text-align: center;
+	border-collapse: separate;
+	height: 100px;
+	display:table-cell;
+        vertical-align:middle;
+}
+
+/* Positionne la ligne de saisie du mot de passe */
+#validSaisieLoginOTP {
+	width: 490px;
+	height: 26px;
+	margin-top: 18px;
+	background-color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Positionne le message d'erreur de connexion */
+#errorSaisieLoginOTP {
+	width: 400px;
+	margin-top: 10px;
+	color: red;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+/* ---------------------------------------------------------------------------------- calendrier */
+
+.calendar, .calendar table {
+  border: 1px solid #a52800;
+  font-size: 11px;
+  color: #000;
+  cursor: default;
+  background: #fff4d4;
+  font-family: tahoma,verdana,sans-serif;
+  border-collapse:separate;
+}
+
+.calendar thead .title {
+  font-weight: bold;
+  text-align: center;
+  background: #fff4d4;
+  color: #000000;
+  padding: 2px;
+}
+
+.calendar thead .name {
+  border-bottom: 1px solid #a52800;
+  padding: 2px;
+  text-align: center;
+  color: #000;
+}
+
+.calendar thead .weekend {
+  color: red;
+}
+
+.calendar thead .hilite {
+  background-color: #faa;
+  color: #000;
+  border: 1px solid #f40;
+  padding: 1px;
+}
+
+.calendar thead .active {
+  background-color: #c77;
+  padding: 2px 0px 0px 2px;
+}
+
+.calendar thead .daynames {
+  background: #fff4d4;
+}
+
+.calendar tbody .rowhilite td {
+  background: #ddf;
+}
+
+.calendar tbody td.hilite {
+  background-color: #faa;
+  color: #000;
+  padding: 1px 3px 1px 1px;
+  border: 1px solid #f40;
+}
+
+.calendar tbody td.selected {
+  font-weight: bold;
+  border: 1px solid #000;
+  padding: 1px 3px 1px 1px;
+  background: #f90;
+}
+
+.calendar tbody td.weekend {
+  color: #f00;
+}
+
+.calendar tfoot .footrow {
+  text-align: center;
+  background: #fff4d4;
+  color: #000;
+}
+
+.calendar tfoot .ttip {
+  border-top: 1px solid #655;
+  background: #fff4d4;
+  color: #000;
+}
+
+.calendar tfoot .hilite {
+  background: #faa;
+  border: 1px solid #f40;
+  padding: 1px;
+}
+
+.calendar tfoot .active {
+  background: #c77;
+  padding: 2px 0px 0px 2px;
+}
+
+.calendar .combo .hilite {
+  background: #faa;
+}
+
+.calendar .combo .active {
+  border-top: 1px solid #a64;
+  border-bottom: 1px solid #a64;
+  background: #fee;
+  font-weight: bold;
+}
+
+.calendar td.time span.active {
+  border-color: #f00;
+  background-color: #000;
+  color: #0f0;
+}
+
+.joursFeries {
+	color : red;
+}
+
+/* --------------------------------------------------------------------------------------------  */
+
+#divTableScrollable, #divTableScrollableDansFieldset {
+	overflow: auto;
+	border-bottom: 1px solid #d3d5c8;
+}
+
+/* --------------------------------------------------------------------------- cours des devises */
+
+td.tdConvertisseur {
+	font-weight: bold;
+	color: #fff;
+	background-color: #006a83;
+	width: 8%;
+}
+
+/* ---------------------------------------------------------------------------- mentions légales */
+
+.texteTitreML {
+	background-color: #edebe2;
+	width: 1000px;
+	height: 25px;
+	font-size: 12px;
+}
+
+.texteTitreML td {
+	font-weight: bold;
+	color: #a52800;
+	padding : 5px;
+	font-size: 12px;
+}
+
+.texteML, .texteMLBold {
+	font-family: Arial, Helvetica;
+	font-size: 13px;
+	color: #000;
+}
+
+#visuelLogo {
+    height: 90px;
+    width: 1000px;
+	background: no-repeat;
+}
+
+/* ---------------------------------------------------------------------------------- displaytag */
+
+th.sortable {
+	background: #006a83 url(images/arrow_off.png) no-repeat;
+	background-position : center right;
+}
+
+th.order1 {
+	background: #006a83 url(images/arrow_down.png) no-repeat;
+	background-position: center right;
+}
+
+th.order2 {
+	background: #006a83 url(images/arrow_up.png) no-repeat;
+	background-position : center right;
+}
+
+/* --------------------------------------------------------------------------------------- domtt */
+
+/* Le style par defaut pour tous les tooltip de l'application */
+.domTTDefault {	
+	border: 1px solid #a52800;
+	background-color: #a52800;
+	font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+/* Specifique à un titre de tooltip, associe à domTTDefault */
+.domTTDefault .caption {
+	font-size: 11px;
+	font-weight: bold;
+	padding: 1px 2px;
+	color: #f9b701;
+	border: 1px solid #a52800;
+}
+
+/* Specifique au contenu du tooltip, associe à domTTDefault */
+.domTTDefault .contents {
+	color: black;
+	font-size: 11px;
+	padding: 1px 2px;
+	padding-bottom: 0;
+	background-color: #fff4d4;
+}
+
+/* ---------------------------------------------------------------------------------------- menu */
+
+/* Titre du menu */
+.menutitle a {
+	display: block;
+	width: 178px; 
+	height: 17px; 
+	background: 158px 2px no-repeat;
+	text-decoration: none;
+	text-align: left;
+	color: #a54300;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 4px;
+	padding-top: 3px;
+	border: 1px solid #e3e3d8;
+	background-color: #f9b701;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.menutitle a:visited {
+	color: #a52800;
+}
+
+.menutitle a:hover, a.menuActif, a.menuActif:visited, a.menuActif:hover {
+	color: #f9b701;
+	background-color: #a52800;
+}
+
+/* Titre du sous-menu */
+.submenu {
+	background-color: #fff4d4;
+	border: 1px solid #e3e3d8;
+	margin-top: -1px;
+}
+
+.submenu a, .submenu a:visited {
+	display: block;
+	color: #888;
+	padding-left: 9px;
+	background: 0px 0px no-repeat;
+	text-decoration: none;
+	line-height: 10px;
+	font-weight: normal;
+}
+
+.submenu a:hover {
+	color: #000;
+	font-weight: bold;
+}
+
+.submenu a.submenuActif, .submenu a.submenuActif:visited {
+	color: #f64427;
+	background: 0px 0px no-repeat;
+	font-weight: bold;
+}
+
+.subitems a, .subitems a:visited {
+	display: block;
+	color: #888;
+	margin-left: 0.7em;
+	text-decoration: none;
+	text-indent: 5px;
+	line-height: 9px;
+	font-family: Lucida Console;
+	font-size: 10px;
+}
+
+.subitems a:hover {
+	color: #f9b701;
+}
+
+/* --------------------------------------------------------------------------------- paramétrage */
+
+.infosParam {
+	border: 1px solid #e3e3d8;
+	border-collapse: separate;
+	width: 95%;
+}
+
+.infosParam tr.even {
+	background-color: #dee2e8;
+}
+
+.infosParam tr.odd {
+	background-color: #fff;
+}
+
+.paramOver {
+	color:#f9b701;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.paramOut {
+	color: #a52800;
+	font-weight: bold;
+}

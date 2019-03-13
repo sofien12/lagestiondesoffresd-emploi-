@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../../templates/pageMere.xhtml">
+	  
+	<h:head>
+	<title>Acceuil</title>
+	
+	</h:head>
+	<ui:define name="content">
+			<h:form id="formPostulant" style="position:relative; right:120px; " >
+			 <p:ring  value="#{OffreBean.list}" filteredValue="#{Offremploi.filteredListOffre}" var="item" easing="easeInOutBack" style=" width:500px;position:relative; right:120px;">
+        		 
+        		 <h:panelGrid columns="2" style=" background:linear-gradient(to left,#fff5e6,#ffa31a); width:525px; border-radius: 8px ; " columnClasses="">
+					            
+							
+							<h:outputText value="Role  :" style=" position: relative ; top:15px;left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+                <h:outputText value="#{item.role}" style=" position: relative ;top:15px; color: #999999; left:30px;" />
+          
+          	<h:outputText value="Region :" style=" position: relative ;top:15px; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+                <h:outputText value="#{item.region}" style=" position: relative ;top:15px; color: #999999; left:30px;" />
+                
+        	<h:outputText value="Localité :" style=" position: relative ;top:15px; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+                <h:outputText value="#{item.localité}" style=" position: relative ;top:15px; color: #999999; left:30px;" />
+        	
+        	<h:outputText value="Date debut publication  :" style=" position: relative ;top:15px;left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        	<h:outputText style=" position: relative ;top:15px; color: #999999; left:30px;" value="#{item.dateDebut}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+        	<h:outputText value="Date Final publication  :" style=" position: relative ;top:15px; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;"/>
+        	<h:outputText style=" position: relative ; top:15px;color: #999999; left:30px;" value="#{item.dateFinal}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					
+					<p:separator style="  margin-bottom:10px;margin-top:10px;position:relative; top:15px;left:50px;"/>
+					<p:spacer height="0" width="7"/>
+						 <p:commandButton icon="ui-icon-check" oncomplete="PF('addCandidatureDial').show()" style="height:35px;position:relative; top:15px;left:250px;" value="Postuler maintenant" 
+						action="#{CandidatBean.initialddcandidat(item)}" update=":formCandidature:addCandidatureMsg,:formCandidature:addCandidatureGrid1">
+						 <f:setPropertyActionListener value="#{item}" target="#{OffreBean.offremploi}"/>
+							</p:commandButton>
+				    
+        			 
+        	</h:panelGrid>
+</p:ring>
+	
+</h:form>
+				
+		<h:form id="formCandidature">
+		<p:dialog id="addCandidatureDial" widgetVar="addCandidatureDial" header="Candidature a une offre" resizable="false" width="890" height="200" showEffect="explode" hideEffect="explode" modal="true">
+			<p:growl  id="addCandidatureMsg" for="formCandidature" showDetail="true" closable="true"/>
+			
+			 <p:commandButton icon="ui-icon-check" style="height:35px;left:550px;" value="Postuler a L'offre" action="#{CandidatBean.addCandidature()}" oncomplete="addClientRequest(xhr, status, args)"
+				  update=":formCandidature:addCandidatureMsg,:formCandidature:addCandidatureGrid1,"/>
+				  			 	 <script type="text/javascript">
+					  function addClientRequest(xhr, status, args) {
+						  if (args.validationFailed || !args.loggedIn) {
+						             
+					      }else {
+							  PF('addCandidatureDial').hide();
+							 
+							  
+							  
+						  }
+					}
+				  </script> 
+	            <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+	            <h:panelGrid id="addCandidatureGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+						
+						<h:outputText value="Mission du Poste :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value=""/>
+					<h:outputText id="inputText1" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.mission}" >
+					
+			</h:outputText>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText1"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Experience Exigée :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value=""/>
+					<h:outputText id="inputTextE" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.minimumExper}" >
+					 
+					 </h:outputText>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputTextE"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Niveau d'etude  demandé :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value=""/>
+					<h:outputText id="inputTextN" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.niveauEtude}" >
+					
+					</h:outputText>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputTextN"/>
+					 <p:spacer height="0" width="7"/>
+				</h:panelGrid>
+			
+		</p:dialog>
+		
+		</h:form>	
+	
+		
+	</ui:define>
+	
+</ui:composition>

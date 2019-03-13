@@ -1,0 +1,395 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../../templates/pageMere.xhtml">
+	
+	<h:head>
+	</h:head>
+
+	<ui:define name="content">
+	<h:form id="formCH" rendered="#{userBean.test eq 'R'}">
+			<p:growl showDetail="true" id="growl" />
+
+			<p:breadCrumb style="width:1000px">
+
+				<p:menuitem value="home" action="Acceuil" />
+				<p:menuitem value="valider Les Candidatures "
+					style="font-family:'Trebuchet MS';font-size:18px;" />
+			</p:breadCrumb>
+			<p:spacer height="20px" />
+
+			<p:dataTable style="width:1000px " id="dataTable1"
+				widgetVar="dataTable1" var="item" multiViewState="true" editable="true" editMode="cell"
+				value="#{postulantBean.listPostulant}"
+				filteredValue="#{postulantBean.filteredListPostulant}"
+				 rows="5"
+				paginator="true" emptyMessage="Pas d'enregistrements disponibles !"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,9">
+		<f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Rechercher tous les champs:" />
+                <p:inputText id="globalFilter" onkeyup="PF('dataTable1').filter()" style="width:250px;position:relative;left:30px;" placeholder="Recherche " />
+            </p:outputPanel>
+        </f:facet>
+        
+        <p:column style=" height:20px; width:100px;text-align:center; " >
+					<f:facet name="header">
+						<h:outputText value=" N° Candidature "
+							style="font-family:'Trebuchet MS';font-size:15px;" />
+					</f:facet>
+					
+				</p:column>
+				
+				<p:column style=" height:20px; width:190px;text-align:center;" filterBy="#{item.nom} #{item.prenom}"  filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="Nom et prenom"
+							style="font-family:'Trebuchet MS';font-size:15px;" />
+					</f:facet>
+				</p:column>
+
+				<p:column style=" height:20px; width:190px;text-align:center;" filterBy="#{item.cin}"  filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="Cin"
+							style="font-family:'Trebuchet MS';font-size:15px;" />
+					</f:facet>
+								</p:column>
+
+				<p:column style=" height:20px; width:120px;text-align:center;">
+					<f:facet name="header">
+						<h:outputText value="Edition Cv"
+							style="font-family:'Trebuchet MS';" />
+					</f:facet>
+					
+				</p:column>
+				
+				<p:column style="  width:190px;text-align:center;">
+					<f:facet name="header">
+						<h:outputText value="Détails de L'offre"
+							style="font-family:'Trebuchet MS';font-size:15px; " />
+					</f:facet>
+		
+				</p:column>
+				
+				<p:column style="  width:86px;text-align:center;">
+					<f:facet name="header">
+						<h:outputText value="Retenue"
+							style="font-family:'Trebuchet MS';" />
+					</f:facet>
+		
+				</p:column>
+				
+				/////////////////////////////////////////////////////////////
+				
+				 <p:subTable id="datatable2" widgetVar="datatable2" var="itemC"    value="#{CandidatBean.ListC(item.idP)}" style="width:1000px " emptyMessage="Pas d'enregistrements disponibles !"  >
+				
+					<p:column style="width:150px;text-align:center;" >
+							<h:outputText value="#{itemC.idCandidature}" />
+						</p:column>		
+					
+					<p:column style=" height:20px; width:35px;text-align:center;" >
+					<h:outputText value="#{item.nom} #{item.prenom}" />
+				
+				</p:column>
+
+				<p:column style=" height:20px; width:35px;text-align:center;">
+					<h:outputText value="#{item.cin} " />
+				</p:column>
+
+				<p:column style=" height:20px; width:35px;text-align:center;">
+					
+					<p:commandButton style=" width:20px;height: 20px;"
+						icon="ui-icon-search" action="#{CvBean.ListCv(item)}"
+						oncomplete="PF('CvDial').show()"
+						update=":cvp:formMain1:dataTable1,:cvp:formMain1:CvGrid1,:cvp:formMain1:dataTable2,:cvp:formMain1:dataTable3">
+						<f:setPropertyActionListener value="#{item}"
+							target="#{postulantBean.postulant}" />
+					</p:commandButton>
+				</p:column>
+				
+				
+						
+						
+				<p:column style=" height:20px; width:150px;text-align:center;">
+				<p:commandButton style=" width:20px;height: 20px;" icon="ui-icon-search"    
+								action="#{OffreBean.findbyIdO(itemC.offremploi)}"  oncomplete="PF('editoffreCDial').show()" update=":formoconsulteroffre:fieldsetr"> 
+								
+							</p:commandButton>
+						</p:column>
+							
+			<p:column style="width:50px; text-align:center; ">
+							<p:selectBooleanCheckbox value="#{itemC.retenue}">
+								<p:ajax  update=":formCH:growl" process=":formCH:dataTable1" listener="#{CandidatBean.addMessage(itemC,item)}" />
+							</p:selectBooleanCheckbox>
+						</p:column>
+			
+			</p:subTable>
+			<f:facet name="footer">
+			<p:commandButton value ="valider la selection des candidatures " action="#{CandidatBean.updateP()}" oncomplete="pClientRequet(xhr, status, args)" style="position:relative; left:300px;" update=":formCH:growl" />	
+								<script type="text/javascript">
+	function pClientRequet(xhr, status, args) {
+		PF('dataTable1').clearFilters();
+	}
+</script>
+			</f:facet>
+				
+			
+			</p:dataTable>
+		</h:form>
+	
+		   <h:form id="formoconsulteroffre">
+	        <p:dialog id="editoffreCDial" widgetVar="editoffreCDial" header="l'offre d'emploi" resizable="false" width="760" showEffect="explode" hideEffect="explode" modal="true"> 
+		   		
+		   		<p:fieldset id="fieldsetr" widgetVar="fieldsetr"  legend="l'offre d'emploi " style="margin-bottom:20px;position:relative; left:35px;width:900px; ">
+	           <h:panelGrid id="addOffreGrid1" columns="3" columnClasses="label,value, label , value">     
+	           <h:outputText value="N° offre :"/>
+	           		<p:spacer height="0" width="34"/>
+	           		<h:outputText id="inputText2" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.idOffre}" />	
+	         
+			 <h:outputText value="Role  :"/>
+	                 <p:spacer height="0" width="34"/>	 
+					<h:outputText id="inputText1" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.role}" />
+						
+						 <h:outputText value="Niveau d'etude :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputText4" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.niveauEtude}" />
+						
+						 			  
+					 <h:outputText value="Minimum d'experience :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputText3" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.minimumExper}" />
+						
+	   	               <h:outputText value="Region :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputTextR" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.region}" />
+	   	              
+	   	               <h:outputText value="Localité :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputTextL" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.localité}" />
+	   	            
+	   	            <h:outputText value="Date debut publication  :"/>
+	   	            <p:spacer height="0" width="34"/>
+					 <h:outputText id="inputText5" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.dateDebut}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						
+						<h:outputText value="Date fin publication  :"/>
+						<p:spacer height="0" width="34"/>
+						<h:outputText id="inputText6" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.dateFinal}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+	   	             <h:outputText value="Mission  :" />
+	   	             	<p:spacer height="0" width="34"/>
+						<h:outputText id="inputText7" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.mission}" />
+	</h:panelGrid>			 
+	</p:fieldset>
+       		 
+       
+			</p:dialog>
+	
+	</h:form>
+	
+		<h:form id="cvp">
+			<p:dialog id="CvDial" widgetVar="CvDial" header="curriculum vitae"
+				resizable="false" width="805" height="570" showEffect="explode"
+				hideEffect="explode" modal="true">
+
+				<p:graphicImage value="#{CvBean.image}" />
+
+
+				<h:form id="formMain1">
+					<div class="coodr">
+
+						<h:panelGrid id="CvGrid1" columns="2" columnClasses="label,label">
+							<h:outputText
+								value="#{postulantBean.postulant.nom} #{postulantBean.postulant.prenom}"
+								style="  font-family:'Times New Roman'; color: #000000; font-size:30px; " />
+							<p:spacer height="0" width="7" />
+
+							<h:outputText value="Adresse :"
+								style=" position: relative ; left:20px; color: #000000; font-size:20px; " />
+
+							<h:outputText
+								style="position:relative; right:55px; color: #999999; "
+								value="#{postulantBean.postulant.adresse} , #{postulantBean.postulant.codePostal} , #{postulantBean.postulant.ville},#{postulantBean.postulant.pays}" />
+
+
+							<h:outputText value="Email :"
+								style="position: relative ; left:20px;  color: #000000; font-size:20px; " />
+							<h:outputText
+								style="position:relative; right:55px; color: #999999; "
+								value="#{postulantBean.postulant.adresseEmail}" />
+
+							<h:outputText value="CIN :"
+								style=" position: relative ; left:20px;  font-family:'Times New Roman'; color: #000000; font-size:20px; " />
+							<h:outputText
+								style="position:relative; right:55px; color: #999999; "
+								value="#{postulantBean.postulant.cin}" />
+
+
+
+							<h:outputText value=" Tel :"
+								style=" position: relative ; left:20px; color: #000000; font-size:20px; " />
+							<h:outputText
+								style="position:relative;right:55px; color: #999999; "
+								value="#{postulantBean.postulant.tel}" />
+
+							<h:outputText value=" Date de Naissance :"
+								style=" position: relative ; left:20px; color: #000000; font-size:20px; " />
+							<h:outputText
+								style="position:relative;left:19px; color: #999999; "
+								value="#{postulantBean.postulant.dateNaissance}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+
+						</h:panelGrid>
+						<hr />
+
+					</div>
+					<div class="per">
+
+						<p:graphicImage style="height:40px; width:40px;"
+							value="/PFE_files/education.png" />
+						<h:outputText value="Education "
+							style="position:relative; bottom :10px; left:20px; font-family:'Times New Roman'; color: #000000; font-size:35px; " />
+						<hr style="position: relative; left: 10px;" />
+						<p:dataList emptyMessage="Pas d'enregistrements disponibles !"
+							id="dataTable1" value="#{CvBean.listeducation}"
+							filteredValue="#{CvBean.filteredListEducation}" var="item"
+							type="definition">
+							<h:outputText value="Domaine :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.domaineEducation}"
+								style=" position: relative ; color: #999999; left:60px;" />
+							<Br />
+							<h:outputText value="Spécialité :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.spécialité}"
+								style=" position: relative ; color: #999999; left:55px;" />
+							<Br />
+							<h:outputText value="Cycle :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.cycle}"
+								style=" position: relative ; color: #999999; left:88px;" />
+							<Br />
+							<h:outputText value="Etablissement :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.etablissementEducation}"
+								style=" position: relative ; color: #999999; left:20px;" />
+							<br />
+							<h:outputText value="Regime Linguistique :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.regimeLinguistique}"
+								style=" position: relative ; color: #999999; left:55px;" />
+							<Br />
+							<h:outputText value="diplome :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<p:commandButton
+								actionListener="#{CvBean.dowloand(item.photoDiplomee)}"
+								onclick="PrimeFaces.monitorDownload(start, stop)"
+								style="width:20px; height:20px;  position:relative; left:20px;top:5px; background-image:url('#{request.contextPath}/PFE_files/pdf-icone-16.png')"
+								ajax="false"
+								update=":formAddClient:addClientGrid1,:formEditClient:editClientGrid1"
+								icon=" fa-file-pdf-o">
+								<p:fileDownload value="#{CvBean.file}" />
+							</p:commandButton>
+							<br />
+							<br />
+						</p:dataList>
+
+					</div>
+					<div class="exper">
+
+
+						<p:graphicImage style="height:40px; width:40px;"
+							value="/PFE_files/experience.png" />
+						<h:outputText value="Experience Professionnelles "
+							style="position:relative; bottom :10px; left:20px; font-family:'Times New Roman'; color: #000000; font-size:35px; " />
+						<hr style="position: relative; left: 10px;" />
+						<p:dataList emptyMessage="Pas d'enregistrements disponibles !"
+							id="dataTable2" value="#{CvBean.listExperience}"
+							filteredValue="#{CvBean.filteredListExperience}" var="item"
+							type="definition">
+							<h:outputText value="Type formation  :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.typeFormation}"
+								style=" position: relative ; color: #999999; left:20px;" />
+							<Br />
+							<h:outputText value="Etablissment  :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.etablissementExper}"
+								style=" position: relative ; color: #999999; left:40px;" />
+							<Br />
+							<h:outputText value="Mission :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.mission}"
+								style=" position: relative ; color: #999999; left:80px;" />
+							<br />
+							<h:outputText value="diplome :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<p:commandButton
+								actionListener="#{CvBean.dowloand(item.photoDiplomeExper)}"
+								onclick="PrimeFaces.monitorDownload(start, stop)"
+								style="width:20px; height:20px;  position:relative; left:20px;top:5px; background-image:url('#{request.contextPath}/PFE_files/pdf-icone-16.png')"
+								ajax="false"
+								update=":formAddClient:addClientGrid1,:formEditClient:editClientGrid1"
+								icon=" fa-file-pdf-o">
+								<p:fileDownload value="#{CvBean.file}" />
+
+							</p:commandButton>
+							<br />
+							<br />
+						</p:dataList>
+
+					</div>
+
+					<div class="format">
+
+
+						<p:graphicImage style="height:40px; width:40px;"
+							value="/PFE_files/formation.png" />
+						<h:outputText value="Formation "
+							style="position:relative; bottom :10px; left:20px; font-family:'Times New Roman'; color: #000000; font-size:35px; " />
+						<hr style="position: relative; left: 10px;" />
+						<p:dataList emptyMessage="Pas d'enregistrements disponibles !"
+							id="dataTable3" value="#{CvBean.listFormation}"
+							filteredValue="#{CvBean.filteredListFormation}" var="item"
+							type="definition">
+							<h:outputText value="Titre formation  :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.titreFormation}"
+								style=" position: relative ; color: #999999; left:20px;" />
+							<Br />
+							<h:outputText value="Etablissment  :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<h:outputText value="#{item.etablissementFormation}"
+								style=" position: relative ; color: #999999; left:40px;" />
+							<br />
+							<h:outputText value="diplome :"
+								style=" position: relative ; left:10px;  font-family:'Times New Roman'; color: #000000; font-size:20px;" />
+							<p:commandButton
+								actionListener="#{CvBean.dowloand(item.photoDiplomeFormation)}"
+								onclick="PrimeFaces.monitorDownload(start, stop)"
+								style="width:20px; height:20px;  position:relative; left:20px;top:5px; background-image:url('#{request.contextPath}/PFE_files/pdf-icone-16.png')"
+								ajax="false"
+								update=":formAddClient:addClientGrid1,:formEditClient:editClientGrid1"
+								icon=" fa-file-pdf-o">
+								<p:fileDownload value="#{CvBean.file}" />
+
+							</p:commandButton>
+							<br />
+							<br />
+						</p:dataList>
+
+					</div>
+				</h:form>
+
+			</p:dialog>
+		</h:form>
+	</ui:define>
+	
+	</ui:composition>
+	

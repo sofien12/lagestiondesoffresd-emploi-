@@ -1,0 +1,711 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	
+		<title>Enregistre un compte</title>
+		<link href="#{request.contextPath}/PFE_files/logo_attijari.gif" rel="shortcut icon" />
+		<link rel="stylesheet" type="text/css" href="#{request.contextPath}/PFE_files/style.css" />
+		
+	<style>
+		.enregistre
+		{
+			border: 2px ;
+	
+    left:46%;
+    height: 550px;
+   	 width: 1050px;
+   	 background:rgba(0,0,0,0.3) ;
+				position:absolute;
+				transform:translate(-50%,-50%);
+				box-sizing: border-box;
+				top:50%;
+    	border-radius: 8px ;
+    	margin-left:50px;
+		}
+	.nomprenom
+	{
+	width:40%;
+		position : relative ;
+		right : 20px;
+		bottom:550px;
+		
+		
+	}
+	.no
+	{
+
+	
+	border-radius: 8px ;
+  padding: 7px 15px;
+  border: 2px solid  #ffa31a;
+  background: transparent;
+  font: 20px/25px "Muli";
+  color: #f2f2f2;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  
+	}
+	.nom
+	{
+		position:relative;
+		left:100px;
+	}
+	.prenom
+	{
+	position:relative;
+		left:450px;
+		bottom:68px;
+	}
+	.pre
+	{
+	
+
+	border-radius: 8px ;
+  padding: 7px 15px;
+  border: 2px solid  #ffa31a;
+  background: transparent;
+  font: 20px/25px "Muli";
+  color: #f2f2f2;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  
+  
+	
+	}
+
+		.butto{
+ 
+ background:#ffa31a;
+border: 3px ;
+ 	position:relative;
+    transition: .5s ease;
+    border-radius: 7px  ;	
+    left:65%;
+    bottom:500px;
+    width: 150px;
+  height: 50px;
+  font: 20px/25px "Muli";
+   	
+ }
+ .butto:hover
+  {
+  	-webkit-transform: scale(1.05);/*Grows in size like Angry Birds button*/
+   -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+        background: linear-gradient(to right,#330033,   #ff1a75,#ffa31a);
+    
+    color: #FFF;
+	text-shadow: none;
+  }
+  .db
+  {
+  position:relative;
+  bottom:90px;
+  left:50px;
+  
+  }
+  .enregistr
+	{
+		width:800px;
+		height:400px;
+		 	 background:rgba(0,0,0,0.5) ;
+				position:absolute;
+				transform:translate(-50%,-50%);
+				box-sizing: border-box;
+				top:50%;
+				left:45%;
+    	border-radius: 8px ;
+    	margin-left:50px;
+	}
+  	
+				.imageen
+	{
+		 height: 150px;
+   		 width: 150px;
+   		 padding-top:50%;
+   		 position: relative;
+    	bottom: 530px;
+    	right :9%;
+    	
+	}
+	.ui-steps .ui-steps-item {
+    width: 20%;
+}
+ 
+.ui-state-highlight {
+    text-shadow: none !important;
+}
+ 
+.ui-steps.custom {
+    margin-bottom: 30px;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 2em;
+    background-color:#ff9900;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+    background-color: #ff9900;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 40px;
+    
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+ 
+.ui-steps.custom .ui-steps-item.ui-state-highlight .ui-steps-title {
+    color: #555;
+}
+ .steppo
+ {
+ width:1000px;
+ height:100px;
+ 	background:linear-gradient(to right,  #ffa31a ,  #ffffff);
+ 	margin-top: 20px;
+ 	padding-top: 40px;
+ 	border-radius: 20px;
+ }
+ .Grid
+ {
+ 	position:relative;
+ 	top:10px;
+ }
+	</style>
+	</h:head>
+	<h:body style="background-image: url('#{request.contextPath}/PFE_files/imageBAck.png');">
+		<div class="enregistre">
+			<div class="enregistr">
+				<h:graphicImage styleClass="imageen" value="/PFE_files/logo.png" />
+			
+			<h:form id="formp">
+			<p:messages  id="formEditEnregistreMsg" for="formp" showDetail="true" closable="true"/>
+			
+				<div class="nomprenom"	>
+				<div class="nom">
+				<p:outputLabel style="  font: 20px/25px 'Muli';color: #ffa31a;" value="Nom * :"/>
+  					<p:inputText id="nom" styleClass="no " placeholder ="Nom" value="#{userBean.postulant.nom}" required="true" requiredMessage="La saisie de Nom est obligatoire !" validatorMessage=" nom n'est pas nombre  " >
+  					<f:validateRegex pattern="^[A-Za-z\s]+$" />
+  					</p:inputText>
+  					<p:message for ="nom" style="position:fixed; font-size:15px;" />
+				</div>
+				
+				<div class="prenom">
+  					<p:outputLabel style=" font: 20px/25px 'Muli';
+  						color: #ffa31a;" value="Prenom *  :"/>
+  					<p:inputText id="prenom" styleClass="pre " placeholder ="Prenom" value="#{userBean.postulant.prenom}" required="true" requiredMessage="La saisie de Prenom est obligatoire !" validatorMessage=" Prenom n'est pas nombre  ">
+					<f:validateRegex pattern="^[A-Za-z\s]+$" />
+					</p:inputText>
+					<p:message for ="prenom" style=" position:fixed; font-size:15px;" />
+				</div>
+				
+		</div>
+		<div class="nomprenom">
+			
+				<div class="nom">
+				<p:outputLabel style="  font: 20px/25px 'Muli';color: #ffa31a;" value="Email * :"/>
+  					<p:inputText id="Email" styleClass="no" placeholder ="Email" value="#{userBean.postulant.email}" required="true" requiredMessage="La saisie de Email est obligatoire !" validatorMessage="Invalid email format :Exepmle@attijari.com " >
+  						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+  					</p:inputText>
+  					<p:message for ="Email" style="position:fixed; font-size:15px;" />
+				</div>
+				
+				<div class="prenom">
+  					<p:outputLabel style=" font: 20px/25px 'Muli';
+  						color: #ffa31a;" value="Confirmer votre Email *  :"/>
+  					<p:inputText id="EmailC" styleClass="pre " placeholder ="Confirmer votre Email"  required="true" requiredMessage="La saisie de confirmer votre Email est obligatoire !"  validatorMessage="Invalid email format :Exepmle@attijari.com "  >
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
+					<p:message for ="EmailC" style=" position:fixed; font-size:14px;" />
+				</div>
+		
+		</div>
+		<div class="nomprenom">
+			
+				<div class="nom">
+				<p:outputLabel style="  font: 20px/25px 'Muli';color: #ffa31a;" value="mot de pass * :"/>
+  					<p:password id="pass" styleClass="no" match="passC" placeholder ="mot de pass" value="#{userBean.postulant.pwd}" required="true" requiredMessage="La saisie de mot de pass est obligatoire !" />
+  					<p:message for ="pass" style="position:fixed; font-size:15px;" />
+				</div>
+				
+				<div class="prenom">
+  					<p:outputLabel style=" font: 20px/25px 'Muli';
+  						color: #ffa31a;" value="Confirmer votre mot de pass *  :"/>
+  					<p:password id="passC" styleClass="pre " placeholder ="Confirmer votre mot de pass"  required="true" requiredMessage="La saisie de mot de pass est obligatoire !"   />
+					<p:message for ="passC" style=" position:fixed; font-size:15px;" />
+				</div>
+		
+		</div>
+		<div class="db">
+		<p:commandButton  value="valide" styleClass="butto" update=":formp:" actionListener="#{userBean.test}" oncomplete="addClientRequest(xhr, status, args)"/>
+		<script type="text/javascript">
+					  function addClientRequest(xhr, status, args) {
+						  if ( args.loggedIn) {
+					      
+								 PF('IdentificationDial').show();  
+							 
+						  }
+					}
+			</script> 
+		</div>
+		</h:form>
+</div>
+	</div>
+	<!--  Identification Dial -->
+	
+		<h:form id="formIdentification">
+	        <p:dialog id="IdentificationDial" styleClass="diag1"  widgetVar="IdentificationDial" header="Identification"  resizable="false"  width="1050"  showEffect="explode" hideEffect="explode"    modal="true"> 
+		   		<p:messages  id="formEditCoordonneeMsg" for="formIdentification" showDetail="true" closable="true"/>
+	            <div class="steppo">
+			<p:steps activeIndex="1" styleClass="custom" readonly="false">
+    	<p:menuitem value="Identification"  oncomplete="PF('IdentificationDial').show"/>
+   	 		<p:menuitem value="Coordonnee" url=""/>
+    	<p:menuitem value="Education" url=""/>
+    	<p:menuitem value="Experience Pro" url="" />
+    	   <p:menuitem value="Formation" url=""/>
+		</p:steps>
+	</div>
+	      <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+	            <h:panelGrid id="IdentificationGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	            <h:outputText value="Pays :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText3" style="width:200px;" value="#{userBean.postulant.pays}" required="true" requiredMessage="La saisie de Pays est obligatoire !" >
+	   	            	<f:selectItem  itemLabel="Choisir son Pays" itemValue="" />
+	   	            	<f:selectItem  itemLabel="Tunisie" itemValue="Tunisie" /> 
+	   	             </p:selectOneMenu>
+			<p:message for ="inputText3" style="position:relative; width:200px;left:30px; font-size:15px;"/>
+					 <p:spacer height="0" width="7"/>
+					
+					 
+					 <h:outputText value="Nationalité :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+				<p:selectOneMenu id="inputText4" style="width:200px;" value="#{userBean.postulant.nationalité}" required="true" requiredMessage="La saisie de nationalité est obligatoire !" validatorMessage="la saisie de nationalité  n'est pas nombre svp " >
+	   	            <f:selectItem  itemLabel="Choisir son Nationalité" itemValue="" />
+	   	             <f:selectItem  itemLabel="Tunisien" itemValue="Tunisien" /> 
+	   	            </p:selectOneMenu>
+	   	             <p:message for ="inputText4" style="position:relative; width:200px;left:30px; font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+	                
+	                <h:outputText value="Ville :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText" style="width:200px;" value="#{userBean.postulant.ville}" required="true" requiredMessage="La saisie de Pays est obligatoire !" >
+	   	            	<f:selectItem  itemLabel="Choisir son ville" itemValue="" />
+	   	            	<f:selectItem  itemLabel="Sousse" itemValue="Sousse" /> 
+	   	            	<f:selectItem  itemLabel="Tunis" itemValue="Tunis" />
+	   	            	<f:selectItem  itemLabel="Sfax" itemValue="Sfax" /> 
+	   	            	<f:selectItem  itemLabel="Bizerte" itemValue="Bizerte" />
+	   	            	<f:selectItem  itemLabel="Monastir" itemValue="Monastir" />
+	   	             </p:selectOneMenu>
+	   	             <p:message for ="inputText" style="position:relative; width:200px;left:30px; font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+					 
+					<h:outputText value="CIN :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:inputText id="inputText12"   style="width:244px;  font-family:'Trebuchet MS';font-size:20px; " value="#{userBean.postulant.cin}" required="true" requiredMessage="La saisie de date de naissance   est obligatoire !" validatorMessage="CIN est chiffre et longeur : 8  svp ">
+	   	            	<f:validateRegex pattern="^[_0-Z9-]+$" />
+	   	            	<f:validateLength minimum="8"   maximum="8" />
+	   	            </p:inputText> 
+	   	             <p:message for ="inputText12" style="position:relative; width:200px;left:30px; font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+					
+					
+					 <h:outputText value="Date de naissance :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:calendar id="inputText1"   style="  font-family:'Trebuchet MS';font-size:20px; " value="#{userBean.postulant.dateNaissance}" required="true" requiredMessage="La saisie de date de naissance   est obligatoire !"/>
+	   	             <p:message for ="inputText1" style="position:relative; width:200px;left:30px; font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+	               
+	               <h:outputText value="Genre :"/>
+	                <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<h:selectOneRadio id="Genre" value="#{userBean.postulant.genre}" style="  font-family:'Trebuchet MS';font-size:20px; "  required="true" requiredMessage="la saisie de Genre est obligatoire !" >
+						<f:selectItem  itemLabel="mrs" itemValue="femme" /> 
+	   	            	<f:selectItem  itemLabel="mr" itemValue="homme" />
+					</h:selectOneRadio>
+					<p:message for="Genre" style="position:relative; width:200px;left:30px; font-size:15px;"/>
+	   	             <p:spacer height="0" width="7"/>
+	   	             <h:form enctype="multipart/form-data">
+			    <h:outputText style=" position:relative ; top:10px;" value="joindre son CIN : "/>
+    					<p:fileUpload   style="width:200px;height:50px ; position:relative ;left:200px; bottom:20px;" fileUploadListener="#{userBean.upload}" auto="true" />
+					</h:form>
+			     </h:panelGrid>
+			    
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('IdentificationDial').hide()"/>
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="Suivant"   actionListener="#{userBean.test}" 
+				         oncomplete="addIdentificationRequest(xhr, status, args); " update=":formIdentification:IdentificationGrid1,formIdentification:formEditCoordonneeMsg" />
+				                  
+			 	 <script type="text/javascript">
+			 	  function addIdentificationRequest(xhr, status, args) {
+						  if ( args.loggedIn) {
+					       PF('IdentificationDial').hide();
+						  PF('CoordonneeDial').show();
+						  }
+					}
+					  
+				  </script>        
+			</p:dialog>
+			
+		</h:form>
+		
+		<!-- Coordonnee dial -->
+		<h:form id="formCoordonnee">
+	        <p:dialog id="CoordonneeDial" styleClass="diag1"  widgetVar="CoordonneeDial" header="Coordonnee" resizable="false"  width="1050"  showEffect="explode" hideEffect="explode"    modal="true"> 
+		   		<p:messages  id="formCoordonneeMsg" for="formCoordonnee" showDetail="true" closable="true"/>
+	               <div class="steppo">
+			<p:steps activeIndex="2" styleClass="custom" readonly="false">
+    	<p:menuitem value="Identification" oncomplete="PF('IdentificationDial').show() ; PF('CoordonneeDial').hide();" />
+   	 		<p:menuitem value="Coordonnee" oncomplete="PF('CoordonneeDial').show()"/>
+    	<p:menuitem value="Education" url=""/>
+    	<p:menuitem value="Experience Pro" url="" />
+    	   <p:menuitem value="Formation" url=""/>
+		</p:steps>
+	</div>
+	      <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+	            <h:panelGrid id="CoordonneeGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	           
+					 <h:outputText value="Adresse :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					 <p:inputText id="add" style="width:200px;" value="#{userBean.postulant.adresse}" required="true" requiredMessage="La saisie de adresse est obligatoire !" validatorMessage="Adresse sous form N° Rue [0..9] ou[a..z] " >
+	   	             	<f:validateRegex pattern="^[z0-9-\s]+([A-Za-z0-9-\s]+)$" />
+	   	             </p:inputText>
+	   	             <p:message for="add" style="font-size:15px;"/>
+	   	             <p:spacer height="0" width="7"/>
+	   	        
+	   	         
+	   	             <h:outputText value="Code Postal :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					 <p:inputText id="code" style="width:200px;" value="#{userBean.postulant.codePostal}" required="true" requiredMessage="La saisie de Code Postal est obligatoire!" validatorMessage="Code Postal est chiffre et longeur : 4  svp ">
+						
+						<f:validateLength minimum="4"   maximum="4" />
+					</p:inputText>
+					<p:message for ="code" style="font-size:14px;" />
+					 <p:spacer height="0" width="7"/>
+					  
+					 <h:outputText value="Téléphone :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:inputText id="number" style="width:200px;" value="#{userBean.postulant.tel}" required="true" requiredMessage="La saisie de telephone est obligatoire !" validatorMessage="la saisir de Tel entre 1..9 et longeur = 8">
+	   	           <f:validateLength minimum="8"   maximum="8" />
+	   	             </p:inputText>
+	   	             <p:message for ="number" style=";font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+	   	             
+	   	             <h:outputText value="Adresse Email (Prive):"/>
+				   	 <p:spacer height="0" width="35"/>
+					<h:outputText style="color:red;" value="*"/>
+					 <p:inputText id="email" style="width:200px;" value="#{userBean.postulant.adresseEmail}" required="true" requiredMessage="La saisie de  Email est obligatoire !" validatorMessage="Invalid email format :Exepmle@attijari.com ">
+	   	            <f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
+				   	    <p:message for ="email" style="font-size:15px;" />
+					 <p:spacer height="0" width="7"/>
+					 <h:form enctype="multipart/form-data">
+			    <h:outputText style=" position:relative ; top:10px;" value="joindre son Photo identité : "/>
+    					<p:fileUpload   style="width:200px;height:50px ; position:relative ;left:250px; bottom:20px;" fileUploadListener="#{userBean.uploadPhoto}" auto="true" />
+					</h:form>
+					 
+					 
+			     </h:panelGrid>
+			    
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('CoordonneeDial').hide()"/>
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="Suivant"  actionListener="#{userBean.addPostulant}"  action="#{CvBean.initaddclient}" 
+				    oncomplete="addCoordoneeRequest(xhr, status, args); " update=":formCoordonnee:CoordonneeGrid1,formCoordonnee:formCoordonneeMsg"  />            
+			 	 <script type="text/javascript">
+					  function addCoordoneeRequest(xhr, status, args)
+					  {
+					  	if ( args.loggedIn) {
+					  	PF('CoordonneeDial').hide();
+					       PF('educationDial').show();
+							
+						  }
+					  }
+				  </script>        
+			</p:dialog>
+			
+		</h:form>
+		
+		
+        
+       <!--  educationDial -->
+       
+			<h:form id="formEducation">
+	        <p:dialog id="educationDial" styleClass="diag1"  widgetVar="educationDial" header="Education" resizable="false"  width="1050"  showEffect="explode" hideEffect="explode"    modal="true"> 
+		   		<p:messages  id="formeducationMsg" for="formEducation" showDetail="true" closable="true"/>
+	               <div class="steppo">
+			<p:steps activeIndex="3" styleClass="custom" readonly="false">
+    	<p:menuitem value="Identification" oncomplete="PF('IdentificationDial').show() ;PF('educationDial').hide();" />
+   	 		<p:menuitem value="Coordonnee" oncomplete="PF('CoordonneeDial').show();PF('educationDial').hide();"/>
+    	<p:menuitem value="Education" oncomplete="PF('educationDial').show();"/>
+    	<p:menuitem value="Experience Pro" url="" />
+    	   <p:menuitem value="Formation" url=""/>
+		</p:steps>
+	</div>
+	      <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+	            <h:panelGrid id="EducationGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	           
+				 <h:outputText value="Domaine :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText1" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.domaineEducation}" required="true" requiredMessage="La saisie de Domaine est obligatoire !">
+						<f:selectItem  itemLabel="Choisir un  Domaine " itemValue="" />
+           					 <f:selectItems value="#{CvBean.domaine}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText1"/>
+					 <p:spacer height="0" width="7"/>
+					 
+	   	             
+	   	             <h:outputText value="Spécialite :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu  id="inputText2" style="width:250px;font-family:'Trebuchet MS';font-size:20px;" value="#{CvBean.selectedCv.spécialité}" required="true" requiredMessage="La saisie de Spécialité est obligatoire !">
+					<f:selectItem  itemLabel="Choisir une  specialité " itemValue="" />
+           					 <f:selectItems value="#{CvBean.specialité}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText2"/>
+					 <p:spacer height="0" width="7"/>
+	   	              
+					 
+					 <h:outputText value="Cycle :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+						<p:selectOneMenu  id="inputText3" style="width:250px;font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.cycle}" required="true" requiredMessage="La saisie de Cycle est obligatoire !">
+							<f:selectItem  itemLabel="Choisir son cycle" itemValue="" />
+           					 <f:selectItems value="#{CvBean.cycle}"/>
+						</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText3"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Etablissement :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+				<p:selectOneMenu  id="inputText5" value="#{CvBean.selectedCv.etablissementEducation}" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "   required="true" requiredMessage="La saisie de Etablissement est obligatoire !">
+					<f:selectItem  itemLabel="Choisir un etablissement" itemValue="" />
+           					 <f:selectItems value="#{CvBean.etablissementEducation}"/>
+				</p:selectOneMenu>
+					<p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText5"/>
+					 <p:spacer height="0" width="7"/>
+		
+					 <h:outputText  value="Annee de diplome :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText4" value="#{CvBean.selectedCv.annéeDiplome}" style="width:270px;  font-family:'Trebuchet MS';font-size:20px; "  required="true" requiredMessage="La saisie d'année de diplome est obligatoire !">
+						<f:selectItem  itemLabel="Choisir son annéé de diplome" itemValue="" />
+           					 <f:selectItems value="#{CvBean.annee}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText4"/>
+					 <p:spacer height="0" width="7"/>    				    
+    				   
+			
+			     </h:panelGrid>
+			     <h:outputText style=" position:relative ; top:20px;" value="Choisir un diplome : "/>
+    				<h:form enctype="multipart/form-data">
+    					<p:fileUpload   style="width:200px;height:50px ; position:relative ;left:200px; bottom:20px;" fileUploadListener="#{CvBean.upload}" auto="true" />
+					</h:form>
+			    
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('educationDial').hide()"/>
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="Suivant"   actionListener="#{CvBean.addClient}" action="#{CvBean.initaddclient}"
+				    oncomplete="addEducationRequest(xhr, status, args); " update=":formEducation:EducationGrid1,formEducation:formeducationMsg"  />            
+			 	 <script type="text/javascript">
+					  function addEducationRequest(xhr, status, args)
+					  {
+					  	if ( args.loggedIn) {
+					  	PF('educationDial').hide();
+					       PF('addClientDial').show();
+							
+						  }
+					  }
+				  </script>        
+			</p:dialog>
+			
+		</h:form>
+		
+		<h:form id="formAddClient">
+	        <p:dialog id="addClientDial" widgetVar="addClientDial" header=" Experience  Professionnelle" resizable="false" width="1050" showEffect="explode" hideEffect="explode" modal="true"> 
+		   		
+		   		<p:messages  id="formAddClientMsg" for="formAddClient" showDetail="true" closable="true"/>
+	                   <div class="steppo">
+			<p:steps activeIndex="4" styleClass="custom" readonly="false">
+    	<p:menuitem value="Identification" oncomplete="PF('IdentificationDial').show() ;PF('addClientDial').hide();" />
+   	 		<p:menuitem value="Coordonnee" oncomplete="PF('CoordonneeDial').show();PF('addClientDial').hide();"/>
+    	<p:menuitem value="Education" oncomplete="PF('educationDial').show(); PF('addClientDial').hide();"/>
+    	<p:menuitem value="Experience Pro" oncomplete="PF('addClientDial').hide();"/>
+    	   <p:menuitem value="Formation" url=""/>
+		</p:steps>
+	</div>
+	            <h:panelGrid id="addClientGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	                
+	                 <h:outputText value="type de formation :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					 <p:selectOneMenu  id="inputText1" style="width:250px; font-family:'Trebuchet MS';font-size:20px;" value="#{CvBean.selectedCv.typeFormation}" required="true" requiredMessage="La saisie de formation est obligatoire !">
+           					<f:selectItem  itemLabel="Choisir un type" itemValue="" />
+           					 <f:selectItems value="#{CvBean.typeFormation}"/>
+					 </p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText1"/>
+	   	              <p:spacer height="0" width="7"/>
+	   	              
+	   	             <h:outputText value="Etablissement :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+	   	              <p:selectOneMenu id="inputText2" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.etablissementExper}" required="true" requiredMessage="La saisie d'etablissement est obligatoire !">
+					 	<f:selectItem  itemLabel="Choisir un  Etablissement " itemValue="" />
+           					 <f:selectItems value="#{CvBean.etablissement}"/>
+					 </p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText2"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Mission :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:inputText id="inputText5" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.mission}" required="true" requiredMessage="La saisie de Mission  est obligatoire !" validatorMessage="la saisie de Mission  n'est pas des nombres svp ">
+					  <f:validateRegex pattern="^[-a-zA-Z\s]+$" />
+					</p:inputText>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText5"/>
+	   	              <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Date debut  :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:calendar id="inputText3" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.periodeExperDebut}" required="true" requiredMessage="La saisie de Date  est obligatoire !"/>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText3"/>
+	   	              <p:spacer height="0" width="7"/>
+					 
+					 
+					 <h:outputText value="Date fin :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					  <p:calendar id="inputText4"   style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.periodeExperFinal}" required="true" requiredMessage="La saisie de Date est obligatoire !"/>
+					<p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText4"/>
+					 <p:spacer height="0" width="7"/>
+					 <p:spacer height="0" width="0"/>
+					 
+			     </h:panelGrid>
+			     <h:outputText style=" position:relative ; bottom:10px;" value="Choisir une affectation : "/>
+    				<h:form enctype="multipart/form-data">
+    					<p:fileUpload    style="width:200px;height:50px ; position:relative ;left:200px; bottom:39px;" fileUploadListener="#{CvBean.uploadExperience}"  auto="true"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  />
+					</h:form>
+			     
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('addClientDial').hide()"/>
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="suivant" action="#{CvBean.initaddclient}" actionListener="#{CvBean.addExperience}" oncomplete="addExperienceRequest(xhr, status, args)"
+				                  update=":formAddClient:formAddClientMsg,:formAddClient:addClientGrid1" />
+			 	 <script type="text/javascript">
+					  function addExperienceRequest(xhr, status, args) {
+						  if (args.loggedIn) {
+							  PF('addClientDial').hide();
+							  PF('addformationDial').show();
+						  }
+					}
+				  </script>        
+			</p:dialog>
+        </h:form>
+        
+        <h:form id="formAddformation">
+	        <p:dialog id="addformationDial" widgetVar="addformationDial" header=" Formation " resizable="false" width="1050" showEffect="explode" hideEffect="explode" modal="true"> 
+		   		
+		   		<p:messages  id="formAddformationMsg" for="formAddformation" showDetail="true" closable="true"/>
+	          	           <div class="steppo">
+			<p:steps activeIndex="5" styleClass="custom" readonly="false">
+    	<p:menuitem value="Identification" oncomplete="PF('IdentificationDial').show() ;PF('addformationDial').hide();" />
+   	 		<p:menuitem value="Coordonnee" oncomplete="PF('CoordonneeDial').show();PF('addformationDial').hide();"/>
+    	<p:menuitem value="Education" oncomplete="PF('educationDial').show();PF('addformationDial').hide();"/>
+    	<p:menuitem value="Experience Pro" oncomplete="PF('addClientDial').show();PF('addformationDial').hide();"/>
+    	   <p:menuitem value="Formation" oncomplete="PF('addformationDial').show();"/>
+		</p:steps>
+	</div>  
+	          
+	            <h:panelGrid id="addformationGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	                
+	                <h:outputText value="Etablissement :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+	   	              <p:selectOneMenu id="inputText2" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.etablissementFormation}" required="true" requiredMessage="La saisie d'etablissement est obligatoire !">
+					 	<f:selectItem  itemLabel="Choisir un  Etablissement " itemValue="" />
+           					 <f:selectItems value="#{CvBean.etablissement}"/>
+					 </p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText2"/>
+					 <p:spacer height="0" width="7"/>
+	                
+	                 <h:outputText value="Titre de formation :"/>
+	                 <p:spacer height="0" width="30"/>
+					 <h:outputText style="color:red;" value="*"/>
+					 <p:inputText id="inputText1" style="width:290px; font-family:'Trebuchet MS';font-size:20px;" value="#{CvBean.selectedCv.titreFormation}" required="true" requiredMessage="La saisie de formation est obligatoire !" validatorMessage="la formation n'est pas des nombres svp ">
+					 	<f:validateRegex pattern="^[-a-zA-Z\s]+$" />
+					 </p:inputText>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText1"/>
+	   	              <p:spacer height="0" width="7"/>
+	   	              
+	   	             
+					 
+					 <h:outputText value="Date debut  :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:calendar id="inputText3" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.periodeFormDebut}" required="true" requiredMessage="La saisie de Date  est obligatoire !"/>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText3"/>
+	   	              <p:spacer height="0" width="7"/>
+					 
+					 
+					 <h:outputText value="Date fin :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					  <p:calendar id="inputText4"   style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.periodeFormaFinal}" required="true" requiredMessage="La saisie de Date est obligatoire !"/>
+					<p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText4"/>
+					 <p:spacer height="0" width="7"/>
+					 <p:spacer height="0" width="0"/>
+					
+			     </h:panelGrid>
+			     <h:outputText style=" position:relative ; bottom:20px;" value="Choisir une certificat : "/>
+    				<h:form enctype="multipart/form-data">
+    					<p:fileUpload   style="width:200px;height:50px ; position:relative ;left:200px; bottom:42px;" fileUploadListener="#{CvBean.uploadFormation}" auto="true" />
+					</h:form>
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('addClientDial').hide()"/>
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="Suivant" actionListener="#{CvBean.addFormation}" oncomplete="Pf('deleteClientDial').show();"
+				                  update=":formAddformation:formAddformationMsg,:formAddformation:addformationGrid1"/>
+			 	 <script type="text/javascript">
+					  function addformationRequest(xhr, status, args) {
+						  if (args.loggedIn) {
+							  PF('addformationDial').hide();
+							  
+							
+						  }
+					}
+				  </script>        
+			</p:dialog>
+        </h:form>
+        
+       <h:form id="formConfirmation">
+           <p:confirmDialog id="deleteClientDial" widgetVar="deleteClientDial" header="Confirmation" message="Voulez-vous vraiment supprimer ce Experience !" showEffect="explode" hideEffect="explode"> 
+	         <p:commandButton style="height:35px;" value="Non" icon="ui-icon-close" onclick="PF('deleteClientDial').hide()"/>  
+	         <p:spacer height="0" width="5" />
+		     <p:commandButton style="height:35px;" value="Oui" icon="ui-icon-check" action="#{CvBean.deleteExperience}" oncomplete="PF('deleteClientDial').hide();PF('dataTable1WidgetVar').clearFilters();" update=":formMain:formMainMsg,:formMain:dataTable1"/>
+		   </p:confirmDialog>
+        </h:form>
+	</h:body>
+</html>

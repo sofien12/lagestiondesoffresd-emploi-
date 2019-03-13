@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-3.1.xsd"> 
+   
+      <global-method-security secured-annotations="enabled">
+      </global-method-security>
+ 
+          
+      <http pattern="/modules/members/**" access-denied-page="/modules/members/accessDenied.jsf" authentication-manager-ref="MembersAuthenticationManager">
+
+            <intercept-url pattern="/modules/members/secure/**" access="ROLE_VISITEUR" />
+            <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+            <form-login login-page="/modules/members/LoginCandidature.jsf"
+            
+                  login-processing-url="/modules/members/j_spring_security_check"
+                  authentication-failure-url="/modules/members/LoginCandidature.jsf" />
+            <logout logout-url="/modules/members/secure/logout" 
+                  logout-success-url="/modules/members/LoginCandidature.jsf" delete-cookies="true" />
+
+      </http>
+            
+      <authentication-manager alias="MembersAuthenticationManager">
+            <authentication-provider user-service-ref="securityManager">
+                  <password-encoder hash="md5" />
+            </authentication-provider>
+      </authentication-manager>
+      <beans:bean id="securityManager" class="tn.com.security.SecurityManager" />
+
+</beans:beans>

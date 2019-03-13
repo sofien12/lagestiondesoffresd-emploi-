@@ -1,0 +1,665 @@
+@charset "UTF-8";
+
+/* --------------------------------------------------------------------------------------------- */
+
+img {
+	border:none;
+}
+
+option, optgroup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #464646;
+}
+
+legend.labelBold, p.labelBold, span.labelBold, span.labelBoldRed {
+	font-weight: bold;
+	font-size: 11px;
+	padding: 4px;
+	color: #464646;
+}
+
+
+#headerBanner{height: 100px;}
+
+#image2{
+z-index:1000;	
+position:relative;
+left:961px;
+bottom:160px;
+}
+
+#nameHeader{
+position:relative;
+left:50px;
+top:115px;
+font-family:calibri;
+color:white;
+
+}
+
+div.boutons {
+	clear: both;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left:auto;
+	margin-right: auto;
+	text-align: center;
+	padding-top: 3px;
+}
+
+.divCenter, .centerTableAlignLeft {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	border-collapse: separate;
+}
+
+tr.trCenter, td.tdCenter {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+tr.trLeft, td.tdLeft {
+	text-align: left;
+}
+
+tr.trRight, td.tdRight {
+	text-align: right;
+}
+
+.centerTableAlignLeft tr {
+	text-align: left;
+	height: 20px;
+}
+
+.fondAvantPlan {
+	background-color: #fff;
+}
+
+.fondRubrique {
+	background-color: #d6d5d5;
+}
+
+.error {
+	color:red;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+
+table {
+	border: none;
+	border-collapse: collapse;
+}
+
+table.delta td {
+	padding: 2px 4px 2px 4px;
+	vertical-align: middle;
+}
+
+table.delta td.wrap-left {
+	padding: 2px 4px 2px 4px;
+	text-align:left;
+	white-space : normal;
+}
+
+.list-colonne-left {
+	text-align:left;
+}
+
+.list-colonne-right {
+	text-align:right;
+}
+
+.list-colonne-date {
+	width:6em;
+}
+
+.list-colonne-center {
+	text-align:center;
+}
+
+table.deltaTotal th {
+	padding: 1px 4px 1px 4px;
+	color:#fff;
+	vertical-align: top;
+}	
+
+table.deltaTotal td {
+	padding: 2px 4px 2px 4px;
+	vertical-align: top;
+	white-space : nowrap;
+	color: #464646;
+}
+
+table.readOnly {
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: separate;
+	padding: 4px;
+}
+
+table.readOnly tr {
+	height:20px;	
+}
+
+table.readOnly td {
+	text-align:left;
+	padding-left:3px;
+	padding-right:3px;
+	white-space:nowrap;	
+}
+
+table.radioButtonTable td {
+	height: 23px;
+}
+
+table.radioButtonTable input {
+	vertical-align: middle;
+}
+
+table.radioButtonTable img {
+	vertical-align: middle;
+}
+
+input.checkbox  { 
+   height: 15px; 
+}
+
+td.disabled, span.disabled, td.labelFieldsetDisabled { 
+   color: #777;
+}
+
+td.labelFieldsetDisabled {
+	background-color: #fcfcfc;
+	padding-left: 3px;
+}
+
+td.labelFieldset {
+	background-color: #fcfcfc;
+	padding-left: 3px;
+}
+
+a.disabled:link {
+	color: #999;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+a.disabled:visited {
+	color: #999;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+a.disabled:hover {
+	color: #999;
+}
+
+a.disabled:active {
+	color: #999;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+input.radio {
+	height: 10px;
+}
+
+.gras {
+	font-weight: bold;
+}
+
+span.smallText {
+	font-size: 9px;
+}
+
+.msgIndicatif {
+	font-style: italic;
+	margin-left: 2px;
+}
+
+#newWaitingPanel {
+	position: fixed;
+	background: #eee;
+	border: 1px dashed #333;
+	background-color: #fff;
+	background-position: 10px;
+	background-repeat: no-repeat;
+}
+
+.demonstration-message {
+	font-weight: bold;
+	color: #ef7f00;
+	text-align: center;
+}
+
+.succesOperation {
+	font-weight: bold;
+	font-size: 11px;
+}
+
+/* Div contenant les liens de pagination sous les listes paginées. */
+#pagination {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding: 2px 0px;
+	clear:both;
+	border-collapse: separate;	
+}
+
+#pagination span.enabled {
+	color: #000;
+}
+
+#pagination span.disabled {
+	color: #777;
+}
+
+td.tdHistoId {
+	width: 32px;
+	text-align:center;
+}
+td.tdHistoDate {
+	width: 160px;
+	text-align:center;
+}
+td.tdHistoLib {
+	width: 448px;
+	text-align:left;
+}
+td.tdBoldItalic {
+	font-weight: bold; 
+	font-style: italic;
+}
+
+#imgListe {
+	margin: 0px -3px 0px 3px;
+}
+
+.linkAlerte {
+	margin-left: 2px;
+}
+
+.smallColAlertes {
+	text-align: center;
+	width: 1%;
+}
+
+.colLibAlerte {
+	text-align: left;
+	width: 50%;
+}
+
+.colTypeEnvoi {
+	text-align: center;
+	width: 15%;
+}
+
+.valign {
+	vertical-align: middle;
+}
+
+.radioInput {
+	height:20px;
+	vertical-align:middle;	
+}
+
+.selectInput {
+	vertical-align:middle;	
+}
+
+.textInput {
+	vertical-align:middle;	
+}
+
+.checkboxInput {
+	vertical-align:middle;	
+}
+
+#imgErrorStatistiques {
+	padding-top: 0px;
+	vertical-align: middle;
+}
+
+#infosAbonne tr.premiereLigne td {
+	padding: 2px;
+}
+
+#infosAbonne tr.deuxiemeLigne td {
+	border-bottom : 1px solid lightgrey;
+	padding: 0px 2px 2px 2px;
+}
+
+/*paragraphe contenant un ensemble de message d'erreurs */
+#errors {
+	color:red;
+	text-align: left;
+}
+
+/*paragraphe contenant un ensemble de message d'informations */
+#msgs {
+	color:black;
+	text-align: left;
+}
+
+/* div dans les pages d'erreur */
+div.pageErreur {
+	height: 463px;
+	background: #eef4f8;
+	text-align: left;
+}
+
+/* graphe evolution de solde : div entourant la table d'id grapheTooltipTable (firefox uniquement) */
+#overDiv {
+	text-align: left;
+	padding: 5px;
+}
+
+/* graphe evolution de solde : table contenant le tooltip (firefox uniquement) */
+#grapheTooltipTable {
+	border: 1px solid black;
+}
+
+/* graphe evolution de solde : table contenue dans la table d'id grapheTooltipTable (firefox uniquement) */
+#grapheTooltipTableInnerTable td  {
+	background-color:#ffffe1;
+	padding: 2px;	
+}
+
+tr.stat {
+	height: 21px;
+}
+
+/* ---------------------------------------------------------------------------------- calendrier */
+
+div.calendar { position: relative; }
+
+.calendar .button {
+  text-align: center;
+  padding: 2px;
+}
+
+.calendar .nav {
+	background: #ffffff url(../images/menuarrow.gif) no-repeat 100% 100%;
+}
+
+.calendar thead .headrow {
+  background: #ffffff;
+  color: #000;
+}
+
+.calendar tbody .day {
+  width: 2em;
+  text-align: right;
+  padding: 2px 4px 2px 2px;
+  background: #ffffff;
+}
+
+.calendar tbody .day.othermonth {
+  font-size: 80%;
+  color: #bbb;
+  background: #ffffff;  
+}
+
+.calendar tbody .day.othermonth.oweekend {
+  color: #fbb;
+  background: #ffffff;    
+}
+
+.calendar table .wn {
+  padding: 2px 3px 2px 2px;
+  border-right: 1px solid #000;
+  background: #fed;
+}
+
+.calendar tbody .rowhilite td.wn {
+  background: #efe;
+}
+
+.calendar tbody td.active {
+  background: #ddc;
+  padding: 2px 2px 0px 2px;
+}
+
+.calendar tbody td.today { font-weight: bold; }
+
+.calendar tbody .disabled { color: #999; }
+
+.calendar tbody .emptycell {
+  background: #ffffff;    
+}
+
+.calendar tbody .emptyrow {
+  display: none;
+}
+
+.calendar .combo {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  width: 4em;
+  cursor: default;
+  border: 1px solid #655;
+  background: #ffffff;
+  color: #000;
+  font-size: 90%;
+}
+
+.calendar .combo .label,
+.calendar .combo .label-IEfix {
+  text-align: center;
+  padding: 1px;
+}
+
+.calendar .combo .label-IEfix {
+  width: 4em;
+}
+
+.calendar td.time {
+  border-top: 1px solid #a88;
+  padding: 1px 0px;
+  text-align: center;
+  background-color: #fed;
+}
+
+.calendar td.time .hour,
+.calendar td.time .minute,
+.calendar td.time .ampm {
+  padding: 0px 3px 0px 4px;
+  border: 1px solid #988;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.calendar td.time .ampm {
+  text-align: center;
+}
+
+.calendar td.time .colon {
+  padding: 0px 2px 0px 3px;
+  font-weight: bold;
+}
+
+.calendar td.time span.hilite {
+  border-color: #000;
+  background-color: #866;
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------------------- admin */
+
+fieldset.recherche {
+	padding : 0px;
+}
+
+fieldset.recherche table {
+	border-collapse: separate;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+fieldset.recherche td {
+	padding: 0px 0px 3px 5px;
+}
+
+#bodyTableScrollable, #bodyTableScrollableDansFieldset {
+	border-top: none;
+	border-bottom: none;
+}
+
+#bodyTableScrollable tr, #bodyTableScrollable tr input, #bodyTableScrollableDansFieldset tr, #bodyTableScrollableDansFieldset tr input {
+	height:18px;
+}
+
+#bodyTableNormal {
+	table-layout: fixed;
+}
+
+#sendbutton {
+	 clear:left;
+	 text-align: center;
+}
+
+#formSend table {
+	border-collapse: separate;
+}
+
+span.titreTableau {
+	font-size: 10px;
+	text-align: left;
+}
+
+.colonneAbonneSel {
+	overflow:hidden;
+	width:20px;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.colonneAbonneLibBanque {
+	overflow:hidden;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.colonneAbonneLogin {
+	overflow:hidden;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.colonneAbonneNom {
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: center;
+	width: 100px;
+}
+
+.colonneVide {
+	text-align:center;
+}
+
+/* --------------------------------------------------------------------------------------- login */
+
+img.numEtape { float: left; margin: 0px 5px 0px 10px; }
+	
+/* Annule les postionnement via float */
+.spacer {
+	clear: both;
+}
+
+/* Positionne la flèche (img) de la saisie du mot de passe */
+img.fleche { float: left; margin-top: 15px; margin-left: 20px; }
+
+/* Positionne le texte du champ mot de passe en cours de saisie */
+#txt2PwdSaisieLoginSecure {
+	float: left;
+	margin-left: 5px;
+	margin-top: 13px;
+}
+
+/* Positionne le clavier virtuel */
+#captchaSaisieLoginSecure {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 365px;
+}
+
+
+/* --------------------------------------------------------------------------- cours des devises */
+
+#imgErrorCoursDevises {
+	margin-bottom: 3px;
+	vertical-align: middle;
+}
+
+#headerTableScrollable, #headerTableScrollableDansFieldSet {
+	border-bottom: none;
+}
+
+#nobackground {
+	background: #f0f0f0;
+}
+
+#resultConversion {
+	display: none;
+}
+
+/* ---------------------------------------------------------------------------- mentions légales */
+
+.texteMLBold {
+	font-weight: bold;
+}
+
+/* ---------------------------------------------------------------------------------- displaytag */
+
+th, thead {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	text-align: left;
+}
+
+/* --------------------------------------------------------------------------------- paramétrage */
+
+#imgErrorParametrages {
+	padding-top: 0px;
+	vertical-align: middle;
+}
+
+.widthCellCateg {
+	width: 26%;
+}
+
+.widthCellCode {
+	width: 32%;
+}
+
+.widthCellValeur {
+	width: 42%;
+}
+
+.paramNonModif {
+	color: #666;
+}
+
+.infosParam tr {
+	padding-left: 3px;
+	height: 20px;
+	text-align: left;
+}
+
+.tdLib {
+	width: 25%;
+}
+
+/* ---------------------------------------------------------------------------- monitoring admin */
+
+td.styleAdmin {
+	font-weight: bold; font-style: italic; color: #6c6c6c;
+}

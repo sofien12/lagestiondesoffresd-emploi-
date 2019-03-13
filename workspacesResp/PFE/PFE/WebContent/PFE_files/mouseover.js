@@ -1,0 +1,1 @@
+function mouseOver(b){b.abbr=b.className;b.className=b.className+" mouseover";}function mouseOut(b){b.className=b.abbr;}

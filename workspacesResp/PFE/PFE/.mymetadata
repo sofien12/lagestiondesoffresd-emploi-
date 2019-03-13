@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="PFE"
+  id="myeclipse.1519990444597"
+  context-root="/PFE"
+  j2ee-spec="6.0"
+  archive="PFE.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebContent" />
+  </attributes>
+</project-module>
+

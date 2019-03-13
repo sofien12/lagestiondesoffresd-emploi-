@@ -1,0 +1,278 @@
+package tn.com.pfe.domain;
+
+import java.math.BigDecimal;
+import java.sql.Blob;
+import java.sql.Timestamp;
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import oracle.sql.BLOB;
+
+/**
+ * Cv entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name="Cv")
+public class Cv implements java.io.Serializable {
+
+	// Fields
+
+	private Integer idCv;
+	private String postulant;
+	private String domaineEducation;
+	private String spécialité;
+	private String cycle;
+	private String regimeLinguistique;
+	private String etablissementEducation;
+	private String annéeDiplome;
+	private String mentionDiplome;
+	private String description;
+	private byte[] photoDiplomee;
+	private String etablissementExper;
+	private String typeFormation;
+	private Date periodeExperDebut;
+	private Date periodeExperFinal;
+	private String descriptionExper;
+	private byte[] photoDiplomeExper;
+	private String etablissementFormation;
+	private String titreFormation;
+	private Date periodeFormDebut;
+	private Date periodeFormaFinal;
+	private String mission;
+	private byte[] photoDiplomeFormation;
+	private String descriptionFormation;
+
+	// Constructors
+
+	/** default constructor */
+	public Cv() {
+	}
+
+	/** minimal constructor */
+	public Cv(Integer idCv, String postulant) {
+		this.idCv = idCv;
+		this.postulant = postulant;
+	}
+
+	/** full constructor */
+	
+
+	// Property accessors
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO, generator = "SEQUENCE")
+    @SequenceGenerator(name="SEQUENCE", sequenceName = "SEQ_C")
+    @Column(name="Id_Cv", unique=true, nullable=false)
+	public Integer getIdCv() 
+	{
+		return this.idCv;
+	}
+
+	public void setIdCv(Integer idCv) {
+		this.idCv = idCv;
+	}
+	@Column(name="mission")
+	public String getMission() {
+		return mission;
+	}
+
+	public void setMission(String mission) {
+		this.mission = mission;
+	}
+
+	@Column(name="Id_P", unique=true, nullable=false)
+	
+	public String getPostulant() {
+		return this.postulant;
+	}
+
+	public void setPostulant(String postulant) {
+		this.postulant = postulant;
+	}
+	
+
+	
+	@Column(name="Domaine_Education")
+	public String getDomaineEducation() {
+		return this.domaineEducation;
+	}
+
+	public void setDomaineEducation(String domaineEducation) {
+		this.domaineEducation = domaineEducation;
+	}
+
+	@Column(name="Spécialité")
+	public String getSpécialité() {
+		return this.spécialité;
+	}
+
+	public void setSpécialité(String spécialité) {
+		this.spécialité = spécialité;
+	}
+	@Column(name="cycle")
+	public String getCycle() {
+		return this.cycle;
+	}
+
+	public void setCycle(String cycle) {
+		this.cycle = cycle;
+	}
+	@Column(name="Regime_linguistique")
+	public String getRegimeLinguistique() {
+		return this.regimeLinguistique;
+	}
+
+	public void setRegimeLinguistique(String regimeLinguistique) {
+		this.regimeLinguistique = regimeLinguistique;
+	}
+	@Column(name="Etablissement_Education")
+	public String getEtablissementEducation() {
+		return this.etablissementEducation;
+	}
+
+	public void setEtablissementEducation(String etablissementEducation) {
+		this.etablissementEducation = etablissementEducation;
+	}
+	@Column(name="ANNÉE_DIPLOME")
+	public String getAnnéeDiplome() {
+		return this.annéeDiplome;
+	}
+
+	public void setAnnéeDiplome(String annéeDiplome) {
+		this.annéeDiplome = annéeDiplome;
+	}
+	@Column(name="Mention_Diplome")
+	public String getMentionDiplome() {
+		return this.mentionDiplome;
+	}
+
+	public void setMentionDiplome(String mentionDiplome) {
+		this.mentionDiplome = mentionDiplome;
+	}
+	
+	@Column(name="Description")
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	@Column(name="photo_DiplomeE")
+	@Lob
+	public byte[] getPhotoDiplomee() {
+		return this.photoDiplomee;
+	}
+	
+	public void setPhotoDiplomee(byte[] photoDiplomee) {
+		this.photoDiplomee = photoDiplomee;
+	}
+	@Column(name="Etablissement_Exper")
+	public String getEtablissementExper() {
+		return this.etablissementExper;
+	}
+
+	public void setEtablissementExper(String etablissementExper) {
+		this.etablissementExper = etablissementExper;
+	}
+	@Column(name="type_Formation")
+	public String getTypeFormation() {
+		return this.typeFormation;
+	}
+
+	public void setTypeFormation(String typeFormation) {
+		this.typeFormation = typeFormation;
+	}
+	@Column(name="Periode_Exper_Debut")
+	public Date getPeriodeExperDebut() {
+		return this.periodeExperDebut;
+	}
+
+	public void setPeriodeExperDebut(Date periodeExperDebut) {
+		this.periodeExperDebut = periodeExperDebut;
+	}
+	@Column(name="Periode_Exper_Final")
+	public Date getPeriodeExperFinal() {
+		return this.periodeExperFinal;
+	}
+
+	public void setPeriodeExperFinal(Date periodeExperFinal) {
+		this.periodeExperFinal = periodeExperFinal;
+	}
+	@Column(name="Description_Exper")
+	public String getDescriptionExper() {
+		return this.descriptionExper;
+	}
+
+	public void setDescriptionExper(String descriptionExper) {
+		this.descriptionExper = descriptionExper;
+	}
+	@Lob
+	@Column(name="photo_Diplome_Exper")
+	public   byte[] getPhotoDiplomeExper() {
+		return this.photoDiplomeExper;
+	}
+
+	public void setPhotoDiplomeExper(byte[] photoDiplomeExper) {
+		this.photoDiplomeExper = photoDiplomeExper;
+	}
+	@Column(name="Etablissement_Formation")
+	public String getEtablissementFormation() {
+		return this.etablissementFormation;
+	}
+
+	public void setEtablissementFormation(String etablissementFormation) {
+		this.etablissementFormation = etablissementFormation;
+	}
+	@Column(name="Titre_Formation")
+	public String getTitreFormation() {
+		return this.titreFormation;
+	}
+
+	public void setTitreFormation(String titreFormation) {
+		this.titreFormation = titreFormation;
+	}
+	@Column(name="Periode_Form_Debut")
+	public Date getPeriodeFormDebut() {
+		return this.periodeFormDebut;
+	}
+
+	public void setPeriodeFormDebut(Date periodeFormDebut) {
+		this.periodeFormDebut = periodeFormDebut;
+	}
+	@Column(name="PERIODE_FORMA_FINAL")
+	public Date getPeriodeFormaFinal() {
+		return this.periodeFormaFinal;
+	}
+
+	public void setPeriodeFormaFinal(Date periodeFormaFinal) {
+		this.periodeFormaFinal = periodeFormaFinal;
+	}
+	@Column(name="Photo_Diplome_Formation")
+	@Lob
+	public byte[] getPhotoDiplomeFormation() {
+		return this.photoDiplomeFormation;
+	}
+
+	public void setPhotoDiplomeFormation(byte[] photoDiplomeFormation) {
+		this.photoDiplomeFormation = photoDiplomeFormation;
+	}
+	@Column(name="Description_Formation")
+	public String getDescriptionFormation() {
+		return this.descriptionFormation;
+	}
+
+	public void setDescriptionFormation(String descriptionFormation) {
+		this.descriptionFormation = descriptionFormation;
+	}
+
+}

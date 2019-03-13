@@ -1,0 +1,13 @@
+#Fri May 04 18:00:08 WAT 2018
+tomcat7Server.PFE.IEARProjectName=
+tomcat7Server.PFE.altContextRoot=
+tomcat7Server.PFE.isDeployed=true
+tomcat7Server.PFE.contextRoot=/PFE
+tomcat7Server.PFE.shouldBackup=false
+tomcat7Server.PFE.isExploded=true
+tomcat7Server.PFE.isUptoDate=true
+eclipse.preferences.version=1
+tomcat7Server.PFE.shouldOverwrite=false
+tomcat7Server.PFE.deploymentPath=C\:\\apache-tomcat-7.0.47-windows-x86\\apache-tomcat-7.0.47\\webapps\\PFE
+tomcat7Server.PFE.type=WebDeployment
+tomcat7Server.PFE.deployIsOverProject=false

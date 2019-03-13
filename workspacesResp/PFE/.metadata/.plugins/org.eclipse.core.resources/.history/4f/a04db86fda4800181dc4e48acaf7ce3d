@@ -1,0 +1,132 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../../templates/pageMere.xhtml">
+	  
+	<h:head>
+	<title>Acceuil</title>
+	<style type="text/css">
+		#fondLogin{
+				width:1150px;
+					   background: url("#{resource['images/bande2.png']}") repeat;
+		}
+	</style>
+	
+	</h:head>
+	 
+	<ui:define name="content">
+	
+	<h:form id="formS" rendered="#{userBean.test eq 'S'}" >
+	<p:dataTable  style="width:1010px;" id="dataTable1" model="true" var="itemC"   rowIndexVar="rowIndex" value="#{CvBean.listCreateur}"     widgetVar="dataTable1WidgetVar"        currentPageReportTemplate="({currentPage} sur {totalPages})"
+					       paginator="true" emptyMessage="Pas d'enregistrements disponibles !" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					    rows="3" >
+			
+			
+				<p:columnGroup type="header">
+            		<p:row>
+        	    	    <p:column rowspan="2" headerText="N° Offre" />
+           		  		<p:column headerText="Type de l'offre" />
+           		  		<p:column headerText="Emetteur" />
+    	            	
+            	</p:row>
+            	
+            	</p:columnGroup>
+            <p:subTable var="item"   value="#{CvBean.offre}" rendered="#{CvBean.p eq 1}"  >
+        	<p:column>
+                	<h:outputText value="#{item.idOffre}" />
+            </p:column>
+            <p:column value="">
+           
+                <h:outputText value=" #{item.typeOffre}" />
+            </p:column>
+				
+				
+			 <p:column  >	
+                <h:outputText value="#{itemC.nom}" />
+            </p:column>
+			</p:subTable>
+		</p:dataTable>
+			
+          
+</h:form>
+<h:form id="formBU" rendered="#{userBean.test eq 'BU'}">
+		    <p:messages   id="formBUMsg" for="formBU" outtime="5" showDetail="true" closable="true"/>
+		<p:fieldset id="fieldset" widgetVar="fieldset" legend="Creation une offre d'emploi " style="margin-bottom:20px;position:relative; left:35px;width:900px; ">
+	        <h:panelGrid id="addOffreGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+			
+			 <h:outputText value="Role  :"/>
+	                 <p:spacer height="0" width="34"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText1" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.offremploi.role}" required="true" requiredMessage="La saisie de Role est obligatoire !">
+						<f:selectItem  itemLabel="Choisir un  Role  " itemValue="" />
+           					 <f:selectItems value="#{CvBean.role}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText1"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Minimum d'experience :" />
+	                 <p:spacer height="0" width="34"/>
+					 <h:outputText style="color:red;" value="*"/>
+						<p:selectOneMenu id="inputText3" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.offremploi.minimumExper}" required="true" requiredMessage="La saisie d'experience  est obligatoire !">
+						<f:selectItem  itemLabel="Choisir votre minimum d'experience " itemValue="" />
+           					 <f:selectItems value="#{CvBean.experience}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText3"/>
+	   	              <p:spacer height="10" width="10"/>
+	   	              
+	   	               <h:outputText value="Niveau d'etude :" />
+	                 <p:spacer height="0" width="34"/>
+					 <h:outputText style="color:red;" value="*"/>
+						<p:selectOneMenu id="inputText4" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.offremploi.niveauEtude}" required="true" requiredMessage="La saisie de Niveau d'etude  est obligatoire !">
+						<f:selectItem  itemLabel="Choisir votre Niveau d'etude " itemValue="" />
+           					 <f:selectItems value="#{CvBean.niveau}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText4"/>
+	   	              <p:spacer height="10" width="10"/>
+						
+						<h:outputText value="Date debut publication  :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:calendar id="inputText5" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.offremploi.dateDebut}" required="true" requiredMessage="La saisie de Date  est obligatoire !"/>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText5"/>
+	   	              <p:spacer height="10" width="10"/>
+	   	              
+	   	              <h:outputText value="Date fin publication  :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:calendar id="inputText6" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.offremploi.dateFinal}" required="true" requiredMessage="La saisie de Date  est obligatoire !"/>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText6"/>
+	   	              <p:spacer height="10" width="10"/>
+	   	              
+				 <h:outputText value="Mission  :"/>
+	                 <p:spacer height="0" width="34"/>
+					 <h:outputText style="color:red;" value="*"/>
+					    <p:inputTextarea id="display" rows="5"  cols="30" autoResize="true" value="#{CvBean.offremploi.mission}" required="true" requiredMessage="La saisie de Mission est obligatoire !" />
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="display"/>
+	   	              <p:spacer height="0" width="7"/>
+	   	              
+				 
+		</h:panelGrid>
+		<p:separator style="margin-bottom:10px;margin-top:10px;"/>
+		 <p:commandButton icon="ui-icon-check" style="height:35px; position:relative ;left:700px;" value="Enregistre" action="#{CvBean.addOffre}" oncomplete="addClientRequet(xhr, status, args)" 
+				           update=":formBU:formBUMsg,:formBU:addOffreGrid1"/>
+		   <script type="text/javascript">
+					  function addClientRequet(xhr, status, args) {
+						  if (args.validationFailed || !args.loggedIn) {
+						             
+					      }else {
+							 
+							  PF('dataTable1WidgetVar').clearFilters();
+						  }
+					}
+				  </script>
+		</p:fieldset>
+	
+</h:form>
+
+	</ui:define>
+	
+</ui:composition>

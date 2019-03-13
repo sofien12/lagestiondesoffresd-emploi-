@@ -1,0 +1,83 @@
+package tn.com.pfe.view;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.primefaces.context.RequestContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import tn.com.pfe.domain.Validateur;
+import utils.CommonCalendrier;
+import utils.JSFUtils;
+import tn.com.pfe.service.*;
+@Component("valideBean")
+@Scope("view")
+public class valideBean 
+{
+	private static final long serialVersionUID = 1L;
+		// TODO Auto-generated constructor st
+	@Autowired
+	private ValidateurService ValidateurService;
+	private Validateur Validateur;
+	private List<Validateur> ListValidateur;
+	private UserBean userBean;
+	public valideBean() {
+		
+	}
+	@PostConstruct
+	public void initial()
+	{
+		try
+	{userBean=(UserBean) JSFUtils.getExpressionValue("#{userBean}");
+			
+		//ListValidateur=ValidateurService.findAll();
+	}catch(Exception e)
+	 {
+      	System.out.println("errer");
+      }
+	}
+	
+	public void inialProcessus(Integer p)
+	{
+		
+		Validateur =new Validateur();
+		Validateur.setOffremploi(p);
+		Validateur.setCreateur(userBean.getCreateur().getIdR());
+		System.out.println(Validateur.getOffremploi());
+		System.out.println(Validateur.getCreateur());
+	
+	}
+	
+	public void addProcessus()
+	{
+		RequestContext context = RequestContext.getCurrentInstance();
+		try{
+		
+		
+			System.out.println(Validateur.getObesevation());
+			
+			Validateur.setDateP(CommonCalendrier.nowTime());
+			ValidateurService.create(Validateur);
+			System.out.println(Validateur.getCreateur());
+		
+		System.out.println(Validateur.getDateP());
+		JSFUtils.addSuccessMessage("Info :", "la validation a été Envoyer  avec succès !", "formoEditProcessus");
+		context.addCallbackParam("loggedIn", true);
+		}catch(Exception e){
+			  e.printStackTrace();
+			  JSFUtils.addErrorMessage("Erreur :", e.getMessage(), "formoEditProcessus");
+			 
+			  context.addCallbackParam("loggedIn", false);
+		    }
+	}
+	public Validateur getValidateur() {
+		return Validateur;
+	}
+	public void setValidateur(Validateur validateur) {
+		Validateur = validateur;
+	}
+	
+}

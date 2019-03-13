@@ -1,0 +1,349 @@
+package tn.com.pfe.view;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.TimeZone;
+import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+
+
+
+import org.apache.commons.io.IOUtils;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
+
+import tn.com.pfe.domain.Createur;
+import tn.com.pfe.domain.Offremploi;
+
+import tn.com.pfe.domain.Validateur;
+import tn.com.pfe.service.OffremploiService;
+import tn.com.pfe.service.CreateurService;
+
+import tn.com.pfe.service.ValidateurService;
+
+import utils.CommonCalendrier;
+import utils.JSFUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.DefaultStreamedContent;  
+import org.primefaces.model.UploadedFile;
+
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfWriter;
+
+import java.io.InputStream;
+
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
+@Component("CvBean")
+@Scope("view")
+public class CvBean {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Autowired
+	private OffremploiService OffremploiService; 
+	private CreateurService CreateurService;
+	private Offremploi offremploi;
+	private TimeZone timeZone;
+	private Createur Createur;
+	private UserBean userBean;
+	
+	private HashMap<Createur,Offremploi> CO;
+	private List<Offremploi> offre;
+	private List<Offremploi> filteredListoffre;
+	private Createur createurList;
+	private  Map<String,String>Role ;
+	private  Map<String,String>experience ;
+	private  Map<String,String> niveau ;
+	private  Map<String,String> Annee ;
+	private  Map<String,String>cycle ;
+	private  Map<String,String>Valider ;
+	private  Map<Offremploi,Createur>cret ;
+	private List<Createur> filteredListcreateur;
+	private Createur CreateurList;
+	private List<Createur> ListCreateur;
+	private int i=1;
+	
+	public CvBean() 
+	{
+
+		
+	}
+	
+	@PostConstruct	
+	public void initiate() {
+	try{
+		
+		userBean=(UserBean) JSFUtils.getExpressionValue("#{userBean}");
+		offremploi =new Offremploi();
+		
+		Createur=userBean.getCreateur();
+		offre=OffremploiService.findAll();
+		filteredListoffre=new ArrayList<Offremploi>(offre);
+		ListCreateur=new ArrayList<Createur>();		
+		
+		Role = new HashMap<String, String>();
+		Role.put("directeur general", "directeur general");
+		Role.put("comptabilité","comptabilité");
+		Role.put("développeur","développeur");
+		Role.put("l'intelligence d'entreprise", "l'intelligence d'entreprise");
+		Role.put("avocat","avocat");
+		
+		experience = new HashMap<String, String>();
+		experience.put("3 ans ", "3 ans");
+		experience.put("4 ans ","4 ans");
+		experience.put("2 ans "," 2 ans ");
+		experience.put("1 ans ", "1 ans ");
+		niveau = new HashMap<String, String>();
+		
+		niveau.put("Licence en Informatique ", "Licence en Informatique");
+		niveau.put("Licence en gestion ","Licence en gestion ");
+		niveau.put("Licence en droite"," Licence en droite");
+		niveau.put("Ingenieur en Informatique ", "Ingenieur en Informatique");
+		
+		
+	}catch(Exception e)
+	 {
+        	e.printStackTrace();
+        }
+	}
+	
+public Createur nomprenom(Integer np)
+{
+
+	CreateurList=userBean.rabekmohamed(np);
+	ListCreateur.add(CreateurList);
+
+	return CreateurList;
+	
+}
+public void editoffre() {
+	RequestContext context = RequestContext.getCurrentInstance();
+	try{
+		System.out.println("boukouk");
+		OffremploiService.update(offremploi);
+		JSFUtils.addSuccessMessage("Info :", "l'offre  a été modifié avec succès !", "formoEditoffre");
+		context.addCallbackParam("loggedIn", true);
+		
+	  }catch(Exception e){
+		  e.printStackTrace();
+		  JSFUtils.addErrorMessage("Erreur :", e.getMessage(), "formoEditoffre");
+		  context.addCallbackParam("loggedIn", false);
+	    }
+	 }
+public void initaddOffre()
+{
+	offremploi=new Offremploi();
+}
+
+
+ 	public void addOffre() {
+	RequestContext context = RequestContext.getCurrentInstance();
+	try{
+		
+		
+		offremploi.setCreateur(Createur.getIdR());
+		offremploi.setSuspendu(0);
+			if (userBean.getTest().equals("BU"))
+			{
+				offremploi.setTypeOffre("Type siege");
+			}
+			else
+				if (userBean.getTest().equals("RH"))
+				{
+					offremploi.setTypeOffre("Type reseau");
+
+				}
+		
+		OffremploiService.create(offremploi);
+		filteredListoffre.add(offremploi);
+		//selectedCv.setDatecre(CommonCalendrier.nowTime());
+		System.out.println(this.offremploi.getRole());
+		offremploi=new Offremploi();
+		JSFUtils.addSuccessMessage("Info :", "l'offre   a été ajouté avec succès !", "formBU");
+		context.addCallbackParam("loggedIn", true);
+		
+		
+	  }catch(Exception e){
+		  
+		  e.printStackTrace();
+		  JSFUtils.addErrorMessage("Erreur :", e.getMessage(), "formBU");
+		 
+		  context.addCallbackParam("loggedIn", false);
+	    }
+	 }
+	
+ 	
+	
+	public void setTimeZone(TimeZone timeZone) {
+		this.timeZone = timeZone;
+	}
+
+	public TimeZone getTimeZone() {
+		return TimeZone.getDefault();
+	}
+	
+	
+
+	public Map<String, String> getNiveau() {
+		return niveau;
+	}
+
+
+	public void setNiveau(Map<String, String> niveau) {
+		this.niveau = niveau;
+	}
+
+
+	public Map<String, String> getRole() {
+		return Role;
+	}
+
+
+	public void setRole(Map<String, String> role) {
+		Role = role;
+	}
+
+
+
+
+	public Map<String, String> getExperience() {
+		return experience;
+	}
+
+
+	public void setExperience(Map<String, String> experience) {
+		this.experience = experience;
+	}
+
+
+
+
+
+	public Map<String, String> getCycle() {
+		return cycle;
+	}
+
+
+	public void setCycle(Map<String, String> cycle) {
+		this.cycle = cycle;
+	}
+
+
+	public Map<String, String> getAnnee() {
+		return Annee;
+	}
+
+
+	public void setAnnee(Map<String, String> annee) {
+		Annee = annee;
+	}
+
+
+	public Offremploi getOffremploi() {
+		return offremploi;
+	}
+
+
+	public void setOffremploi(Offremploi offremploi) {
+		this.offremploi = offremploi;
+	}
+
+
+	public Createur getCreateur() {
+		return Createur;
+	}
+
+
+	public void setCreateur(Createur createur) {
+		Createur = createur;
+	}
+
+
+	public List<Offremploi> getOffre() {
+		return offre;
+	}
+
+
+	public void setOffre(List<Offremploi> offre) {
+		this.offre = offre;
+	}
+
+
+	public List<Offremploi> getFilteredListoffre() {
+		return filteredListoffre;
+	}
+
+
+	public void setFilteredListoffre(List<Offremploi> filteredListoffre) {
+		this.filteredListoffre = filteredListoffre;
+	}
+
+
+	public List<Createur> getFilteredListcreateur() {
+		return filteredListcreateur;
+	}
+
+
+	public void setFilteredListcreateur(List<Createur> filteredListcreateur) {
+		this.filteredListcreateur = filteredListcreateur;
+	}
+
+
+	public Createur getCreateurList() {
+		return CreateurList;
+	}
+
+
+	public void setCreateurList(Createur createurList) {
+		CreateurList = createurList;
+	}
+
+
+	public List<Createur> getListCreateur() {
+		return ListCreateur;
+	}
+
+
+	public void setListCreateur(List<Createur> listCreateur) {
+		ListCreateur = listCreateur;
+	}
+
+	public Map<String, String> getValider() {
+		return Valider;
+	}
+	public void setValider(Map<String, String> valider) {
+		Valider = valider;
+	}
+
+
+
+
+
+
+	
+	
+	
+}

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui">
+	<f:view contentType="text/html">
+	<h:head>
+		<title>#{userBean.createur.nom} #{userBean.createur.prenom}</title>
+		<link href="#{request.contextPath}/PFE_files/logo_attijari.gif"
+				rel="shortcut icon" />
+				
+			     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/PFE_files/style.css" />
+			    <style>
+		.menu1
+	{
+	border: 5px ;
+	 	 background: rgba(0,0,0,0) ;
+	 	position:absolute;
+	 	right:10px;
+	 	left:700px;
+	 	top:-170px;
+
+	}
+		.image1
+	{
+		 height: 150px;
+   		 width: 150px;
+   		 position: absolute;
+    	bottom: 700px;
+    	left:50px;
+	}
+	
+		#gauche1{
+	border: 2px ;
+	
+    left:46%;
+    
+    height: 800px;
+   	 width: 1100px;
+   	 background: rgba(0,0,0,0.3) ;
+				position:relative;
+				
+				transform:translate(-50%,-50%);
+				box-sizing: border-box;
+				top:450px;
+    	border-radius: 8px ;
+    	margin-left:50px;
+    	
+        	
+	}
+	.conteneur
+	{
+	width:1030px;
+	border-radius: 8px ;
+	height: 600px;
+	background: rgba(0,0,0,0.5) ;
+	position:absolute;
+	top:250px;
+	left:239px;
+	
+	}
+	
+	
+			    </style>
+	
+	</h:head>
+	<h:body style="background-image: url('#{request.contextPath}/PFE_files/images.jpg'); " >
+			
+	<div id="gauche1">
+		<h:graphicImage styleClass="image1" value="/PFE_files/logo.png" />	
+		
+			
+	</div>	
+	<div class="conteneur">
+	
+		<div >
+			<h:form id="portailMenubarForm1">
+			<p:outputLabel value="#{userBean.createur.nom } #{userBean.createur.prenom} "  style=" position:relative ;color:#FFFFFF; left:700px;  bottom:147px; font-family:'Trebuchet MS';font-size:20px; "/>
+						<p:outputLabel value="(#{userBean.createur.typec})" style=" position:relative ;color:#FFFFFF; left:700px; bottom:150px; font-family:'Trebuchet MS';font-size:12px; "/>
+					 <p:menubar styleClass="menu1"   style="width:300px; ">
+					 
+					 			
+							<p:submenu   style=" padding-top:3px; left:90%; top:10px ;font-family:'Trebuchet MS';font-size:20px; ">
+								<p:menuitem value="Changer mot de passe" oncomplete="PF('statusDialog').show();" icon="ui-icon ui-icon-key" style="width: 242px;font-family:'Trebuchet MS';font-size:20px; "/>
+								<p:menuitem value="Déconnexion"   icon="ui-icon ui-icon-power" url="/modules/members/secure/logout" style="font-family:'Trebuchet MS';font-size:20px;" ajax="false" />
+					</p:submenu>
+				
+				</p:menubar>
+				
+			</h:form>
+			</div>
+		<div class="fond">
+		<h:form id="portailMenubarFormBU" rendered="#{userBean.test eq 'BU' }" >		
+		
+		<p:menubar styleClass="menu"  style="width:1255px;">
+			<p:menuitem icon="ui-icon-document-b" value="creation d'une offre d'emploi de type Siege " action="Acceuil"  style="position: relative ; left:50px;font-family:'Trebuchet MS';font-size:20px; "/>	           	
+        	<p:menuitem icon="ui-icon-document-b" value=" Suivre l'offre d'emploi " action="processus" style="position: relative ;left:200px;font-family:'Trebuchet MS';font-size:20px;  "/>
+        </p:menubar>
+         </h:form>
+         <h:form id="portailMenubarFormRH" rendered="#{userBean.test eq 'RH' }" >		
+		
+		<p:menubar styleClass="menu"  style="width:1255px;">
+			<p:menuitem icon="ui-icon-document-b" value="creation d'une offre d'emploi de type Reseau " action="Acceuil"  style="position: relative ; left:50px;font-family:'Trebuchet MS';font-size:20px; "/>	           	
+        	<p:menuitem icon="ui-icon-document-b" value=" Suivre l'offre d'emploi " action="processus" style="position: relative ;left:200px;font-family:'Trebuchet MS';font-size:20px;  "/>
+        </p:menubar>
+         </h:form>
+         <h:form id="portailMenubarFormS" rendered="#{userBean.test eq 'S' }" >		
+		
+		<p:menubar styleClass="menu"  style="width:1250px;">
+        	<p:menuitem icon="ui-icon-document-b" value="  Validation des offres d'emploi" action="Acceuil" style="position: relative ;left:90px;font-family:'Trebuchet MS';font-size:20px;  "/>
+ 			<p:menuitem value="Gestion des offres d'emploi "   icon="ui-icon-document-b"   action="gestion" style="position: relative ;left:190px; font-family:'Trebuchet MS';font-size:20px;"  />
+       
+        </p:menubar>
+         </h:form>
+         		     <h:form id="portailMenubarFormR" rendered="#{userBean.test eq 'R' }" >		
+		
+		<p:menubar styleClass="menu"  style="width:1255px;">
+		        	
+		
+        	<p:submenu   icon="ui-icon-document-b" label="  Valider  les offres d'emploi "  style="position: relative ;left:10px;font-family:'Trebuchet MS';font-size:20px; ">
+					<p:menuitem value="Validation les  offres " action="Acceuil" oncomplete="PF('statusDialog').show();" icon="ui-icon-document-b"  style="width: 242px;font-family:'Trebuchet MS';font-size:20px; "/>
+					<p:menuitem value="Gestion des offres  "   icon="ui-icon-document-b"   action="gestion" style="font-family:'Trebuchet MS';font-size:20px;"  />
+			</p:submenu>
+        	<p:menuitem icon="ui-icon-document-b" value="  Valider  les candidatures  " action="validation" style="position: relative ;left:60px;font-family:'Trebuchet MS';font-size:20px;  "/>
+        	<p:menuitem icon="ui-icon-document-b" value="  Valider  la Planification d'entretien " action="entretien" style="position: relative ;left:100px;font-family:'Trebuchet MS';font-size:20px;  "/>
+      		<p:menuitem icon="ui-icon-document-b" value="  Evaluation Les entretiens " action="evaluerentretien" style="position: relative ;left:140px;font-family:'Trebuchet MS';font-size:20px;  "/>
+      		
+        </p:menubar>
+         </h:form> 
+         	     <h:form id="portailMenubarFormCP" rendered="#{userBean.test eq 'Cp' }" >		
+		
+		<p:menubar styleClass="menu"  style="width:1255px;">
+        	<p:menuitem icon="ui-icon-document-b" value="  Valider  des offres d'emploi " action="Acceuil" style="position: relative ;left:90px;font-family:'Trebuchet MS';font-size:20px;  "/>
+          	<p:menuitem value="Gestion des offres d'emploi "   icon="ui-icon-document-b"   action="gestion" style="position: relative ;left:190px; font-family:'Trebuchet MS';font-size:20px;"  />
+         </p:menubar>
+         </h:form> 
+         
+           <h:form id="portailMenubarFormCR" rendered="#{userBean.test eq 'CR' }" >		
+		
+		<p:menubar styleClass="menu"  style="width:1255px;">
+        	<p:menuitem icon="ui-icon-document-b" value="  sélectionner les Candidatures " action="Acceuil" style="position: relative ;left:50px;font-family:'Trebuchet MS';font-size:20px;  "/>
+        	<p:menuitem icon="ui-icon-document-b" value="  Planifier  les Entretiens " action="entretien" style="position: relative ;left:190px;font-family:'Trebuchet MS';font-size:20px;  "/>
+        	<p:menuitem icon="ui-icon-document-b" value="  Gérer les dossiers  des Candidat retenu " action="MAJ" style="position: relative ;left:290px;font-family:'Trebuchet MS';font-size:20px;  "/>	
+       
+         </p:menubar>
+         </h:form> 
+        
+             
+          
+         		           
+         		     <p:spacer height="0"/>
+         
+        		<ui:insert name="content"/>			 	
+			 
+		
+		        
+		</div>	
+	</div>
+			
+	<p:ajaxStatus onstart="PF('statusDialog').show();"
+								onsuccess="PF('statusDialog').hide();" />
+								
+								
+							<p:dialog modal="true" widgetVar="statusDialog" draggable="false"
+								closable="false" resizable="false" showHeader="false">
+								<h:panelGrid columns="3">
+								   <p:graphicImage value="/resources/design/attTimer.gif" />
+								   <p:spacer width="10" height="0"/>
+								    <h:panelGrid style="text-align:center;" columns="1">
+								        <h:outputText value="Chargement de la page"/>
+								        <p:spacer width="0" height="4"/>
+								        <h:outputText value="Veuillez patienter : traitement en cours ..."/>
+								    </h:panelGrid>
+								</h:panelGrid>
+								
+							</p:dialog>
+				
+	
+       
+	</h:body>
+	</f:view>
+</html>

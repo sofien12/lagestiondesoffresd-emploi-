@@ -1,0 +1,159 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../../templates/pageMere.xhtml">
+	  
+	<h:head>
+	<title>Acceuil</title>
+	<style type="text/css">
+		#fondLogin{
+				width:1150px;
+					   background: url("#{resource['images/bande2.png']}") repeat;
+		}
+	</style>
+	
+	</h:head>
+	 
+	<ui:define name="content">
+	<h:form id="formVa">
+		<p:breadCrumb style="width:1000px" >
+			
+			<p:menuitem value ="home" action="Acceuil"/>
+			<p:menuitem value="suivre les offres d'emploi " style="font-family:'Trebuchet MS';font-size:18px;"/>
+		</p:breadCrumb>
+		<p:spacer height="20px"/>
+			 <p:dataTable style="width:1000px " id="datatable1"  widgetVar="dataTable1WidgetVar"  var="item"  value="#{valideBean.list}"  filteredValue="#{valideBean.filteredListValidateur}" rows="3"
+                         paginator="true" emptyMessage="Pas de validation  disponibles !" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="3">
+       			 
+						
+				 <p:column style=" height:20px; width:35px;text-align:center;">
+							<f:facet name="header">
+							
+								<h:outputText value="N° Validateur" style="font-family:'Trebuchet MS';font-size:20px;" />
+							</f:facet>
+							
+					<p:rowToggler  />
+					<h:outputText value="#{item.createur}" />
+				
+						</p:column>
+    		   
+    		    <p:column style=" height:20px; width:35px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Observation" style="font-family:'Trebuchet MS';font-size:20px;" />
+							</f:facet>
+							
+				<h:outputText value="#{item.obesevation}" />
+						</p:column>
+						
+					 <p:column style=" height:20px; width:35px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Validation" style="font-family:'Trebuchet MS';font-size:20px;" />
+							
+							</f:facet>
+							
+				<h:outputText value="#{item.valider}" />
+						</p:column>
+						
+							 <p:column style=" height:20px; width:35px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Date de validation" style="font-family:'Trebuchet MS';font-size:20px;" />
+							</f:facet>
+							
+				<h:outputText value="#{item.dateP}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+						</p:column>
+					
+			<p:column style=" height:20px; width:35px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="détails une offre" style="font-family:'Trebuchet MS';font-size:20px;" />
+							</f:facet>
+							
+				<p:commandButton style=" width:20px;height: 20px;" icon="ui-icon-search"    
+								action="#{OffreBean.findbyIdO(item.offremploi)}"  oncomplete="PF('editoffreDial').show()" update=":formoEditoffre:fieldset"> 
+								
+							</p:commandButton>
+						</p:column>
+     		  
+      			   
+			<p:rowExpansion >
+            <p:dataTable id="display" var="itemC"   value="#{valideBean.nomprenom(item.createur)}" style="width:850px; position:relative ; left:90px;">  
+  				<p:column style="width:150px;text-align:center; " headerText="Nom  ">
+                <h:outputText value="#{itemC.nom}" />
+ 			</p:column>
+                	<p:column style=" width:150px;text-align:center;" headerText="Prenom " >
+                <h:outputText value="#{itemC.prenom}" />
+ 			</p:column>
+ 			
+ 			<p:column style="width:150px;text-align:center; " headerText="Cin " >
+                <h:outputText value="#{itemC.cin}" />
+ 			</p:column>
+                
+                <p:column style="width:250px;text-align:center; " headerText="Email " >
+                <h:outputText value="#{itemC.email}" />
+ 			</p:column>
+ 			<p:column style="width:150px;text-align:center;" headerText=" type de  Responsable  " >
+                <h:outputText value="#{itemC.typec}" />
+ 			</p:column>
+            </p:dataTable> 
+           
+                   </p:rowExpansion>
+    </p:dataTable>
+	</h:form>
+	   <h:form id="formoEditoffre">
+	        <p:dialog id="editoffreDial" widgetVar="editoffreDial" header="l'offre d'emploi" resizable="false" width="760" showEffect="explode" hideEffect="explode" modal="true"> 
+		   		
+		   		<p:fieldset id="fieldset" widgetVar="fieldset"  legend="l'offre d'emploi " style="margin-bottom:20px;position:relative; left:35px;width:900px; ">
+	           <h:panelGrid id="addOffreGrid1" columns="3" columnClasses="label,value, label , value">     
+	           <h:outputText value="N° offre :"/>
+	           		<p:spacer height="0" width="34"/>
+	           		<h:outputText id="inputText2" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.idOffre}" />	
+	         
+			 <h:outputText value="Role  :"/>
+	                 <p:spacer height="0" width="34"/>	 
+					<h:outputText id="inputText1" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.role}" />
+						
+						 <h:outputText value="Niveau d'etude :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputText4" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.niveauEtude}" />
+						
+						 			  
+					 <h:outputText value="Minimum d'experience :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputText3" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.minimumExper}" />
+						
+	   	               <h:outputText value="Region :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputTextR" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.region}" />
+	   	              
+	   	               <h:outputText value="Localité :" />
+	                 <p:spacer height="0" width="34"/>
+						<h:outputText id="inputTextL" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.localité}" />
+	   	            
+	   	            <h:outputText value="Date debut publication  :"/>
+	   	            <p:spacer height="0" width="34"/>
+					 <h:outputText id="inputText5" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.dateDebut}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+						
+						<h:outputText value="Date fin publication  :"/>
+						<p:spacer height="0" width="34"/>
+						<h:outputText id="inputText6" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.dateFinal}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+	   	             <h:outputText value="Mission  :" />
+	   	             	<p:spacer height="0" width="34"/>
+						<h:outputText id="inputText7" style=" width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{OffreBean.offremploi.mission}" />
+	</h:panelGrid>			 
+	</p:fieldset>
+       		 
+       
+			</p:dialog>
+</h:form>
+	</ui:define>
+	</ui:composition>

@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ 
+	<h:head>
+	    <f:facet name="first">
+	      <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	      <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	    </f:facet>
+        <link href="#{request.contextPath}/PFE_files/logo_attijari.gif" rel="shortcut icon"/>
+		<title>PFE V 1.0</title>
+		<link rel="stylesheet" type="text/css"
+			href="#{request.contextPath}/PFE_files/main.css" />
+		<link rel="stylesheet" type="text/css"
+			href="#{request.contextPath}/PFE_files/css.css" />
+		<script type="text/javascript"
+			src="#{request.contextPath}/PFE_files/common.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/externValidator.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/hideStatusBar.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/domLib.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/domTT.js"></script>
+		<script type="text/javascript" defer="defer"
+			src="#{request.contextPath}/PFE_files/mouseover.js"></script>
+		<script type="text/javascript"
+			src="#{request.contextPath}/PFE_files/rounded_corners.js"></script>
+		<script type="text/javascript"
+			src="#{request.contextPath}/PFE_files/cookie.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[ 
+
+            
+//]]>
+</script>
+			<style type="text/css">
+			
+					#fondLogin{
+					   width:1150px;
+					   background: url("#{resource['images/bande2.png']}") repeat;
+					    
+					}
+					
+					#userSaisieLoginSecure {
+					background: url("#{resource['images/bande3.png']}") repeat;
+					}
+					#pwdSaisieLoginSecure {
+					background: url("#{resource['images/bande3.png']}") repeat;
+					
+					}
+					#validSaisieLoginSecure{
+					background: url("#{resource['images/bande3.png']}") repeat;
+					}
+					
+					
+			</style>
+			
+
+		</h:head>
+
+		<h:body styleClass="fondArrierePlan" style="background-image: url('#{request.contextPath}/PFE_files/image_bg.png');">
+			 
+			 <div id="conteneur">
+			  
+			  <a name="top"></a> 			
+				<div id="headerAideSecuriteEbk">
+			<div style="float:left">
+					<table style="margin-top: 3px">
+
+							<tbody>
+								<tr>
+									<td>
+										<p:spacer></p:spacer>
+										<p:spacer></p:spacer>
+										<p:spacer></p:spacer>
+										<img src="#{request.contextPath}/PFE_files/image.do"
+											alt="" />
+										<p:spacer></p:spacer>
+									</td>
+									<td>
+										<h:form>
+										
+										 <h:commandLink styleClass="lienAideSecurite" >Mot de passe oublié ?</h:commandLink>
+										</h:form>
+									</td>
+									<td>
+										<p:spacer></p:spacer>
+										<p:spacer></p:spacer>
+										<p:spacer></p:spacer>
+										<img
+											src="#{request.contextPath}/PFE_files/image.do"
+											alt="" />
+										<p:spacer></p:spacer>
+									</td>
+									<td>
+										<a id="NWP_Aide" href="javascript:alertEnConstruc('fr')"
+											class="lienAideSecurite"> Besoin d'aide ?</a>
+									</td>
+									<td>
+										<p:spacer></p:spacer>
+										<p:spacer></p:spacer>
+										<p:spacer></p:spacer>
+										<img
+											src="#{request.contextPath}/PFE_files/image.do"
+											alt="" />
+										<p:spacer></p:spacer>
+									</td>
+									<td>
+										<a id="NWP_Securite" href="javascript:alertEnConstruc('fr')"
+											class="lienAideSecurite"> Sécurité</a>
+										<p:spacer></p:spacer>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+					<div id="headerBanner">
+					
+					
+					<div style="position:relative;z-index:10;" >
+					
+						<img width="1180" height="120"    style=" margin-left: -27px;" alt="" src="#{request.contextPath}/PFE_files/baniere.png"/>
+					
+					</div>
+					
+					
+					
+				
+				</div>
+	      
+				<div id="fondLogin" style="visibility: visible;">
+					
+					<div id="cadreLoginSecure"
+					style="position: relative; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-bottom-width: 0px; background-position: 0px -11px;">
+					
+					
+					<div id="saisieLoginSecure">
+					<div id="titreSaisieLoginSecure"
+							style="position: relative; padding-top: 2px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-bottom-width: 0px; background-position: 0px -7px;">
+							Accés sécurisé à votre espace personnel
+						</div>
+						<div class="separateBlalock"/>
+						
+			               <h:form  prependId="false" id="loginForm">
+							
+						   <p:growl id="growl" showDetail="true" sticky="false"
+								autoUpdate="true" />
+							
+							<input type="hidden" name="codeLangueSelected" value="fr" />
+							
+														
+							<!-- ===================================================================================================== -->
+							
+							<div id="userSaisieLoginSecure" 
+								style="position: relative; margin-bottom:2px;padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;  background-position: 0px -7px;">
+								<img style=" margin-top: 8px; margin-left: 20px;" src="#{request.contextPath}/PFE_files/image.do" class="fleche" alt="" />
+								<div id="txtUserSaisieLoginSecure">
+								
+									Saisissez votre session utilisateur :
+								</div>
+								<input type="text" name="j_username" value="Session"
+									onblur=" if(this.value=='')this.value='Session'"
+									onfocus="if(this.value=='Session')this.value=''" id="j_username" />
+								
+							</div>
+							
+							<div id="pwdSaisieLoginSecure"  
+								style="width:420px;margin-top: 2px; position: relative; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-position: 0px -7px;">
+								
+							
+								<div class="spacer">
+								</div>
+								
+							<img src="#{request.contextPath}/PFE_files/image.do"
+									class="fleche" alt="" />
+								<div id="txt2PwdSaisieLoginSecure">
+									Mot de passe :
+								</div>
+								<input type="hidden" name="j_password" value="" id="j_password"/>
+								<input type="password" id="mdpAfficheSecure" name="mdpAfficheSecure"
+									class="mdpPwdSaisieLoginSecure"   />
+								<input id="btnPwdSaisieLoginSecure" class="boutonsFormulaire" type="button"
+									value="Corriger"
+									onclick="document.forms['loginForm'].mdpAfficheSecure.value=''; document.forms['loginForm'].j_password.value=''; return false;" />
+								
+								<div class="spacer">
+								</div>
+								
+																
+				
+							</div>
+							
+							<p:outputPanel id="validationpanel" autoUpdate="true" rendered="true"> 
+ 
+                            <div class="separateBlalock"/>
+                            
+							<div id="validSaisieLoginSecure"
+								style="position: relative; padding-top: 2px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-position: 0px -7px;">
+								
+								
+								<h:commandButton value="Valider" action="#{loginBean.doLogin}" 
+									id="btnValidSaisieLoginSecure"  type="submit"  
+									 styleClass="boutonsFormulaire" onclick="PF('statusDialog').show();j_password.value=mdpAfficheSecure.value;mdpAfficheSecure.value='';">
+									  
+							    </h:commandButton>
+							    
+							    	 
+							</div>
+							</p:outputPanel>
+							
+							<!-- ====================================================================================================== -->
+							
+							<p:ajaxStatus onstart="PF('statusDialog').show();"
+								onsuccess="PF('statusDialog').hide();" />
+                            
+							<p:dialog modal="true" widgetVar="statusDialog" draggable="false"
+								closable="false" resizable="false" showHeader="false">
+								<h:panelGrid columns="3">
+								   <p:graphicImage value="/resources/design/attTimer.gif" />
+								   <p:spacer width="10" height="0"/>
+								    <h:panelGrid style="text-align:center;" columns="1">
+								        <h:outputText value="Chargement de la page"/>
+								        <p:spacer width="0" height="4"/>
+								        <h:outputText value="Veuillez patienter : traitement en cours ..."/>
+								    </h:panelGrid>
+								</h:panelGrid>
+								
+							</p:dialog>
+							
+                           
+
+
+						</h:form>
+					
+				      </div>
+				      
+				      
+				      
+				  </div>
+			  </div>
+			  
+			  <div id="mentionsLegalesEBK">
+					<div class="divLoading">
+
+					</div>
+					<div class="divMentionsLegales">
+						<table>
+							<tbody>
+								<tr>
+								    <td>
+										<img
+											src="#{request.contextPath}/PFE_files/image.do"
+											alt="" />
+										<p:spacer></p:spacer>
+									</td>
+									<td>
+										<a id="NWP_ML" href="javascript:alertEnConstruc('fr')"
+											class="lienMentionsLegales"> Mentions légales</a>
+									</td>
+									<td>
+										<p:spacer height="0" width="2"/>
+										<span class="txtCopyrightEBK">©ABT</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			  
+			</div>
+		
+		</h:body>
+	
+</html>

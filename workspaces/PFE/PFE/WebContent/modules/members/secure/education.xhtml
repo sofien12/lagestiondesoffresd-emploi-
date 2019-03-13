@@ -1,0 +1,313 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../../templates/pageMere.xhtml">
+	
+	  
+	<h:head>
+	<style type="text/css">
+	
+	</style>
+	</h:head>
+	
+	<ui:define name="content">
+			
+		<h:form>
+			<p:breadCrumb style="width:1000px" >
+			
+			<p:menuitem value ="home" action="Acceuil"/>
+			<p:menuitem value="Gére les educations" style="font-family:'Trebuchet MS';font-size:18px;"/>
+		</p:breadCrumb>
+
+		</h:form>
+	<p:spacer height="20px"/>	
+		
+		<h:form id="formMain"> 
+            
+            <p:messages   id="formMainMsg" for="formMain" outtime="5" showDetail="true" closable="true"/>
+            
+            <p:dataTable style="width:1010px;" id="dataTable1" widgetVar="dataTable1WidgetVar"  value="#{CvBean.listeducation}" filteredValue="#{CvBean.filteredListEducation}" currentPageReportTemplate="({currentPage} sur {totalPages})"
+					     var="item" paginator="true" emptyMessage="Pas d'enregistrements disponibles !" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					     rows="3">
+						<p:column style=" height:20px; width:35px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Domaine" style="font-family:'Trebuchet MS';font-size:15px;" />
+							</f:facet>
+							<h:outputText value="#{item.domaineEducation}" />
+						</p:column>
+						
+						<p:column style=" height:20px; width:80px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Spécialité" style="font-family:'Trebuchet MS';font-size:15px;" />
+								
+							</f:facet>
+							<h:outputText value="#{item.spécialité}" />
+						</p:column>
+						
+						<p:column style=" height:20px; width:80px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Cycle" style=" font-family:'Trebuchet MS';font-size:15px;" />
+								
+							</f:facet>
+							<h:outputText value="#{item.cycle}" />
+						</p:column>
+						
+						<p:column style=" height:20px; width:70px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Annee d'obtention de diplome" style="font-family:'Trebuchet MS';font-size:15px;" />
+								
+							</f:facet>
+							<h:outputText value="#{item.annéeDiplome}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>  
+						</p:column>
+							
+						<p:column style=" height:20px; width:15px;text-align:center;">
+							<f:facet name="header">
+								<h:outputText value="Diplome Scanné" style="font-family:'Trebuchet MS';font-size:15px;"/>
+							</f:facet>
+							
+							<p:commandButton actionListener="#{CvBean.dowloand(item.photoDiplomee)}"   onclick="PrimeFaces.monitorDownload(start, stop)" 
+							style="width:20px; height:20px;background-image:url('#{request.contextPath}/PFE_files/pdf-icone-16.png')" ajax="false" update=":formAddClient:addClientGrid1,:formEditClient:editClientGrid1"  icon=" fa-file-pdf-o">
+   								<p:fileDownload  type="pdf" value="#{CvBean.file}"  />
+   								<f:setPropertyActionListener value="#{item}" target ="#{CvBean.selectedCv}" />
+    							</p:commandButton>
+    							 <script type="texts/javascript">
+							function start() {
+   							 PF('statusDialog').show();
+						}
+
+						function stop() {
+    					PF('statusDialog').hide();
+									}
+
+				 					 </script> 
+							
+						</p:column>
+						
+						
+						<p:column exportable="false"  style=" height:20px; width:15px;text-align:center; ">
+							<f:facet name="header"> 
+								<p:commandButton title="Ajouter un enregistrement" icon="ui-icon-plus" style="width:20px;height: 20px;" action="#{CvBean.initaddclient}"
+								 oncomplete="PF('addClientDial').show()" update=":formMain:formMainMsg,:formAddClient:formAddClientMsg,:formAddClient:addClientGrid1"  />
+							</f:facet>
+							<p:commandButton style="width:20px;height: 20px;" icon="ui-icon-trash" title="Supprimer un enregistrement" 
+								 oncomplete="PF('deleteClientDial').show()" update=":formMain:formMainMsg" > 
+								<f:setPropertyActionListener value="#{item}" target="#{CvBean.selectedCv}"/>
+							</p:commandButton>
+							<p:commandButton style="width:20px;height: 20px;" icon="ui-icon-pencil" title="Modifier un enregistrement"   
+								  oncomplete="PF('editClientDial').show()" update=":formMain:formMainMsg,:formEditClient:formEditClientMsg,:formEditClient:editClientGrid1"> 
+								<f:setPropertyActionListener value="#{item}" target="#{CvBean.selectedCv}"/>
+							</p:commandButton>
+						</p:column>
+			</p:dataTable>
+        </h:form>
+		 <h:form id="formAddClient">
+       
+	        <p:dialog id="addClientDial" widgetVar="addClientDial" header="Ajout un Education" resizable="false" width="900" showEffect="explode" hideEffect="explode" modal="true"> 
+		   		
+		   		<p:messages  id="formAddClientMsg" for="formAddClient" showDetail="true" closable="true"/>
+	            
+	            <h:panelGrid id="addClientGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	                
+	                 <h:outputText value="Domaine :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText1" style="width:250px; font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.domaineEducation}" required="true" requiredMessage="La saisie de Domaine est obligatoire !">
+						<f:selectItem  itemLabel="Choisir un  Domaine " itemValue="" />
+           					 <f:selectItems value="#{CvBean.domaine}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText1"/>
+					 <p:spacer height="0" width="7"/>
+					 
+	   	             
+	   	             <h:outputText value="Spécialite :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu  id="inputText2" style="width:250px;font-family:'Trebuchet MS';font-size:20px;" value="#{CvBean.selectedCv.spécialité}" required="true" requiredMessage="La saisie de Spécialité est obligatoire !">
+					<f:selectItem  itemLabel="Choisir une  specialité " itemValue="" />
+           					 <f:selectItems value="#{CvBean.specialité}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText2"/>
+					 <p:spacer height="0" width="7"/>
+	   	              
+					 
+					 <h:outputText value="Cycle :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+						<p:selectOneMenu  id="inputText3" style="width:250px;font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.cycle}" required="true" requiredMessage="La saisie de Cycle est obligatoire !">
+							<f:selectItem  itemLabel="Choisir son cycle" itemValue="" />
+           					 <f:selectItems value="#{CvBean.cycle}"/>
+						</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText3"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Regime Linguistique :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+						<p:selectOneMenu  id="inputText12" style="width:250px;font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.regimeLinguistique}" required="true" requiredMessage="La saisie de Regime est obligatoire !">
+							<f:selectItem  itemLabel="Choisir votre Regime Linguistique " itemValue="" />
+           					 <f:selectItems value="#{CvBean.regime}"/>
+						</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText12"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Etablissement :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+				<p:selectOneMenu  id="inputText5" value="#{CvBean.selectedCv.etablissementEducation}" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "   required="true" requiredMessage="La saisie de Etablissement est obligatoire !">
+					<f:selectItem  itemLabel="Choisir un etablissement" itemValue="" />
+           					 <f:selectItems value="#{CvBean.etablissementEducation}"/>
+				</p:selectOneMenu>
+					<p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText5"/>
+					 <p:spacer height="0" width="7"/>
+		
+					 <h:outputText  value="Annee de diplome :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText4" value="#{CvBean.selectedCv.annéeDiplome}" style="width:270px;  font-family:'Trebuchet MS';font-size:20px; "  required="true" requiredMessage="La saisie d'année de diplome est obligatoire !">
+						<f:selectItem  itemLabel="Choisir son annéé de diplome" itemValue="" />
+           					 <f:selectItems value="#{CvBean.annee}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText4"/>
+					 <p:spacer height="0" width="7"/>    				    
+    				   
+    				    
+			</h:panelGrid>
+			     <h:outputText style=" position:relative ; top:20px;" value="Choisir un diplome : "/>
+    				<h:form enctype="multipart/form-data">
+    					<p:fileUpload   style="width:200px;height:50px ; position:relative ;left:200px; bottom:20px;" fileUploadListener="#{CvBean.upload}" auto="true" />
+					</h:form>	
+										    
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('addClientDial').hide()"  />
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="Valider" action="#{CvBean.addClient}" oncomplete="addClientRequest(xhr, status, args)"
+				                  update=":formAddClient:formAddClientMsg,:formAddClient:addClientGrid1,:formMain:formMainMsg,:formMain:dataTable1"/>
+			 	 <script type="text/javascript">
+					  function addClientRequest(xhr, status, args) {
+						  if (args.validationFailed || !args.loggedIn) {
+						             
+					      }else {
+							  PF('addClientDial').hide();
+							  PF('dataTable1WidgetVar').clearFilters();
+							  
+							  
+						  }
+					}
+				  </script>        
+			</p:dialog>
+        
+        </h:form>
+        <h:form id="formConfirmation">
+           <p:confirmDialog id="deleteClientDial" widgetVar="deleteClientDial" header="Confirmation" message="Voulez-vous vraiment supprimer ce Education !" showEffect="explode" hideEffect="explode"> 
+	         <p:commandButton style="height:35px;" value="Non" icon="ui-icon-close" onclick="PF('deleteClientDial').hide()"/>  
+	         <p:spacer height="0" width="5" />
+		     <p:commandButton style="height:35px;" value="Oui" icon="ui-icon-check" action="#{CvBean.deleteClient}" oncomplete="PF('deleteClientDial').hide();PF('dataTable1WidgetVar').clearFilters();" update=":formMain:formMainMsg,:formMain:dataTable1"/>
+		   </p:confirmDialog>
+        </h:form>
+        
+		<h:form id="formEditClient">
+       
+	        <p:dialog id="editClientDial" widgetVar="editClientDial" header="Modification Education" resizable="false" width="860" showEffect="explode" hideEffect="explode" modal="true"> 
+		   		
+		   		<p:messages  id="formEditClientMsg" for="formEditClient" showDetail="true" closable="true"/>
+	            
+	            <h:panelGrid id="editClientGrid1" columns="6" columnClasses="label,label,label,label,value,label">
+	                
+	                <h:outputText value="Domaine :"/>
+	                 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText1" style="width:250px;font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.domaineEducation}" required="true" requiredMessage="La saisie de Domaine est obligatoire !">
+						<f:selectItem  itemLabel="Choisir un  Domaine " itemValue="" />
+           					 <f:selectItems value="#{CvBean.domaine}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText1"/>
+					 <p:spacer height="0" width="7"/>
+					 
+	   	             
+	   	             <h:outputText value="Spécialite :"/>
+				   	 <p:spacer height="0" width="35"/>
+					 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu  id="inputText2" style="width:250px;font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.spécialité}" required="true" requiredMessage="La saisie de Spécialité est obligatoire !">
+					<f:selectItem  itemLabel="Choisir une  specialité " itemValue="" />
+           					 <f:selectItems value="#{CvBean.specialité}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText2"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					  <h:outputText value="Cycle :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+						<p:selectOneMenu  id="inputText3" style="width:250px;font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.cycle}" required="true" requiredMessage="La saisie de Cycle est obligatoire !">
+							<f:selectItem  itemLabel="Choisir son cycle" itemValue="" />
+           					 <f:selectItems value="#{CvBean.cycle}"/>
+						</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText3"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Regime Linguistique :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+						<p:selectOneMenu  id="inputText12" style="width:250px;font-family:'Trebuchet MS';font-size:20px; " value="#{CvBean.selectedCv.regimeLinguistique}" required="true" requiredMessage="La saisie de Cycle est obligatoire !">
+							<f:selectItem  itemLabel="Choisir votre Regime Linguistique " itemValue="" />
+           					 <f:selectItems value="#{CvBean.regime}"/>
+						</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;" for="inputText12"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					 <h:outputText value="Etablissement :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+				<p:selectOneMenu  id="inputText5" value="#{CvBean.selectedCv.etablissementEducation}" style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "   required="true" requiredMessage="La saisie de Etablissement est obligatoire !">
+					<f:selectItem  itemLabel="Choisir un etablissement" itemValue="" />
+           					 <f:selectItems value="#{CvBean.etablissementEducation}"/>
+				</p:selectOneMenu>
+					<p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText5"/>
+					 <p:spacer height="0" width="7"/>
+					 
+					<h:outputText  value="Annee de diplome :"/>
+				   	 <p:spacer height="0" width="35"/>
+				   	 <h:outputText style="color:red;" value="*"/>
+					<p:selectOneMenu id="inputText4" value="#{CvBean.selectedCv.annéeDiplome}" style="width:270px;  font-family:'Trebuchet MS';font-size:20px; "  required="true" requiredMessage="La saisie d'année de diplome est obligatoire !">
+						<f:selectItem  itemLabel="Choisir son annéé de diplome" itemValue="" />
+           					 <f:selectItems value="#{CvBean.annee}"/>
+					</p:selectOneMenu>
+					 <p:message style="width:300px; font-family:'Trebuchet MS';font-size:15px;"  for="inputText4"/>
+					 <p:spacer height="0" width="7"/> 
+					
+	   	             
+			     </h:panelGrid>
+			      
+			      <h:outputText style=" position:relative ; top:20px;" value="Choisir un diplome : "/>
+    				<h:form enctype="multipart/form-data">
+    					<p:fileUpload   style="width:200px;height:50px ; position:relative ;left:200px; bottom:20px;" fileUploadListener="#{CvBean.upload}" auto="true" />
+					</h:form>
+					
+			     <p:separator style="margin-bottom:10px;margin-top:10px;"/>
+				 <p:commandButton icon="ui-icon-close" style="height:35px;" value="Fermer" type="button" onclick="PF('editClientDial').hide()"/>
+				 <p:spacer height="0" width="5" />  
+				 <p:commandButton icon="ui-icon-check" style="height:35px;" value="Valider" action="#{CvBean.editClient}" oncomplete="editClientRequest(xhr, status, args)"
+				                  update=":formEditClient:formEditClientMsg,:formEditClient:editClientGrid1,:formMain:formMainMsg,:formMain:dataTable1"/>
+			 	 <script type="text/javascript">
+					  function editClientRequest(xhr, status, args) {
+						  if (args.validationFailed || !args.loggedIn) {
+						             
+					      }else {
+							  
+							  PF('dataTable1WidgetVar').clearFilters();
+						  }
+					}
+				  </script>        
+			</p:dialog>
+        
+        </h:form>
+		
+		
+		
+	</ui:define>
+	
+</ui:composition>

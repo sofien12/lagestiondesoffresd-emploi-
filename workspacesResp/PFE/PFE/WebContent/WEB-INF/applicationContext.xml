@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				http://www.springframework.org/schema/tx 
+		        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		        http://www.springframework.org/schema/context 
+		        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<context:annotation-config /> 
+	<context:component-scan base-package="tn.com" /> 
+       
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/PFE_DS" />
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">
+					true
+				</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.HashtableCacheProvider
+				</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				
+				<value>tn.com.pfe.domain.Candidature</value>
+			<value>tn.com.pfe.domain.Offremploi</value>
+			<value>tn.com.pfe.domain.Cv</value>
+			<value>tn.com.pfe.domain.Postulant</value>
+				<value>tn.com.pfe.domain.Createur</value>
+				<value>tn.com.pfe.domain.Entretien</value>
+				<value>tn.com.pfe.domain.Validateur</value>
+				<value>tn.com.pfe.domain.Maj</value>
+            </list>
+		</property>
+		</bean>
+	   
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+    <property name="scopes">
+        <map>
+            <entry key="view">
+                <bean class="utils.ViewScope" />
+            </entry>
+        </map>
+      </property>
+    </bean>
+    
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+	</bean>
+	
+	<bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
+		<property name="transactionInterceptor" ref="txInterceptor" />
+	</bean>   
+	   
+	<bean id="txInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="txManager" />
+		<property name="transactionAttributeSource">
+			<bean
+				class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" />
+		</property>
+	</bean>   
+	   
+	
+	   
+	
+	
+	<bean id="CreateurDAO"
+		class="tn.com.pfe.dao.CreateurDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+		<bean id="OffremploiDAO"
+		class="tn.com.pfe.dao.OffremploiDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+		
+		<bean id="ValidateurDAO"
+		class="tn.com.pfe.dao.ValidateurDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CvDAO"
+		class="tn.com.pfe.dao.CvDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+		
+	<bean id="PostulantDAO"
+		class="tn.com.pfe.dao.PostulantDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CandidatureDAO"
+		class="tn.com.pfe.dao.CandidatureDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="EntretienDAO"
+		class="tn.com.pfe.dao.EntretienDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="MajDAO"
+		class="tn.com.pfe.dao.MajDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+</beans>

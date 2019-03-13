@@ -1,0 +1,314 @@
+package tn.com.pfe.domain;
+
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
+/**
+ * Cv entity. @author MyEclipse Persistence Tools
+ */
+
+public class Cv implements java.io.Serializable {
+
+	// Fields
+
+	private Long idCv;
+	private Long postulant;
+	private Long NDiplomee;
+	private Long NDiplomef;
+	private Long NDiplomeexper;
+	private String domaineEducation;
+	private String spécialité;
+	private String cycle;
+	private String regimeLinguistique;
+	private String etablissementEducation;
+	private Timestamp annéeDiplome;
+	private String mentionDiplome;
+	private String paysEtablissement;
+	private String description;
+	private String photoDiplomee;
+	private String etablissementExper;
+	private String typeFormation;
+	private Timestamp periodeExperDebut;
+	private Timestamp periodeExperFinal;
+	private String descriptionExper;
+	private String photoDiplomeExper;
+	private String etablissementFormation;
+	private String titreFormation;
+	private Timestamp periodeFormDebut;
+	private Timestamp periodeFormaFinal;
+	private String photoDiplomeFormation;
+	private String descriptionFormation;
+
+	// Constructors
+
+	/** default constructor */
+	public Cv() {
+	}
+
+	/** minimal constructor */
+	public Cv(Long idCv, Long postulant) {
+		this.idCv = idCv;
+		this.postulant = postulant;
+	}
+
+	/** full constructor */
+	public Cv(Long idCv, Long postulant, Long NDiplomee, Long NDiplomef,
+			Long NDiplomeexper, String domaineEducation, String spécialité,
+			String cycle, String regimeLinguistique,
+			String etablissementEducation, Timestamp annéeDiplome,
+			String mentionDiplome, String paysEtablissement,
+			String description, String photoDiplomee,
+			String etablissementExper, String typeFormation,
+			Timestamp periodeExperDebut, Timestamp periodeExperFinal,
+			String descriptionExper, String photoDiplomeExper,
+			String etablissementFormation, String titreFormation,
+			Timestamp periodeFormDebut, Timestamp periodeFormaFinal,
+			String photoDiplomeFormation, String descriptionFormation) {
+		this.idCv = idCv;
+		this.postulant = postulant;
+		this.NDiplomee = NDiplomee;
+		this.NDiplomef = NDiplomef;
+		this.NDiplomeexper = NDiplomeexper;
+		this.domaineEducation = domaineEducation;
+		this.spécialité = spécialité;
+		this.cycle = cycle;
+		this.regimeLinguistique = regimeLinguistique;
+		this.etablissementEducation = etablissementEducation;
+		this.annéeDiplome = annéeDiplome;
+		this.mentionDiplome = mentionDiplome;
+		this.paysEtablissement = paysEtablissement;
+		this.description = description;
+		this.photoDiplomee = photoDiplomee;
+		this.etablissementExper = etablissementExper;
+		this.typeFormation = typeFormation;
+		this.periodeExperDebut = periodeExperDebut;
+		this.periodeExperFinal = periodeExperFinal;
+		this.descriptionExper = descriptionExper;
+		this.photoDiplomeExper = photoDiplomeExper;
+		this.etablissementFormation = etablissementFormation;
+		this.titreFormation = titreFormation;
+		this.periodeFormDebut = periodeFormDebut;
+		this.periodeFormaFinal = periodeFormaFinal;
+		this.photoDiplomeFormation = photoDiplomeFormation;
+		this.descriptionFormation = descriptionFormation;
+	}
+
+	// Property accessors
+
+	public Long getIdCv() {
+		return this.idCv;
+	}
+
+	public void setIdCv(Long idCv) {
+		this.idCv = idCv;
+	}
+
+	public Integer getPostulant() {
+		return this.postulant;
+	}
+
+	public void setPostulant(Integer postulant) {
+		this.postulant = postulant;
+	}
+
+	public Long getNDiplomee() {
+		return this.NDiplomee;
+	}
+
+	public void setNDiplomee(Long NDiplomee) {
+		this.NDiplomee = NDiplomee;
+	}
+
+	public Long getNDiplomef() {
+		return this.NDiplomef;
+	}
+
+	public void setNDiplomef(Long NDiplomef) {
+		this.NDiplomef = NDiplomef;
+	}
+
+	public Long getNDiplomeexper() {
+		return this.NDiplomeexper;
+	}
+
+	public void setNDiplomeexper(Long NDiplomeexper) {
+		this.NDiplomeexper = NDiplomeexper;
+	}
+
+	public String getDomaineEducation() {
+		return this.domaineEducation;
+	}
+
+	public void setDomaineEducation(String domaineEducation) {
+		this.domaineEducation = domaineEducation;
+	}
+
+	public String getSpécialité() {
+		return this.spécialité;
+	}
+
+	public void setSpécialité(String spécialité) {
+		this.spécialité = spécialité;
+	}
+
+	public String getCycle() {
+		return this.cycle;
+	}
+
+	public void setCycle(String cycle) {
+		this.cycle = cycle;
+	}
+
+	public String getRegimeLinguistique() {
+		return this.regimeLinguistique;
+	}
+
+	public void setRegimeLinguistique(String regimeLinguistique) {
+		this.regimeLinguistique = regimeLinguistique;
+	}
+
+	public String getEtablissementEducation() {
+		return this.etablissementEducation;
+	}
+
+	public void setEtablissementEducation(String etablissementEducation) {
+		this.etablissementEducation = etablissementEducation;
+	}
+
+	public Timestamp getAnnéeDiplome() {
+		return this.annéeDiplome;
+	}
+
+	public void setAnnéeDiplome(Timestamp annéeDiplome) {
+		this.annéeDiplome = annéeDiplome;
+	}
+
+	public String getMentionDiplome() {
+		return this.mentionDiplome;
+	}
+
+	public void setMentionDiplome(String mentionDiplome) {
+		this.mentionDiplome = mentionDiplome;
+	}
+
+	public String getPaysEtablissement() {
+		return this.paysEtablissement;
+	}
+
+	public void setPaysEtablissement(String paysEtablissement) {
+		this.paysEtablissement = paysEtablissement;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getPhotoDiplomee() {
+		return this.photoDiplomee;
+	}
+
+	public void setPhotoDiplomee(String photoDiplomee) {
+		this.photoDiplomee = photoDiplomee;
+	}
+
+	public String getEtablissementExper() {
+		return this.etablissementExper;
+	}
+
+	public void setEtablissementExper(String etablissementExper) {
+		this.etablissementExper = etablissementExper;
+	}
+
+	public String getTypeFormation() {
+		return this.typeFormation;
+	}
+
+	public void setTypeFormation(String typeFormation) {
+		this.typeFormation = typeFormation;
+	}
+
+	public Timestamp getPeriodeExperDebut() {
+		return this.periodeExperDebut;
+	}
+
+	public void setPeriodeExperDebut(Timestamp periodeExperDebut) {
+		this.periodeExperDebut = periodeExperDebut;
+	}
+
+	public Timestamp getPeriodeExperFinal() {
+		return this.periodeExperFinal;
+	}
+
+	public void setPeriodeExperFinal(Timestamp periodeExperFinal) {
+		this.periodeExperFinal = periodeExperFinal;
+	}
+
+	public String getDescriptionExper() {
+		return this.descriptionExper;
+	}
+
+	public void setDescriptionExper(String descriptionExper) {
+		this.descriptionExper = descriptionExper;
+	}
+
+	public String getPhotoDiplomeExper() {
+		return this.photoDiplomeExper;
+	}
+
+	public void setPhotoDiplomeExper(String photoDiplomeExper) {
+		this.photoDiplomeExper = photoDiplomeExper;
+	}
+
+	public String getEtablissementFormation() {
+		return this.etablissementFormation;
+	}
+
+	public void setEtablissementFormation(String etablissementFormation) {
+		this.etablissementFormation = etablissementFormation;
+	}
+
+	public String getTitreFormation() {
+		return this.titreFormation;
+	}
+
+	public void setTitreFormation(String titreFormation) {
+		this.titreFormation = titreFormation;
+	}
+
+	public Timestamp getPeriodeFormDebut() {
+		return this.periodeFormDebut;
+	}
+
+	public void setPeriodeFormDebut(Timestamp periodeFormDebut) {
+		this.periodeFormDebut = periodeFormDebut;
+	}
+
+	public Timestamp getPeriodeFormaFinal() {
+		return this.periodeFormaFinal;
+	}
+
+	public void setPeriodeFormaFinal(Timestamp periodeFormaFinal) {
+		this.periodeFormaFinal = periodeFormaFinal;
+	}
+
+	public String getPhotoDiplomeFormation() {
+		return this.photoDiplomeFormation;
+	}
+
+	public void setPhotoDiplomeFormation(String photoDiplomeFormation) {
+		this.photoDiplomeFormation = photoDiplomeFormation;
+	}
+
+	public String getDescriptionFormation() {
+		return this.descriptionFormation;
+	}
+
+	public void setDescriptionFormation(String descriptionFormation) {
+		this.descriptionFormation = descriptionFormation;
+	}
+
+}

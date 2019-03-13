@@ -1,0 +1,231 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="../../../templates/pageMere.xhtml">
+<h:head>
+</h:head>
+<ui:define name="content">
+<h:form id="formG" rendered="#{userBean.test eq 'R' || userBean.test eq 'S' || userBean.test eq 'Cp' }">
+<p:growl showDetail="true" id="growl" />
+<p:breadCrumb style="width:1000px">
+				<p:menuitem value="home" action="Acceuil" />
+				<p:menuitem value="Gestion des offres "
+					style="font-family:'Trebuchet MS';font-size:18px;" />
+			</p:breadCrumb>
+			<p:spacer height="20px" />
+
+  <p:dataTable style="width:1000px " id="dataTable1" value ="#{OffreBean.listoffremploi()}"
+				filteredValue="#{OffreBean.filtrelisto}"
+					widgetVar="dataTable1WidgetVar" var="item"  rows="5"
+					paginator="true" emptyMessage="Pas d'enregistrements disponibles !"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,9" >
+					
+				<p:column style=" height:10px; width:90px;text-align:center;">
+						<f:facet name="header">
+							<h:outputText value="N° offre" style="font-family:'Trebuchet MS';font-size:16px;" />
+						</f:facet>
+						
+					</p:column> 
+					
+					<p:column style=" height:10px; width:150px;text-align:center;">
+						<f:facet name="header">
+							<h:outputText value="Emetteur de l'offre " style="font-family:'Trebuchet MS';font-size:16px;" />
+						</f:facet>
+					</p:column> 
+					
+					<p:column style=" height:20px; width:150px;text-align:center;">
+						<f:facet name="header">
+							<h:outputText value="Nature de l'offre" style="font-family:'Trebuchet MS';font-size:16px;" />
+						</f:facet>
+					</p:column> 
+					
+					<p:column style=" height:20px; width:150px;text-align:center;">
+						<f:facet name="header">
+							<h:outputText value="Suspendre de l'offre" style="font-family:'Trebuchet MS';font-size:16px;" />
+						</f:facet>
+					</p:column>
+					
+					<p:column style=" height:20px; width:90px;text-align:center;">
+						<f:facet name="header">
+							<h:outputText value="Date debut  " style="font-family:'Trebuchet MS';font-size:16px;" />
+						</f:facet>
+					</p:column>
+					
+					<p:column style=" height:20px; width:90px;text-align:center;">
+						<f:facet name="header">
+							<h:outputText value="Date de Cloture   " style="font-family:'Trebuchet MS';font-size:16px;" />
+						</f:facet>
+					</p:column>
+					
+					<p:column style=" height:20px; width:136px;text-align:center;">
+						<f:facet name="header">
+							<h:outputText value=" details de l'offre " style="font-family:'Trebuchet MS';font-size:16px;" />
+						</f:facet>
+					</p:column>
+					
+				<p:subTable id="datatable2" widgetVar="datatable2" var="itemC"   value="#{OffreBean.nomprenom(item.createur)}">
+					<p:column style="width:150px;text-align:center;" >
+						<h:outputText value="#{item.idOffre}" />
+					</p:column>
+					
+					<p:column style="width:150px;text-align:center;" >
+						<h:outputText value="#{itemC.nom } #{itemC.prenom}" />
+					</p:column>
+					
+					<p:column style="width:150px;text-align:center;" >
+						<h:outputText value="#{item.typeOffre }" />
+					</p:column>
+					
+					<p:column style=" height:20px; width:35px;text-align:center;">
+				<p:selectOneMenu value="#{item.suspendu}" style="width:50">
+                       <f:selectItem   itemLabel="activer" itemValue="1" />
+                         <f:selectItem  itemLabel="desactiver" itemValue="0" />                           
+              <p:ajax   process=":formG:dataTable1" listener="#{OffreBean.modification(item)}" update=":formG:growl" />
+                   </p:selectOneMenu>
+				</p:column>
+					
+				<p:column style=" height:20px; width:35px;text-align:center;">
+					<h:outputText value="#{item.dateDebut }" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column style=" height:20px; width:35px;text-align:center;">
+					<h:outputText value="#{item.dateFinal }" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+			<p:column style=" height:20px; width:35px;text-align:center;">
+				<p:commandButton style="width:20px;height: 20px;"
+							icon="ui-icon-pencil" title="Modifier un enregistrement"
+							oncomplete="PF('editoffreDial').show()"
+							update=":formoEditoffre:formEditoffreMsg,:formoEditoffre:editofffreGrid1">
+							<f:setPropertyActionListener value="#{item}"
+								target="#{OffreBean.offremploi}" />
+						</p:commandButton>
+					</p:column>
+			</p:subTable>
+	 </p:dataTable>
+</h:form>	
+
+		<h:form id="formoEditoffre">
+			<p:dialog id="editoffreDial" widgetVar="editoffreDial"
+				header="l'offre d''emploi" resizable="false" width="960"
+				showEffect="explode" hideEffect="explode" modal="true">
+
+				<p:messages id="formEditoffreMsg" for="formoEditoffre"
+					showDetail="true" closable="true" />
+
+				<h:panelGrid id="editofffreGrid1" columns="6"
+					columnClasses="label,label,label,label,value,label">
+
+					<h:outputText value="Role  :" />
+					<p:spacer height="0" width="34" />
+					<h:outputText style="color:red;" value="*" />
+					<p:selectOneMenu id="inputText1"
+						style="width:250px; font-family:'Trebuchet MS';font-size:20px; "
+						value="#{OffreBean.offremploi.role}" required="true"
+						requiredMessage="La saisie de Role est obligatoire !">
+						<f:selectItem itemLabel="Choisir un  Role  " itemValue="" />
+						<f:selectItems value="#{OffreBean.role}" />
+					</p:selectOneMenu>
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="inputText1" />
+					<p:spacer height="0" width="7" />
+
+					<h:outputText value="Minimum d'experience :" />
+					<p:spacer height="0" width="34" />
+					<h:outputText style="color:red;" value="*" />
+					<p:selectOneMenu id="inputText3"
+						style=" width:250px; font-family:'Trebuchet MS';font-size:20px; "
+						value="#{OffreBean.offremploi.minimumExper}" required="true"
+						requiredMessage="La saisie d'experience  est obligatoire !">
+						<f:selectItem itemLabel="Choisir votre minimum d'experience "
+							itemValue="" />
+						<f:selectItems value="#{OffreBean.experience}" />
+					</p:selectOneMenu>
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="inputText3" />
+					<p:spacer height="10" width="10" />
+
+					<h:outputText value="Niveau d'etude :" />
+					<p:spacer height="0" width="34" />
+					<h:outputText style="color:red;" value="*" />
+					<p:selectOneMenu id="inputText4"
+						style=" width:250px; font-family:'Trebuchet MS';font-size:20px; "
+						value="#{OffreBean.offremploi.niveauEtude}" required="true"
+						requiredMessage="La saisie de Niveau d'etude  est obligatoire !">
+						<f:selectItem itemLabel="Choisir votre Niveau d'etude "
+							itemValue="" />
+						<f:selectItems value="#{OffreBean.niveau}" />
+					</p:selectOneMenu>
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="inputText4" />
+					<p:spacer height="10" width="10" />
+
+
+
+					<h:outputText value="Date debut publication  :" />
+					<p:spacer height="0" width="35" />
+					<h:outputText style="color:red;" value="*" />
+					<p:calendar id="inputText5"
+						style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "
+						value="#{OffreBean.offremploi.dateDebut}" required="true"
+						requiredMessage="La saisie de Date  est obligatoire !" />
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="inputText5" />
+					<p:spacer height="10" width="10" />
+
+					<h:outputText value="Date fin publication  :" />
+					<p:spacer height="0" width="35" />
+					<h:outputText style="color:red;" value="*" />
+					<p:calendar id="inputText6"
+						style="width:250px;  font-family:'Trebuchet MS';font-size:20px; "
+						value="#{OffreBean.offremploi.dateFinal}" required="true"
+						requiredMessage="La saisie de Date  est obligatoire !" />
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="inputText6" />
+					<p:spacer height="10" width="10" />
+
+					<h:outputText value="Mission  :" />
+					<p:spacer height="0" width="34" />
+					<h:outputText style="color:red;" value="*" />
+					<p:inputTextarea id="display" rows="5" cols="30" autoResize="true"
+						value="#{OffreBean.offremploi.mission}" required="true"
+						requiredMessage="La saisie de Mission est obligatoire !" />
+					<p:message
+						style="width:300px; font-family:'Trebuchet MS';font-size:15px;"
+						for="display" />
+					<p:spacer height="0" width="7" />
+
+
+				</h:panelGrid>
+				<p:separator style="margin-bottom:10px;margin-top:10px;" />
+				<p:commandButton icon="ui-icon-check"
+					style="height:35px; position:relative ;left:700px;"
+					value="Enregistre" action="#{OffreBean.editoffre}" oncomplete="edit(xhr, status, args)"
+					update=":formoEditoffre:formEditoffreMsg,:formoEditoffre:editofffreGrid1" />
+				<script type="text/javascript">
+	function edit(xhr, status, args) {
+		if (args.validationFailed || !args.loggedIn) {
+
+		} else {
+			PF('dataTable1WidgetVar').clearFilters();
+			
+		}
+	}
+</script>
+
+			</p:dialog>
+</h:form>
+</ui:define>
+</ui:composition>
